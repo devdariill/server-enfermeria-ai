@@ -1,7 +1,9 @@
-import express, { json } from 'express' // require -> commonJS
-import { createMovieRouter } from './routes/movies.js'
-import { corsMiddleware } from './middlewares/cors.js'
 import 'dotenv/config'
+import express, { json } from 'express'
+import { corsMiddleware } from './middlewares/cors.js'
+import { createMovieRouter } from './routes/movies.js'
+
+import { createPool } from 'mysql2/promise'
 
 // después
 export const createApp = ({ movieModel }) => {
@@ -18,3 +20,14 @@ export const createApp = ({ movieModel }) => {
     console.log(`server listening on port http://localhost:${PORT}`)
   })
 }
+
+const DEFAULT_CONFIG = {
+  host: 'localhost',
+  user: 'root',
+  port: 3308,
+  password: 'ronald1230',
+  database: 'enfermeriadb'
+}
+const connectionString = process.env.DATABASE_URL ?? DEFAULT_CONFIG
+
+export const pool = createPool(connectionString)

@@ -1,15 +1,4 @@
-import mysql from 'mysql2/promise'
-
-const DEFAULT_CONFIG = {
-  host: 'localhost',
-  user: 'root',
-  port: 3306,
-  password: '',
-  database: 'moviesdb'
-}
-const connectionString = process.env.DATABASE_URL ?? DEFAULT_CONFIG
-
-const connection = await mysql.createConnection(connectionString)
+import { pool } from '../../app.js'
 
 export class MovieModel {
   static async getAll ({ genre }) {
@@ -19,7 +8,7 @@ export class MovieModel {
       const lowerCaseGenre = genre.toLowerCase()
 
       // get genre ids from database table using genre names
-      const [genres] = await connection.query(
+      const [genres] = await pool.query(
         'SELECT id, name FROM genre WHERE LOWER(name) = ?;',
         [lowerCaseGenre]
       )
@@ -37,7 +26,7 @@ export class MovieModel {
       return []
     }
 
-    const [movies] = await connection.query(
+    const [movies] = await pool.query(
       'SELECT title, year, director, duration, poster, rate, BIN_TO_UUID(id) id FROM movie;'
     )
 
@@ -45,7 +34,7 @@ export class MovieModel {
   }
 
   static async getById ({ id }) {
-    const [movies] = await connection.query(
+    const [movies] = await pool.query(
       `SELECT title, year, director, duration, poster, rate, BIN_TO_UUID(id) id
         FROM movie WHERE id = UUID_TO_BIN(?);`,
       [id]
@@ -70,11 +59,11 @@ export class MovieModel {
     // todo: crear la conexión de genre
 
     // crypto.randomUUID()
-    const [uuidResult] = await connection.query('SELECT UUID() uuid;')
+    const [uuidResult] = await pool.query('SELECT UUID() uuid;')
     const [{ uuid }] = uuidResult
 
     try {
-      await connection.query(
+      await pool.query(
         `INSERT INTO movie (id, title, year, director, duration, poster, rate)
           VALUES (UUID_TO_BIN("${uuid}"), ?, ?, ?, ?, ?, ?);`,
         [title, year, director, duration, poster, rate]
@@ -86,7 +75,7 @@ export class MovieModel {
       // sendLog(e)
     }
 
-    const [movies] = await connection.query(
+    const [movies] = await pool.query(
       `SELECT title, year, director, duration, poster, rate, BIN_TO_UUID(id) id
         FROM movie WHERE id = UUID_TO_BIN(?);`,
       [uuid]

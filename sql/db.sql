@@ -29,7 +29,9 @@ CREATE TABLE Historias_Clinicas (
   programa VARCHAR(50),
   codigo VARCHAR(50),
   eps VARCHAR(50),
-  id_tercero INT,
+
+  id_tercero INT NOT NULL,
+  
   motivo_consulta TEXT,
   enfermedad_actual TEXT,
   antecedente_familiar TEXT,

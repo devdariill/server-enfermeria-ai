@@ -1,7 +1,6 @@
 import 'dotenv/config'
 import express, { json } from 'express'
 import { corsMiddleware } from './middlewares/cors.js'
-import { createMovieRouter } from './routes/movies.js'
 
 import { createPool } from 'mysql2/promise'
 
@@ -12,7 +11,8 @@ export const createApp = ({ movieModel }) => {
   app.use(corsMiddleware())
   app.disable('x-powered-by')
 
-  app.use('/movies', createMovieRouter({ movieModel }))
+  // app.use('/movies', createMovieRouter({ movieModel }))
+  app.use('terceros', createTerceroRouter({ terceroModel }))
 
   const PORT = process.env.PORT ?? 1234
 

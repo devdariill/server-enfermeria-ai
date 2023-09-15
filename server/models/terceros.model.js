@@ -1,11 +1,9 @@
-import { pool } from '../../app.js'
+import { pool } from '../app.js'
 
 const DB_TABLE = 'terceros'
 
 export class TerceroModel {
   static async getAll ({ nombre }) {
-    console.log('getAll')
-
     if (nombre) {
       const lowerCase = nombre.toLowerCase()
 

@@ -15,7 +15,7 @@ export const createApp = ({ terceroModel }) => {
   // app.use('/movies', createMovieRouter({ movieModel }))
   app.use('/terceros', createTerceroRouter({ terceroModel }))
 
-  const PORT = process.env.PORT ?? 1234
+  const PORT = process.env.PORT ?? 3000
 
   app.listen(PORT, () => {
     console.log(`server listening on port http://localhost:${PORT}`)

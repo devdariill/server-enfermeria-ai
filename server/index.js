@@ -1,5 +1,5 @@
 import { createApp } from './app.js'
 
-import { MovieModel } from './models/mysql/movie.js'
+import { TerceroModel } from './models/mysql/terceros.model.js'
 
-createApp({ movieModel: MovieModel })
+createApp({ terceroModel: TerceroModel })

@@ -1,17 +1,17 @@
 import { Router } from 'express'
-import { MovieController } from '../controllers/movies.js'
+import { TerceroController } from '../controllers/terceros.controller.js'
 
-export const createMovieRouter = ({ movieModel }) => {
-  const moviesRouter = Router()
+export const createTerceroRouter = ({ terceroModel }) => {
+  const tercerosRouter = Router()
 
-  const movieController = new MovieController({ movieModel })
+  const movieController = new TerceroController({ terceroModel })
 
-  moviesRouter.get('/', movieController.getAll)
-  moviesRouter.post('/', movieController.create)
+  tercerosRouter.get('/', movieController.getAll)
+  tercerosRouter.post('/', movieController.create)
 
-  moviesRouter.get('/:id', movieController.getById)
-  moviesRouter.delete('/:id', movieController.delete)
-  moviesRouter.patch('/:id', movieController.update)
+  tercerosRouter.get('/:id', movieController.getById)
+  tercerosRouter.delete('/:id', movieController.delete)
+  tercerosRouter.patch('/:id', movieController.update)
 
-  return moviesRouter
+  return tercerosRouter
 }

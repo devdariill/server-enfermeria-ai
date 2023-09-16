@@ -38,11 +38,7 @@ function Page () {
   // }
   useEffect(() => {
     const getTerceros = async () => {
-      const res = await fetch('/api/terceros', {
-        headers: {
-          'Content-Type': 'application/json'
-        }
-      })
+      const res = await fetch('/api/terceros')
 
       const tercero = await res.json() as Tercero[]
       console.log(tercero)

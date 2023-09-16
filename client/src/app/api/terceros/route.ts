@@ -31,3 +31,8 @@ export async function GET (request: Request) {
     return new Response('Error Terceros', { status: 500 })
   }
 }
+
+export async function POST (request: Request) {
+  const data = await request.formData()
+  console.log('🚀 ~ file: route.ts:37 ~ POST ~ data :', data)
+}

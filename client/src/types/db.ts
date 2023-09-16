@@ -1,4 +1,4 @@
-export type Tercero = {
+export interface Tercero {
   id: number
   id_nacional: number
   nombres: string
@@ -12,7 +12,7 @@ export type Tercero = {
   celular: number
 }
 
-export type HistoriaClinica = {
+export interface HistoriaClinica {
   id: number
   programa: string | null
   codigo: string | null
@@ -50,7 +50,7 @@ export type HistoriaClinica = {
   firma: number
 }
 
-export type Usuario = {
+export interface Usuario {
   id: number
   gmail: string
   id_tercero: number

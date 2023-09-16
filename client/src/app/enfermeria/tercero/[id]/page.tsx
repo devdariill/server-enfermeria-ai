@@ -2,6 +2,7 @@
 
 import type { Tercero } from '@/types'
 import { useEffect, useState } from 'react'
+import { Toaster, toast } from 'sonner'
 
 function Pages ({ params: { id } }: { params: { id: string } }) {
   // console.clear()
@@ -41,7 +42,6 @@ function Pages ({ params: { id } }: { params: { id: string } }) {
       celular,
       id_nacional
     })
-    console.log('🚀 ~ file: page.tsx:41 ~ handleSubmit ~ body:', body)
 
     const res = await fetch(`/api/terceros/${id}`, {
       method: 'PATCH',
@@ -52,6 +52,7 @@ function Pages ({ params: { id } }: { params: { id: string } }) {
     })
     const response = await res.json()
     console.log('🚀 ~ file: page.tsx:50 ~ handleSubmit ~ response:', response)
+    toast.success('Event has been created')
   }
 
   if (!tercero) return <div>Loading...</div>
@@ -80,53 +81,56 @@ function Pages ({ params: { id } }: { params: { id: string } }) {
     console.log('🚀 ~ file: page.tsx:93 ~ handleDelete ~ response:', response)
   }
   return (
-    <form onSubmit={handleSubmit}>
-      <div className='grid grid-cols-2 gap-3 max-w-sm mx-auto [&>input]:'>
-        <div>
-          <label className='font-bold'>Nombres</label>
-          <Input name='nombres' autoFocus />
+    <>
+      <Toaster expand={false} richColors />
+      <form onSubmit={handleSubmit}>
+        <div className='grid grid-cols-2 gap-3 max-w-sm mx-auto [&>input]:'>
+          <div>
+            <label className='font-bold'>Nombres</label>
+            <Input name='nombres' autoFocus />
+          </div>
+          <div>
+            <label className='font-bold'>Apellidos</label>
+            <Input name='apellidos' />
+          </div>
+          <div>
+            <label className='font-bold'>Fecha de Nacimiento</label>
+            <input type='date' className='w-full py-1 text-center rounded' name='fecha_nacimiento' defaultValue={dateHTML} />
+          </div>
+          <div>
+            <label className='font-bold'>Estado Civil</label>
+            <Input name='estado_civil' />
+          </div>
+          <div>
+            <label className='font-bold'>Género</label>
+            <Input name='genero' />
+          </div>
+          <div>
+            <label className='font-bold'>Procedencia</label>
+            <Input name='procedencia' />
+          </div>
+          <div>
+            <label className='font-bold'>Residencia</label>
+            <Input name='residencia' />
+          </div>
+          <div>
+            <label className='font-bold'>Celular</label>
+            <Input type='number' name='celular' />
+          </div>
+          <div>
+            <label className='font-bold'>ID Nacional</label>
+            <Input type='number' name='id_nacional' />
+          </div>
+          <div />
+          <button type='button' className='w-full !bg-red-500 rounded' onClick={async () => await handleDelete()}>
+            Eliminar
+          </button>
+          <button id='buttonCss' type='submit' className='w-full'>
+            Editar
+          </button>
         </div>
-        <div>
-          <label className='font-bold'>Apellidos</label>
-          <Input name='apellidos' />
-        </div>
-        <div>
-          <label className='font-bold'>Fecha de Nacimiento</label>
-          <input type='date' className='w-full py-1 text-center rounded' name='fecha_nacimiento' defaultValue={dateHTML} />
-        </div>
-        <div>
-          <label className='font-bold'>Estado Civil</label>
-          <Input name='estado_civil' />
-        </div>
-        <div>
-          <label className='font-bold'>Género</label>
-          <Input name='genero' />
-        </div>
-        <div>
-          <label className='font-bold'>Procedencia</label>
-          <Input name='procedencia' />
-        </div>
-        <div>
-          <label className='font-bold'>Residencia</label>
-          <Input name='residencia' />
-        </div>
-        <div>
-          <label className='font-bold'>Celular</label>
-          <Input type='number' name='celular' />
-        </div>
-        <div>
-          <label className='font-bold'>ID Nacional</label>
-          <Input type='number' name='id_nacional' />
-        </div>
-        <div />
-        <button type='button' className='w-full !bg-red-500 rounded' onClick={async () => await handleDelete()}>
-          Eliminar
-        </button>
-        <button id='buttonCss' type='submit' className='w-full'>
-          Editar
-        </button>
-      </div>
-    </form>
+      </form>
+    </>
   )
 }
 

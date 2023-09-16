@@ -20,12 +20,12 @@ export class TerceroController {
     const result = req.body
     console.log('🚀 ~ file: terceros.controller.js:21 ~ TerceroController ~ create= ~ result:', result)
 
-    if (!result.success) {
+    if (!result) {
     // 422 Unprocessable Entity
-      return res.status(400).json({ DBTercero: JSON.parse(result.error.message) })
+      return res.status(400).json({ DBTercero: JSON.parse(result) })
     }
 
-    const newMovie = await this.terceroModel.create({ input: result.data })
+    const newMovie = await this.terceroModel.create({ input: result })
 
     res.status(201).json(newMovie)
   }
@@ -46,7 +46,7 @@ export class TerceroController {
     const result = req.body
 
     if (!result.success) {
-      return res.status(400).json({ DBTercero: JSON.parse(result.error.message) })
+      return res.status(400).json({ DBTercero: JSON.parse(result) })
     }
 
     const { id } = req.params

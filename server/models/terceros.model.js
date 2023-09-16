@@ -69,6 +69,7 @@ export class TerceroModel {
       const [result] = await pool.query(query, [DB_TABLE, ...values])
       id = result.insertId
     } catch (e) {
+      console.log('🚀 ~ file: terceros.model.js:72 ~ TerceroModel ~ create ~ e:', e)
       // puede enviarle información sensible
       throw new Error('Error creating movie')
       // enviar la traza a un servicio interno

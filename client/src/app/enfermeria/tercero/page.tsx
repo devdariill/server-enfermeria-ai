@@ -1,4 +1,5 @@
 'use client'
+import { ButtonLink } from '@/app/components/button-link'
 import type { Tercero } from '@/types'
 import { useEffect, useState } from 'react'
 
@@ -50,22 +51,30 @@ function Page () {
 
   console.log('🚀 ~ file: page.tsx:8 ~ Page ~ terceros:', terceros)
   return (
-    <section className='grid grid-cols-[repeat(auto-fill,minmax(230px,1fr))] gap-3'>
-      {terceros.length > 0
-        ? terceros?.map(tercero => {
-          const date = new Date(tercero.fecha_ingreso)
-          const birth = new Date(tercero.fecha_nacimiento)
-          return (
-            <div key={tercero.id} id='buttonCss' className='hover:cursor-pointer'>
-              <h1>{tercero.nombres} {tercero.apellidos}</h1>
-              <h3>{tercero.celular}</h3>
-              <h4>{birth.toDateString()}</h4>
-              <h5>{date.toDateString()}</h5>
-              <h6>{thousandRegex(tercero.id_nacional)}</h6>
-            </div>
-          )
-        })
-        : <h1>No hay terceros</h1>}
+    <section className='grid gap-5'>
+      <header className='flex'>
+        <label className='font-bold flex items-center mr-auto'>Terceros</label>
+        <ButtonLink href='/enfermeria/tercero/add' className>Crear Tercero</ButtonLink>
+      </header>
+
+      <article className='grid grid-cols-[repeat(auto-fill,minmax(230px,1fr))] gap-3'>
+
+        {terceros.length > 0
+          ? terceros?.map(tercero => {
+            const date = new Date(tercero.fecha_ingreso)
+            const birth = new Date(tercero.fecha_nacimiento)
+            return (
+              <div key={tercero.id} id='buttonCss' className='hover:cursor-pointer'>
+                <h1>{tercero.nombres} {tercero.apellidos}</h1>
+                <h3>{tercero.celular}</h3>
+                <h4>{birth.toDateString()}</h4>
+                <h5>{date.toDateString()}</h5>
+                <h6>{thousandRegex(tercero.id_nacional)}</h6>
+              </div>
+            )
+          })
+          : <h1>No hay terceros</h1>}
+      </article>
     </section>
   )
 }

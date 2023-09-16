@@ -1,13 +1,27 @@
+import type { Tercero } from '@/types'
 import { NextResponse } from 'next/server'
 
 const BASE_URL = 'http://localhost:3000'
 
-async function getTerceros (id?: string) {
+async function getAll (id?: string) {
   const res = await fetch(BASE_URL + '/terceros', {
     headers: {
       'Content-Type': 'application/json'
       // Authorization: `Basic ${infojobsToken}`
     }
+  })
+  const data = await res.json()
+  return data
+}
+type TerceroPost = Omit<Tercero, 'id' | 'fecha_ingreso'>
+
+async function create (tercero: TerceroPost) {
+  const res = await fetch(BASE_URL + '/terceros', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify(tercero)
   })
   const data = await res.json()
   return data
@@ -21,18 +35,28 @@ export async function GET (request: Request) {
   // }
 
   try {
-    const terceros = await getTerceros()
+    const terceros = await getAll()
 
     // json = JSON.parse(data)
     // return NextResponse.json(json)
     return NextResponse.json(terceros)
   } catch (e) {
     console.log(e)
-    return new Response('Error Terceros', { status: 500 })
+    return new Response('Error Terceros', { status: 404 })
   }
 }
 
 export async function POST (request: Request) {
-  const data = await request.formData()
-  console.log('🚀 ~ file: route.ts:37 ~ POST ~ data :', data)
+  const data = await request.json()
+
+  try {
+    const tercero = await create(data)
+    console.log('🚀 ~ file: route.ts:54 ~ tercero:', tercero)
+    return NextResponse.json(tercero)
+  } catch (e) {
+    console.log(e)
+    return new Response('Error Terceros', { status: 404 })
+  }
+
+  // const data = await request.formData()
 }

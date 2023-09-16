@@ -8,7 +8,7 @@ export class TerceroModel {
       const lowerCase = nombre.toLowerCase()
 
       const [result] = await pool.query(
-        'SELECT * FROM ?? WHERE LOWER(nombre) = ?;',
+        'SELECT * FROM ?? WHERE LOWER(nombre) = ? ;',
         [DB_TABLE, lowerCase]
       )
 
@@ -19,7 +19,7 @@ export class TerceroModel {
     }
 
     const [terceros] = await pool.query(
-      `SELECT * FROM ${DB_TABLE};`
+      `SELECT * FROM ${DB_TABLE} LIMIT 10;`
       // 'SELECT title, year, director, duration, poster, rate, BIN_TO_UUID(id) id FROM movie;'
     )
 

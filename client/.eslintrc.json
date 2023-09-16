@@ -12,6 +12,7 @@
     "@typescript-eslint/naming-convention": "off",
     "@next/next/no-img-element": "off",
     "@typescript-eslint/consistent-type-imports": 2,
-    "@typescript-eslint/strict-boolean-expressions" : "off"
+    "@typescript-eslint/strict-boolean-expressions" : "off",
+    "@typescript-eslint/no-floating-promises": "off"
   }
 }

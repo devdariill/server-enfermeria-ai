@@ -55,3 +55,13 @@ export interface Usuario {
   gmail: string
   id_tercero: number
 }
+
+export interface MySQLResponse {
+  fieldCount: number
+  affectedRows: number
+  insertId: number
+  info: string //  info: 'Rows matched: 1  Changed: 1  Warnings: 0',
+  serverStatus: number
+  warningStatus: number
+  changedRows: number
+}

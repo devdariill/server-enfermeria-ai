@@ -1,4 +1,4 @@
-import { type NursingRecord } from '@/app/types'
+import { type NursingRecord } from '@/types'
 
 export function Card ({ name, records }: { name: string, records: NursingRecord[] }) {
   return (

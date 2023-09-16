@@ -1,6 +1,6 @@
 'use client'
 
-import { People } from '@/app/types'
+import { People } from '@/types'
 import {
   Button,
   Card,

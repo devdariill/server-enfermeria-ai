@@ -10,6 +10,8 @@
     "@typescript-eslint/no-missused-promises":"off",
     "@typescript-eslint/no-misused-promises":"off",
     "@typescript-eslint/naming-convention": "off",
-    "@next/next/no-img-element": "off"
+    "@next/next/no-img-element": "off",
+    "@typescript-eslint/consistent-type-imports": 2,
+    "@typescript-eslint/strict-boolean-expressions" : "off"
   }
 }

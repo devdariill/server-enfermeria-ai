@@ -1,3 +1,4 @@
+import type { Tercero } from '@/types'
 import { NextResponse } from 'next/server'
 
 const PAGE = '/terceros'
@@ -38,7 +39,6 @@ async function deleteById (id: string) {
 //   const data = await res.json()
 //   return data
 // }
-
 export async function GET (_request: Request, { params: { id } }: { params: { id: string } }) {
   try {
     const tercero = await getById(id)
@@ -53,28 +53,27 @@ export async function GET (_request: Request, { params: { id } }: { params: { id
   }
 }
 
-// type terceroPut = Omit<Tercero, 'id' | 'fecha_ingreso'>
-export async function PUT (request: Request, { params: { id } }: { params: { id: string } }) {
-  const data = await request.formData()
-  console.log('🚀 ~ file: route.ts:45 ~ PUT ~ data:', data)
+type TerceroPost = Omit<Tercero, 'id' | 'fecha_ingreso'>
+async function update (id: string, tercero: TerceroPost) {
+  const res = await fetch(BASE_URL + `/${id}`, {
+    method: 'PATCH',
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify(tercero)
+  })
+  const data = await res.json()
+  return data
+}
+export async function PATCH (request: Request, { params: { id } }: { params: { id: string } }) {
+  const data = await request.json()
   try {
-    const terceroInput = {
-      id_nacional: data.get('id_nacional'),
-      nombres: data.get('nombres'),
-      apellidos: data.get('apellidos'),
-      fecha_nacimiento: data.get('fecha_nacimiento'),
-      estado_civil: data.get('estado_civil'),
-      genero: data.get('genero'),
-      procedencia: data.get('procedencia'),
-      residencia: data.get('residencia'),
-      celular: data.get('celular')
-    }
-    console.log('🚀 ~ file: route.ts:45 ~ PUT ~ terceroInput:', terceroInput)
-    // const tercero = await update({ id, input: terceroInput })
-
-    return NextResponse.json(terceroInput)
-  } catch (error: any) {
-    return NextResponse.json({ message: error }, { status: 500 })
+    const tercero = await update(id, data)
+    console.log('🚀 ~ file: route.ts:54 ~ tercero:', tercero)
+    return NextResponse.json(tercero)
+  } catch (e) {
+    console.log(e)
+    return new Response('Error Terceros', { status: 404 })
   }
 }
 

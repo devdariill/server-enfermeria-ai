@@ -44,15 +44,11 @@ export class TerceroController {
 
   update = async (req, res) => {
     const result = req.body
-
-    if (!result.success) {
+    if (!result) {
       return res.status(400).json({ DBTercero: JSON.parse(result) })
     }
-
     const { id } = req.params
-
-    const updatedMovie = await this.terceroModel.update({ id, input: result.data })
-
+    const updatedMovie = await this.terceroModel.update({ id, input: result })
     return res.json(updatedMovie)
   }
 }

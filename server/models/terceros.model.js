@@ -105,6 +105,15 @@ export class TerceroModel {
   }
 
   static async update ({ id, input }) {
-    // ejercicio fácil: crear el update
+    console.log('🚀 ~ file: terceros.model.js:96 ~ TerceroModel ~ update ~ id', id, input)
+    const query = 'UPDATE ?? SET ? WHERE id = ?'
+    try {
+      const [result] = await pool.query(query, [DB_TABLE, input, id])
+      console.log('🚀 ~ file: terceros.model.js:111 ~ TerceroModel ~ update ~ result:', result)
+      return true
+    } catch (error) {
+      console.log('🚀 ~ file: terceros.model.js:113 ~ TerceroModel ~ update ~ error:', error)
+      throw new Error('Error updating tercero')
+    }
   }
 }

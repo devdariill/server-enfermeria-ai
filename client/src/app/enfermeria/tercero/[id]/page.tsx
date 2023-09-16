@@ -3,17 +3,6 @@
 import type { Tercero } from '@/types'
 import { useEffect, useState } from 'react'
 
-// id: number
-// id_nacional: number
-// nombres: string
-// apellidos: string
-// fecha_nacimiento: string
-// estado_civil: string
-// genero: string
-// procedencia: string
-// residencia: string
-// fecha_ingreso: string
-// celular: number
 function Pages ({ params: { id } }: { params: { id: string } }) {
   // console.clear()
   const [tercero, setTercero] = useState<Tercero>()
@@ -54,8 +43,8 @@ function Pages ({ params: { id } }: { params: { id: string } }) {
     })
     console.log('🚀 ~ file: page.tsx:41 ~ handleSubmit ~ body:', body)
 
-    const res = await fetch('/api/terceros', {
-      method: 'PUT',
+    const res = await fetch(`/api/terceros/${id}`, {
+      method: 'PATCH',
       headers: {
         'Content-Type': 'application/json'
       },

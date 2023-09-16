@@ -1,0 +1,148 @@
+[
+  {
+    "patient_id": 1,
+    "name": "John Doe",
+    "age": 45,
+    "diagnosis": "Hypertension",
+    "nursing_records": [
+      {
+        "record_id": 101,
+        "date": "2023-09-10",
+        "nurse_name": "Jane Smith",
+        "procedure": "Blood Pressure Monitoring",
+        "notes": "Patient's blood pressure readings were stable and within normal range."
+      },
+      {
+        "record_id": 102,
+        "date": "2023-09-11",
+        "nurse_name": "Susan Johnson",
+        "procedure": "Medication Administration",
+        "notes": "Administered hypertension medication as prescribed by the doctor."
+      },
+      {
+        "record_id": 103,
+        "date": "2023-09-12",
+        "nurse_name": "Emily Davis",
+        "procedure": "Blood Pressure Monitoring",
+        "notes": "Patient's blood pressure readings were slightly elevated. Informed doctor and adjusted medication dosage."
+      }
+    ]
+  },
+  {
+    "patient_id": 2,
+    "name": "Alice Johnson",
+    "age": 32,
+    "diagnosis": "Diabetes",
+    "nursing_records": [
+      {
+        "record_id": 201,
+        "date": "2023-09-10",
+        "nurse_name": "Emily Davis",
+        "procedure": "Glucose Monitoring",
+        "notes": "Patient's blood glucose levels were stable and within normal range."
+      },
+      {
+        "record_id": 202,
+        "date": "2023-09-11",
+        "nurse_name": "Susan Johnson",
+        "procedure": "Medication Administration",
+        "notes": "Administered hypertension medication as prescribed by the doctor."
+      },
+      {
+        "record_id": 203,
+        "date": "2023-09-12",
+        "nurse_name": "Emily Davis",
+        "procedure": "Blood Pressure Monitoring",
+        "notes": "Patient's blood pressure readings were slightly elevated. Informed doctor and adjusted medication dosage."
+      }
+    ]
+  },
+  {
+    "patient_id": 3,
+    "name": "Sarah Lee",
+    "age": 28,
+    "diagnosis": "Migraine",
+    "nursing_records": [
+      {
+        "record_id": 301,
+        "date": "2023-09-10",
+        "nurse_name": "David Kim",
+        "procedure": "Vital Signs Monitoring",
+        "notes": "Patient's vital signs were stable and within normal range."
+      },
+      {
+        "record_id": 302,
+        "date": "2023-09-11",
+        "nurse_name": "Susan Johnson",
+        "procedure": "Medication Administration",
+        "notes": "Administered migraine medication as prescribed by the doctor."
+      }
+    ]
+  },
+  {
+    "patient_id": 4,
+    "name": "Robert Smith",
+    "age": 60,
+    "diagnosis": "Arthritis",
+    "nursing_records": [
+      {
+        "record_id": 401,
+        "date": "2023-09-10",
+        "nurse_name": "Karen Brown",
+        "procedure": "Range of Motion Exercises",
+        "notes": "Performed range of motion exercises to improve patient's joint mobility."
+      }
+    ]
+  },
+  {
+    "patient_id": 5,
+    "name": "Emily Wilson",
+    "age": 55,
+    "diagnosis": "Asthma",
+    "nursing_records": [
+      {
+        "record_id": 501,
+        "date": "2023-09-10",
+        "nurse_name": "Mark Johnson",
+        "procedure": "Respiratory Assessment",
+        "notes": "Patient's respiratory function was stable."
+      },
+      {
+        "record_id": 502,
+        "date": "2023-09-11",
+        "nurse_name": "Laura White",
+        "procedure": "Medication Administration",
+        "notes": "Administered asthma medication as prescribed by the doctor."
+      },
+      {
+        "record_id": 503,
+        "date": "2023-09-12",
+        "nurse_name": "Mark Johnson",
+        "procedure": "Respiratory Assessment",
+        "notes": "Patient reported mild improvement in breathing."
+      }
+    ]
+  },
+  {
+    "patient_id": 6,
+    "name": "Olivia Brown",
+    "age": 68,
+    "diagnosis": "Osteoporosis",
+    "nursing_records": [
+      {
+        "record_id": 601,
+        "date": "2023-09-10",
+        "nurse_name": "Karen Brown",
+        "procedure": "Bone Density Scan",
+        "notes": "Patient's bone density showed signs of osteoporosis."
+      },
+      {
+        "record_id": 602,
+        "date": "2023-09-11",
+        "nurse_name": "Laura White",
+        "procedure": "Medication Administration",
+        "notes": "Administered osteoporosis medication as prescribed by the doctor."
+      }
+    ]
+  }
+]

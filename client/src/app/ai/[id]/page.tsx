@@ -1,4 +1,4 @@
-import api from '@/app/api'
+import api from '../api'
 import Card from '../components/Card'
 // import data from '../mock/data.json'
 const data = api.data.people()

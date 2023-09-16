@@ -1,4 +1,4 @@
-import DATA from '@/app/mock/data.json'
+import DATA from '@/app/ai/mock/data.json'
 import { People } from '@/types'
 
 const api = {

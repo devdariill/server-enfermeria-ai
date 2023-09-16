@@ -10,6 +10,7 @@ async function getById (id: string) {
     }
   })
   const data = await res.json()
+  console.log('🚀 ~ file: route.ts:13 ~ getById ~ data:', data)
   return data
 }
 // async function update ({ id, input }: { id: string, input: Tercero }) {
@@ -32,7 +33,7 @@ export async function GET (_request: Request, { params: { id } }: { params: { id
       return NextResponse.json({ message: 'Tercero not found' }, { status: 404 })
     }
 
-    return NextResponse.json(tercero[0])
+    return NextResponse.json(tercero)
   } catch (error: any) {
     return NextResponse.json({ message: error.message }, { status: 500 })
   }

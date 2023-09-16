@@ -15,15 +15,13 @@ import { useEffect, useState } from 'react'
 // fecha_ingreso: string
 // celular: number
 function Pages ({ params: { id } }: { params: { id: string } }) {
-  console.clear()
-  console.log('🚀 ~ file: page.tsx:18 ~ Pages ~ params:', id)
+  // console.clear()
   const [tercero, setTercero] = useState<Tercero>()
   useEffect(() => {
     const getById = async () => {
       const res = await fetch(`/api/terceros/${id}`)
       const tercero: Tercero = await res.json()
-      console.log('🚀 ~ file: page.tsx:25 ~ getTerceros ~ tercero:', tercero)
-      setTercero(tercero)
+      if (tercero.id) { setTercero(tercero) }
     }
     getById()
   }, [])
@@ -66,6 +64,7 @@ function Pages ({ params: { id } }: { params: { id: string } }) {
     const response = await res.json()
     console.log('🚀 ~ file: page.tsx:50 ~ handleSubmit ~ response:', response)
   }
+
   if (!tercero) return <div>Loading...</div>
 
   const Input = ({ name, type = 'string', autoFocus = false }: { name: string, type?: string, autoFocus?: boolean }) => (
@@ -78,14 +77,19 @@ function Pages ({ params: { id } }: { params: { id: string } }) {
     />
   )
   const dateHTML = `${new Date(tercero.fecha_nacimiento).toISOString().slice(0, 10)}`
-  // const birthDate = new Date(tercero.fecha_nacimiento)
-  // const year = birthDate.getFullYear()
-  // const month = String(birthDate.getMonth() + 1).padStart(2, '0') // Adding 1 because months are 0-indexed
-  // const day = String(birthDate.getDate()).padStart(2, '0')
-  // const dateHTML = `${year}-${month}-${day}`
-
-  console.log('🚀 ~ file: page.tsx:81 ~ Pages ~ dateHTML:', dateHTML)
-
+  const handleDelete = async () => {
+    const confirm = window.confirm('¿Está seguro de eliminar este tercero?')
+    if (!confirm) return
+    console.log('🚀 ~ file: page.tsx:87 ~ handleDelete ~ id:', id)
+    const res = await fetch(`/api/terceros/${id}`, {
+      method: 'DELETE',
+      headers: {
+        'Content-Type': 'application/json'
+      }
+    })
+    const response = await res.json()
+    console.log('🚀 ~ file: page.tsx:93 ~ handleDelete ~ response:', response)
+  }
   return (
     <form onSubmit={handleSubmit}>
       <div className='grid grid-cols-2 gap-3 max-w-sm mx-auto [&>input]:'>
@@ -125,7 +129,11 @@ function Pages ({ params: { id } }: { params: { id: string } }) {
           <label className='font-bold'>ID Nacional</label>
           <Input type='number' name='id_nacional' />
         </div>
-        <button id='buttonCss' className='w-full mt-2'>
+        <div />
+        <button type='button' className='w-full !bg-red-500 rounded' onClick={async () => await handleDelete()}>
+          Eliminar
+        </button>
+        <button id='buttonCss' type='submit' className='w-full'>
           Editar
         </button>
       </div>

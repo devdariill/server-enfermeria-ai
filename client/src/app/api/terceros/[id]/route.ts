@@ -1,9 +1,10 @@
 import { NextResponse } from 'next/server'
 
-const BASE_URL = 'http://localhost:3000'
+const PAGE = '/terceros'
+const BASE_URL = 'http://localhost:3000' + PAGE
 
 async function getById (id: string) {
-  const res = await fetch(BASE_URL + `/terceros/${id}`, {
+  const res = await fetch(BASE_URL + `/${id}`, {
     headers: {
       'Content-Type': 'application/json'
       // Authorization: `Basic ${infojobsToken}`
@@ -13,8 +14,21 @@ async function getById (id: string) {
   console.log('🚀 ~ file: route.ts:13 ~ getById ~ data:', data)
   return data
 }
+
+async function deleteById (id: string) {
+  console.log('🚀 ~ file: route.ts:19 ~ deleteById ~ id:', id)
+  const res = await fetch(BASE_URL + `/${id}`, {
+    method: 'DELETE',
+    headers: {
+      'Content-Type': 'application/json'
+    }
+  })
+  const data = await res.json()
+  console.log('🚀 ~ file: route.ts:13 ~ getById ~ data:', data)
+  return data
+}
 // async function update ({ id, input }: { id: string, input: Tercero }) {
-//   const res = await fetch(BASE_URL + `/terceros/${id}`, {
+//   const res = await fetch(BASE_URL + `/${id}`, {
 //     method: 'PUT',
 //     headers: {
 //       'Content-Type': 'application/json'
@@ -35,7 +49,7 @@ export async function GET (_request: Request, { params: { id } }: { params: { id
 
     return NextResponse.json(tercero)
   } catch (error: any) {
-    return NextResponse.json({ message: error.message }, { status: 500 })
+    return NextResponse.json({ message: error }, { status: 500 })
   }
 }
 
@@ -60,7 +74,16 @@ export async function PUT (request: Request, { params: { id } }: { params: { id:
 
     return NextResponse.json(terceroInput)
   } catch (error: any) {
-    return NextResponse.json({ message: error.message }, { status: 500 })
+    return NextResponse.json({ message: error }, { status: 500 })
+  }
+}
+
+export async function DELETE (_request: Request, { params: { id } }: { params: { id: string } }) {
+  try {
+    const tercero = await deleteById(id)
+    return NextResponse.json(tercero)
+  } catch (error: any) {
+    return NextResponse.json({ message: error }, { status: 500 })
   }
 }
 

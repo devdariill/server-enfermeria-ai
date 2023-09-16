@@ -96,6 +96,7 @@ export class TerceroModel {
         'DELETE FROM ?? WHERE id = ?;',
         [DB_TABLE, id]
       )
+      console.log('🚀 ~ file: terceros.js:96 ~ TerceroModel ~ delete ~ id', id)
       return true
     } catch (error) {
       console.log('🚀 ~ file: terceros.js:96 ~ TerceroModel ~ delete ~ error:', error)

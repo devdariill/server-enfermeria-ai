@@ -77,6 +77,14 @@ function Pages ({ params: { id } }: { params: { id: string } }) {
       defaultValue={tercero[name as keyof Tercero] ?? ''}
     />
   )
+  const dateHTML = `${new Date(tercero.fecha_nacimiento).toISOString().slice(0, 10)}`
+  // const birthDate = new Date(tercero.fecha_nacimiento)
+  // const year = birthDate.getFullYear()
+  // const month = String(birthDate.getMonth() + 1).padStart(2, '0') // Adding 1 because months are 0-indexed
+  // const day = String(birthDate.getDate()).padStart(2, '0')
+  // const dateHTML = `${year}-${month}-${day}`
+
+  console.log('🚀 ~ file: page.tsx:81 ~ Pages ~ dateHTML:', dateHTML)
 
   return (
     <form onSubmit={handleSubmit}>
@@ -91,7 +99,7 @@ function Pages ({ params: { id } }: { params: { id: string } }) {
         </div>
         <div>
           <label className='font-bold'>Fecha de Nacimiento</label>
-          <input type='date' className='w-full py-1 text-center rounded' name='fecha_nacimiento' />
+          <input type='date' className='w-full py-1 text-center rounded' name='fecha_nacimiento' defaultValue={dateHTML} />
         </div>
         <div>
           <label className='font-bold'>Estado Civil</label>
@@ -118,7 +126,7 @@ function Pages ({ params: { id } }: { params: { id: string } }) {
           <Input type='number' name='id_nacional' />
         </div>
         <button id='buttonCss' className='w-full mt-2'>
-          Crear Tercero
+          Editar
         </button>
       </div>
     </form>

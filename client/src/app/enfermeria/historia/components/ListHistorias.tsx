@@ -1,14 +1,14 @@
-import type { NursingRecord } from '@/types'
+import type { HistoriaClinica } from '@/types'
 
-function ListHistorias ({ records }: { records: NursingRecord[] }) {
+function ListHistorias ({ historias }: { historias: HistoriaClinica[] }) {
   return (
 
     <article className='lg:w-1/2'>
       <div className='flex-shrink-0'>
         <div>
           <ul className='grid grid-cols-1 gap-12 mt-6 list-none lg:mt-0 lg:gap-24' role='list'>
-            {records?.map((item) => (
-              <Item key={item.record_id} {...item} />
+            {historias?.map((item) => (
+              <Item key={item.id} {...item} />
             ))}
           </ul>
         </div>
@@ -20,7 +20,7 @@ function ListHistorias ({ records }: { records: NursingRecord[] }) {
 
 export default ListHistorias
 
-const Item = ({ record_id, date, nurse_name, procedure, notes }: NursingRecord) => {
+const Item = ({ motivo_consulta, firma, enfermedad_actual, impresion_diagnostica }: HistoriaClinica) => {
   return (
     <li>
       <div>
@@ -29,12 +29,12 @@ const Item = ({ record_id, date, nurse_name, procedure, notes }: NursingRecord) 
             ❖
           </div>
           <div className='ml-auto'>
-            {String(date)} - {nurse_name}
+            {enfermedad_actual} - {firma}
           </div>
         </div>
-        <p className='mt-5 text-lg font-medium leading-6 text-black'>{procedure}</p>
+        <p className='mt-5 text-lg font-medium leading-6 text-black'>{impresion_diagnostica}</p>
       </div>
-      <div className='mt-2 text-base text-gray-600'>{notes}</div>
+      <div className='mt-2 text-base text-gray-600'>{motivo_consulta}</div>
     </li>
   )
 }

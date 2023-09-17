@@ -1,39 +1,42 @@
 
 'use client'
 import ListHistorias from '@/app/enfermeria/historia/components/ListHistorias'
+import { useIndex } from '@/context/IndexContext'
 import type { HistoriaClinica } from '@/types'
 import Link from 'next/link'
 import { useSearchParams } from 'next/navigation'
-import api from '../api'
+import { useEffect } from 'react'
 
 // import data from '../mock/data.json'
-const data = api.get.people()
 
 export default function Page ({ params: { id } }: { params: { id: string } }) {
   console.log('🚀 ~ file: page.tsx:7 ~ Page ~ params:', id)
-  // const historias = await api.get.historias({ id })
   // console.log('🚀 ~ file: page.tsx:9 ~ Page ~ historias:', historias)
 
-  const person = data.filter((item) => item.patient_id === +id)[0]
+  const { historias, loadHistorias } = useIndex()
+  useEffect(() => {
+    loadHistorias({ id })
+  }, [])
+  if (historias.length === 0) return <div>Loading...</div>
   return (
     <div className='h-full'>
       {/* My Post: {params.id} */}
-      <AiSummary records={person.nursing_records} />
+      <AiView historias={historias} id={id} />
     </div>
   )
 }
 
-export function AiSummary (params: any, { records }: { records: HistoriaClinica[] }) {
+export function AiView ({ id, historias }: { id: string, historias: HistoriaClinica[] }) {
+  console.log('🚀 ~ file: page.tsx:32 ~ AiView ~ historias:', historias)
   const searchParams = useSearchParams()
   const name = searchParams.get('name')?.toString().split('%').join(' ') ?? ''
-  const id = searchParams.get('id') ?? ''
   console.log('🚀 ~ file: Card.tsx:11 ~ Card ~ id:', id)
 
   return (
     <section aria-labelledby='feature-five' id='feature-five' className='lg:h-screen '>
       <div className='px-8 py-24 mx-auto lg:px-16 max-w-7xl md:px-12 xl:px-36 lg:flex'>
         <SummaryAi name={name} id={id} />
-        <ListHistorias records={records} />
+        <ListHistorias historias={historias} />
       </div>
     </section>
   )

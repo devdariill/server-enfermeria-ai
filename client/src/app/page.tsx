@@ -4,10 +4,10 @@ export default async function Home () {
   return (
     <main className='mx-auto px-4 gap-5 grid py-10'>
       <ButtonLink href='/ai'>
-        AI
+        Historias Clinicas
       </ButtonLink>
-      <ButtonLink href='/enfermeria'>
-        App
+      <ButtonLink href='/enfermeria/tercero'>
+        Terceros
       </ButtonLink>
     </main>
   )

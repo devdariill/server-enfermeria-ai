@@ -1,6 +1,6 @@
 'use client'
 
-import { People } from '@/types'
+import type { People } from '@/types'
 import {
   Button,
   Card,
@@ -55,7 +55,7 @@ export const ListOfPeople = ({ people }: { people: People[] }) => {
                 <TableCell>{item.age}</TableCell>
                 <TableCell>{item.diagnosis}</TableCell>
                 <TableCell className='text-center'>
-                  <Button onClick={() => router.push(`/${item.patient_id}`)}>
+                  <Button onClick={() => router.push(`/ai/${item.patient_id}`)}>
                     Revisar Historial ({item.nursing_records.length})
                   </Button>
                 </TableCell>

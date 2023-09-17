@@ -42,6 +42,19 @@ function View ({ id, TextArea, Input }: { id: string, TextArea: any, Input: any 
     const response = await res.json()
     console.log('🚀 ~ file: page.tsx:26 ~ handleSubmit ~ response:', response)
   }
+
+  const handleDelete = async () => {
+    const confirm = window.confirm('¿Está seguro de eliminar este tercero?')
+    if (!confirm) return
+    const res = await fetch(`/api/historias/${id}`, {
+      method: 'DELETE',
+      headers: {
+        'Content-Type': 'application/json'
+      }
+    })
+    const response = await res.json()
+    console.log('🚀 ~ file: page.tsx:56 ~ handleDelete ~ response:', response)
+  }
   return (
     <form onSubmit={handleSubmit}>
       <div className='grid grid-cols-2 gap-3 mx-auto [&>div]:grid'>
@@ -67,7 +80,7 @@ function View ({ id, TextArea, Input }: { id: string, TextArea: any, Input: any 
           <Input name='firma' />
         </div> */}
 
-        <button className='bg-red-500 py-1 rounded hover:scale-105 hover:brightness-105 transition-all'>
+        <button className='bg-red-500 py-1 rounded hover:scale-105 hover:brightness-105 transition-all' onClick={async () => await handleDelete()} type='button'>
           Eliminar
         </button>
 

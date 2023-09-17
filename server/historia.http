@@ -8,20 +8,11 @@ GET http://localhost:3000/historias/2
 GET http://localhost:3000/historias?genre=ACTION
 
 ### Crear una película con POST
+
 POST http://localhost:3000/historias/1
 Content-Type: application/json
 
-{
-  "id_nacional": 13,
-  "nombres": "John",
-  "apellidos": "Doe",
-  "fecha_nacimiento": "1990-01-15",
-  "estado_civil": "Single",
-  "genero": "Male",
-  "procedencia": "City",
-  "residencia": "City",
-  "celular": 555555555
-}
+{"id_tercero":"1","motivo_consulta":"a","enfermedad_actual":"a","antecedente_familiar":"a","antecedente_personal":"a","habitos":"a","antecedentes_ginecologico":"a","ta":"a","fc":"a","p":"a","r":"a","t":"a","peso":"a","talla":"a","piel_faneras":"a","cabeza":"a","ojos":"a","nariz":"a","oidos":"a","boca":"a","cuello":"a","torax":"a","corazon":"a","pulmones":"a","abdomen":"a","extremidades":"a","genitourinario":"a","e_neurologico_elemental":"a","impresion_diagnostica":"a","tratamiento":"a"}
 
 ### Borrar una película
 DELETE http://localhost:3000/historias/64d4d8825d614a4ec5984ae3

@@ -1,4 +1,4 @@
-import { ListOfPeople } from './components/listOfPeople'
+import { ListOfPeople } from './components/TercerosList'
 
 export default async function Home () {
   return (

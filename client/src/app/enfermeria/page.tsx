@@ -3,12 +3,15 @@ import { ButtonLink } from '../components/button-link'
 function Page () {
   return (
     <>
-      {/* <Link href='/enfermeria/tercero'>
-        Terceros
-      </Link> */}
-      <ButtonLink href='/enfermeria/tercero' className>
-        Terceros
-      </ButtonLink>
+      <nav className='grid gap-5'>
+        <ButtonLink href='/enfermeria/tercero' className>
+          Terceros
+        </ButtonLink>
+        <ButtonLink href='/enfermeria/historia' className>
+          Historias
+        </ButtonLink>
+      </nav>
+
     </>
   )
 }

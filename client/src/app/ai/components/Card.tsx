@@ -1,6 +1,12 @@
+'use client'
 import { type NursingRecord } from '@/types'
+import Link from 'next/link'
+import { useSearchParams } from 'next/navigation'
 
-export function Card ({ name, records }: { name: string, records: NursingRecord[] }) {
+export function Card ({ records }: { records: NursingRecord[] }) {
+  const searchParams = useSearchParams()
+  const name = searchParams.get('name')?.toString().split('%').join(' ') ?? ''
+
   return (
     <section aria-labelledby='feature-five' id='feature-five' className='lg:h-screen '>
       <div className='px-8 py-24 mx-auto lg:px-16 max-w-7xl md:px-12 xl:px-36 lg:flex'>
@@ -39,9 +45,14 @@ const Left = ({ name }: { name: string }) => {
         <div>
           <div className='lg:pr-24 md:pr-12'>
             <div>
-              <p className='text-2xl font-medium tracking-tight text-black sm:text-4xl'>
-                {name}
-              </p>
+              <header className='flex items-center'>
+                <p className='text-2xl font-medium tracking-tight text-black sm:text-4xl mr-auto'>
+                  {name}
+                </p>
+                <Link href='/enfermeria/historia/add' id='buttonCss'>
+                  Agregar Historia
+                </Link>
+              </header>
               <p className='max-w-xl mt-4 text-lg tracking-tight text-gray-600'>
                 You are not your mistakes, you are not your struggles, and you are here NOW with
                 the power to shape your day and your future

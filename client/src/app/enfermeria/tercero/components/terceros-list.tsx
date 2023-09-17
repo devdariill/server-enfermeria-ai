@@ -1,5 +1,5 @@
 'use client'
-import { useTerceros } from '@/context/TerceroContext'
+import { useIndex } from '@/context/IndexContext'
 import type { Tercero } from '@/types'
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
@@ -13,7 +13,7 @@ const thousandRegex = (value: any) => {
 const LINK_URL = ({ path }: { path: string }) => `/enfermeria/tercero/${path}`
 
 function Page () {
-  const { terceros, loadTerceros } = useTerceros()
+  const { terceros, loadTerceros } = useIndex()
 
   // const handleClick = async (id: string) => {
   //   setLoading(prevState => ({

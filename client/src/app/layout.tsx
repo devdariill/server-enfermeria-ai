@@ -1,4 +1,4 @@
-import { TerceroProvider } from '@/context/TerceroContext'
+import { IndexProvider } from '@/context/IndexContext'
 import { Inter } from 'next/font/google'
 import Link from 'next/link'
 import './globals.css'
@@ -27,9 +27,9 @@ export default function RootLayout ({
           </h1>
         </header>
 
-        <TerceroProvider>
+        <IndexProvider>
           {children}
-        </TerceroProvider>
+        </IndexProvider>
       </body>
     </html>
   )

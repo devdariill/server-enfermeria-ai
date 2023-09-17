@@ -1,6 +1,6 @@
 'use client'
 
-import { useTerceros } from '@/context/TerceroContext'
+import { useIndex } from '@/context/IndexContext'
 import {
   Button,
   Card,
@@ -24,7 +24,7 @@ export default function Home () {
 }
 
 const TablePeopleAi = () => {
-  const { terceros, loadTerceros } = useTerceros()
+  const { terceros, loadTerceros } = useIndex()
   console.log('🚀 ~ file: listOfPeople.tsx:21 ~ ListOfPeople ~ terceros:', terceros)
   useEffect(() => {
     loadTerceros()
@@ -65,7 +65,7 @@ const TablePeopleAi = () => {
                     <TableCell>{dateHTML}</TableCell>
                     {/* <TableCell>{item.diagnosis}</TableCell> */}
                     <TableCell className='text-center'>
-                      <Button onClick={() => router.push(`/ai/${item.id}?id=${item.id}&name=${item.apellidos}%${item.nombres}`)}>
+                      <Button onClick={() => router.push(`/ai/${item.id}?name=${item.apellidos}%${item.nombres}`)}>
                         Revisar Historial
                         {/* ({item.nursing_records.length}) */}
                       </Button>

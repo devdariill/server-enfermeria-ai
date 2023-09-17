@@ -4,12 +4,12 @@ import ListHistorias from '@/app/enfermeria/historia/components/ListHistorias'
 import { useIndex } from '@/context/IndexContext'
 import type { HistoriaClinica } from '@/types'
 import Link from 'next/link'
-import { useSearchParams } from 'next/navigation'
+// import { useSearchParams } from 'next/navigation'
 import { useEffect } from 'react'
 
 // import data from '../mock/data.json'
 
-export default function Page ({ params: { id } }: { params: { id: string } }) {
+export default function Page ({ searchParams: { name }, params: { id } }: { searchParams: { name: string }, params: { id: string } }) {
   const { historias, loadHistorias } = useIndex()
   useEffect(() => {
     loadHistorias({ id })
@@ -17,14 +17,13 @@ export default function Page ({ params: { id } }: { params: { id: string } }) {
   return (
     <div className='h-full'>
       {/* My Post: {params.id} */}
-      <AiView historias={historias} id={id} />
+      <AiView historias={historias} id={id} name={name.split('%').join(' ')} />
     </div>
   )
 }
 
-export function AiView ({ id, historias }: { id: string, historias: HistoriaClinica[] }) {
-  const searchParams = useSearchParams()
-  const name = searchParams.get('name')?.toString().split('%').join(' ') ?? ''
+export function AiView ({ name, id, historias }: { name: string, id: string, historias: HistoriaClinica[] }) {
+  // const name = searchParams.name
 
   return (
     <section aria-labelledby='feature-five' id='feature-five' className='lg:h-screen '>

@@ -1,0 +1,35 @@
+### Recuperar todas las películas
+GET http://localhost:3000/historias?id=1
+
+### Recuperar una película por id
+GET http://localhost:3000/historias/2
+
+### Recuperar todas las películas por un género
+GET http://localhost:3000/historias?genre=ACTION
+
+### Crear una película con POST
+POST http://localhost:3000/historias/1
+Content-Type: application/json
+
+{
+  "id_nacional": 13,
+  "nombres": "John",
+  "apellidos": "Doe",
+  "fecha_nacimiento": "1990-01-15",
+  "estado_civil": "Single",
+  "genero": "Male",
+  "procedencia": "City",
+  "residencia": "City",
+  "celular": 555555555
+}
+
+### Borrar una película
+DELETE http://localhost:3000/historias/64d4d8825d614a4ec5984ae3
+
+### Actualizar una película
+PATCH http://localhost:3000/historias/7
+Content-Type: application/json
+
+{
+  "celular": 55
+}

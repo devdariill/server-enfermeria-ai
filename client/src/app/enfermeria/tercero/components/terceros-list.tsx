@@ -1,6 +1,8 @@
 'use client'
 import { useTerceros } from '@/context/TerceroContext'
+import type { Tercero } from '@/types'
 import Link from 'next/link'
+import { usePathname } from 'next/navigation'
 import { useEffect } from 'react'
 
 const thousandRegex = (value: any) => {
@@ -42,21 +44,15 @@ function Page () {
   useEffect(() => {
     loadTerceros()
   }, [])
+  const path = usePathname()
+  console.log(path)
   return (
     <article className='grid grid-cols-[repeat(auto-fill,minmax(230px,1fr))] gap-3'>
 
       {terceros.length > 0
         ? terceros?.map(tercero => {
-          const date = new Date(tercero.fecha_ingreso)
-          const birth = new Date(tercero.fecha_nacimiento)
           return (
-            <Link href={LINK_URL({ path: tercero.id.toString() })} key={tercero.id} id='buttonCss' className='hover:cursor-pointer'>
-              <h1>{tercero.nombres} {tercero.apellidos}</h1>
-              <h3>{tercero.celular}</h3>
-              <h4>{birth.toDateString()}</h4>
-              <h5>{date.toDateString()}</h5>
-              <h6>{thousandRegex(tercero.id_nacional)}</h6>
-            </Link>
+            <PathComponent path={path === '/enfermeria/tercero'} tercero={tercero} key={tercero.id} />
           )
         })
         : <h1>No hay terceros</h1>}
@@ -65,3 +61,26 @@ function Page () {
 }
 
 export default Page
+
+const PathComponent = ({ path, tercero }: { path: boolean, tercero: Tercero }) => {
+  const toURL = path ? LINK_URL({ path: tercero.id.toString() }) : `/ai/${tercero.id}`
+  return (
+    <Link href={toURL} key={tercero.id} id='buttonCss'>
+      <Card tercero={tercero} />
+    </Link>
+  )
+}
+
+const Card = ({ tercero }: { tercero: Tercero }) => {
+  const date = new Date(tercero.fecha_ingreso)
+  const birth = new Date(tercero.fecha_nacimiento)
+  return (
+    <>
+      <h1>{tercero.nombres} {tercero.apellidos}</h1>
+      <h6>{thousandRegex(tercero.id_nacional)}</h6>
+      <h4>{birth.toDateString()}</h4>
+      <h5>{date.toDateString()}</h5>
+      <h3>+57 {tercero.celular}</h3>
+    </>
+  )
+}

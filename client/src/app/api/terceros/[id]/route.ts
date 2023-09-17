@@ -5,7 +5,7 @@ export async function GET (_request: Request, { params: { id } }: { params: { id
   try {
     const tercero = await getById(id)
 
-    if (tercero.length === 0) {
+    if (tercero.id == null) {
       return NextResponse.json({ message: 'Tercero not found' }, { status: 404 })
     }
 

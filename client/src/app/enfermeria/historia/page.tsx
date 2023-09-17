@@ -1,7 +1,12 @@
+import TercerosList from '@/app/enfermeria/tercero/components/terceros-list'
 
 function Page () {
   return (
-    <div>Page</div>
+    <div>
+      {/* get the route /enfermeria/tercero to show it in a iframe */}
+      {/* <iframe src='/enfermeria/tercero' /> */}
+      <TercerosList />
+    </div>
   )
 }
 

@@ -10,14 +10,10 @@ import { useEffect } from 'react'
 // import data from '../mock/data.json'
 
 export default function Page ({ params: { id } }: { params: { id: string } }) {
-  console.log('🚀 ~ file: page.tsx:7 ~ Page ~ params:', id)
-  // console.log('🚀 ~ file: page.tsx:9 ~ Page ~ historias:', historias)
-
   const { historias, loadHistorias } = useIndex()
   useEffect(() => {
     loadHistorias({ id })
   }, [])
-  if (historias.length === 0) return <div>Loading...</div>
   return (
     <div className='h-full'>
       {/* My Post: {params.id} */}
@@ -27,10 +23,8 @@ export default function Page ({ params: { id } }: { params: { id: string } }) {
 }
 
 export function AiView ({ id, historias }: { id: string, historias: HistoriaClinica[] }) {
-  console.log('🚀 ~ file: page.tsx:32 ~ AiView ~ historias:', historias)
   const searchParams = useSearchParams()
   const name = searchParams.get('name')?.toString().split('%').join(' ') ?? ''
-  console.log('🚀 ~ file: Card.tsx:11 ~ Card ~ id:', id)
 
   return (
     <section aria-labelledby='feature-five' id='feature-five' className='lg:h-screen '>

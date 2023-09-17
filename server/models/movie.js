@@ -1,4 +1,4 @@
-import { pool } from '../../app.js'
+import { pool } from '../app.js'
 
 export class MovieModel {
   static async getAll ({ genre }) {
@@ -18,6 +18,7 @@ export class MovieModel {
 
       // get the id from the first genre result
       const [{ id }] = genres
+      console.log('🚀 ~ file: movie.js:21 ~ MovieModel ~ getAll ~ id:', id)
 
       // get all movies ids from database table
       // la query a movie_genres
@@ -55,6 +56,7 @@ export class MovieModel {
       rate,
       poster
     } = input
+    console.log('🚀 ~ file: movie.js:59 ~ MovieModel ~ create ~ genreInput:', genreInput)
 
     // todo: crear la conexión de genre
 

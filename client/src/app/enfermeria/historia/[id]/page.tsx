@@ -13,10 +13,9 @@ const FormToBody = (event: FormEvent<HTMLFormElement>) => {
 function Pages ({ params: { id } }: { params: { id: string } }) {
   const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault()
-    const body = JSON.stringify(FormToBody(event))
-    console.log('🚀 ~ file: page.tsx:15 ~ handleSubmit ~ body:', body)
+    const body = JSON.stringify({ ...FormToBody(event), id_tercero: id })
 
-    const res = await fetch(`/api/historia/${id}`, {
+    const res = await fetch(`/api/historias/${id}`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'

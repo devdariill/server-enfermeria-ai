@@ -1,6 +1,6 @@
 'use client'
 
-import type { People } from '@/types'
+import { useTerceros } from '@/context/TerceroContext'
 import {
   Button,
   Card,
@@ -12,22 +12,22 @@ import {
   TableRow
 } from '@tremor/react'
 import { useRouter } from 'next/navigation'
-import { Fragment, useState, type FormEvent, type FormEventHandler } from 'react'
+import { Fragment, useEffect, type FormEvent, type FormEventHandler } from 'react'
 import Header from './Header'
 
-export const ListOfPeople = ({ people }: { people: People[] }) => {
+export const ListOfPeople = () => {
+  const { terceros, loadTerceros } = useTerceros()
+  console.log('🚀 ~ file: listOfPeople.tsx:21 ~ ListOfPeople ~ terceros:', terceros)
+  useEffect(() => {
+    loadTerceros()
+  }, [])
   const router = useRouter()
-  const [filterData, setFilterData] = useState<People[]>(people)
-  // const filterPeople = people.filter((item) => item.nursing_records.length > 0)
   const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault()
     const data = new FormData(event.currentTarget)
     const search = data.get('search')?.toString().toLowerCase() ?? ''
-    if (search !== '' && search.length > 0) {
-      const filterPeople = people.filter((item) => item.name.toLowerCase().includes(search))
-      setFilterData(filterPeople)
-    } else {
-      setFilterData(people)
+    if (search.length > 0) {
+      console.log('🚀 ~ file: listOfPeople.tsx:34 ~ ListOfPeople ~ search', search)
     }
   }
 
@@ -35,33 +35,38 @@ export const ListOfPeople = ({ people }: { people: People[] }) => {
     <Card className='my-5'>
       <Header />
 
-      <Info length={people.length} handleSubmit={handleSubmit} />
+      <Info length={terceros.length} handleSubmit={handleSubmit} />
 
       <Table>
         <TableHead>
           <TableRow>
             <TableHeaderCell>Nombre</TableHeaderCell>
             <TableHeaderCell>Edad</TableHeaderCell>
-            <TableHeaderCell>Diagnostico</TableHeaderCell>
             <TableHeaderCell className='text-center'>Acción</TableHeaderCell>
           </TableRow>
         </TableHead>
 
-        <TableBody>
-          {filterData?.map((item) => (
-            <Fragment key={item.patient_id}>
-              <TableRow className='transition-colors cursor-pointer hover:bg-sky-300'>
-                <TableCell>{item.name}</TableCell>
-                <TableCell>{item.age}</TableCell>
-                <TableCell>{item.diagnosis}</TableCell>
-                <TableCell className='text-center'>
-                  <Button onClick={() => router.push(`/ai/${item.patient_id}`)}>
-                    Revisar Historial ({item.nursing_records.length})
-                  </Button>
-                </TableCell>
-              </TableRow>
-            </Fragment>
-          ))}
+        <TableBody className='hover:cursor-default'>
+          {
+            terceros?.map((item) => {
+              const dateHTML = `${new Date(item.fecha_nacimiento).toISOString().slice(0, 10)}`
+              return (
+                <Fragment key={item.id}>
+                  <TableRow className='transition-colors hover:bg-sky-300'>
+                    <TableCell>{item.nombres} {item.apellidos}</TableCell>
+                    <TableCell>{dateHTML}</TableCell>
+                    {/* <TableCell>{item.diagnosis}</TableCell> */}
+                    <TableCell className='text-center'>
+                      <Button onClick={() => router.push(`/ai/${item.id}`)}>
+                        Revisar Historial
+                        {/* ({item.nursing_records.length}) */}
+                      </Button>
+                    </TableCell>
+                  </TableRow>
+                </Fragment>
+              )
+            })
+          }
         </TableBody>
       </Table>
     </Card>

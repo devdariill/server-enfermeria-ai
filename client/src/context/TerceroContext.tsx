@@ -19,8 +19,8 @@ export function TerceroProvider ({ children }: { children: ReactNode }) {
 
   async function loadTerceros () {
     const res = await fetch('/api/terceros')
-    const tercero = await res.json() as Tercero[]
-    setTerceros(tercero)
+    const terceros = await res.json() as Tercero[]
+    setTerceros(terceros)
   }
 
   return (

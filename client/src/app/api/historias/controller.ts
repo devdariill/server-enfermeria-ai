@@ -8,8 +8,8 @@ export async function getAll (id?: string): Promise<Tercero[]> {
   return await axios<Tercero[]>(BASE_URL)
 }
 
-export async function create (tercero: Tercero): Promise<Tercero> {
-  return await axios<Tercero>(BASE_URL, 'POST', tercero)
+export async function create (id: string, tercero: Tercero): Promise<Tercero> {
+  return await axios<Tercero>(BASE_URL + id, 'POST', tercero)
 }
 
 export async function getById (id: string): Promise<Tercero> {

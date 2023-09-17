@@ -1,5 +1,21 @@
 import { deleteById, getById, update } from '@/app/api/terceros/controller'
 import { NextResponse } from 'next/server'
+import { create } from '../controller'
+
+export async function POST (request: Request, { params: { id } }: { params: { id: string } }) {
+  const data = await request.json()
+
+  try {
+    const tercero = await create(id, data)
+    console.log('🚀 ~ file: route.ts:54 ~ tercero:', tercero)
+    return NextResponse.json(tercero)
+  } catch (e) {
+    console.log(e)
+    return new Response('Error Terceros', { status: 404 })
+  }
+
+  // const data = await request.formData()
+}
 
 export async function GET (_request: Request, { params: { id } }: { params: { id: string } }) {
   try {

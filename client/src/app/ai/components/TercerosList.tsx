@@ -57,7 +57,7 @@ export const ListOfPeople = () => {
                     <TableCell>{dateHTML}</TableCell>
                     {/* <TableCell>{item.diagnosis}</TableCell> */}
                     <TableCell className='text-center'>
-                      <Button onClick={() => router.push(`/ai/${item.id}?name=${item.apellidos}%${item.nombres}`)}>
+                      <Button onClick={() => router.push(`/ai/${item.id}?id=${item.id_nacional}&name=${item.apellidos}%${item.nombres}`)}>
                         Revisar Historial
                         {/* ({item.nursing_records.length}) */}
                       </Button>

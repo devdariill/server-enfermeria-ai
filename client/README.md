@@ -1,3 +1,7 @@
+function Page (params: { params: any, searchParams: any }) {
+  console.log('🚀 ~ file: page.tsx:3 ~ Page ~ params:', params) // server-client 
+  ...}
+
 import { useRouter } from 'next/navigation'
   router.push(`/ai/${item.patient_id}`)
 

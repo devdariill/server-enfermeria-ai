@@ -1,4 +1,5 @@
 'use client'
+import ListHistorias from '@/app/enfermeria/historia/components/ListHistorias'
 import { type NursingRecord } from '@/types'
 import Link from 'next/link'
 import { useSearchParams } from 'next/navigation'
@@ -6,12 +7,14 @@ import { useSearchParams } from 'next/navigation'
 export function Card ({ records }: { records: NursingRecord[] }) {
   const searchParams = useSearchParams()
   const name = searchParams.get('name')?.toString().split('%').join(' ') ?? ''
+  const id = searchParams.get('id') ?? ''
+  console.log('🚀 ~ file: Card.tsx:11 ~ Card ~ id:', id)
 
   return (
     <section aria-labelledby='feature-five' id='feature-five' className='lg:h-screen '>
       <div className='px-8 py-24 mx-auto lg:px-16 max-w-7xl md:px-12 xl:px-36 lg:flex'>
-        <Left name={name} />
-        <Right records={records} />
+        <SummaryAi name={name} id={id} />
+        <ListHistorias records={records} />
       </div>
     </section>
   )
@@ -19,26 +22,7 @@ export function Card ({ records }: { records: NursingRecord[] }) {
 
 export default Card
 
-const Item = ({ record_id, date, nurse_name, procedure, notes }: NursingRecord) => {
-  return (
-    <li>
-      <div>
-        <div className='flex items-center'>
-          <div className='flex items-center justify-center w-12 h-12 text-black bg-white rounded-xl'>
-            ❖
-          </div>
-          <div className='ml-auto'>
-            {String(date)} - {nurse_name}
-          </div>
-        </div>
-        <p className='mt-5 text-lg font-medium leading-6 text-black'>{procedure}</p>
-      </div>
-      <div className='mt-2 text-base text-gray-600'>{notes}</div>
-    </li>
-  )
-}
-
-const Left = ({ name }: { name: string }) => {
+const SummaryAi = ({ name, id }: { name: string, id: string }) => {
   return (
     <article className='lg:w-1/2'>
       <div className='top-0 pt-8 pb-16 lg:sticky'>
@@ -49,7 +33,7 @@ const Left = ({ name }: { name: string }) => {
                 <p className='text-2xl font-medium tracking-tight text-black sm:text-4xl mr-auto'>
                   {name}
                 </p>
-                <Link href='/enfermeria/historia/add' id='buttonCss'>
+                <Link href={`/enfermeria/historia/${id}`} id='buttonCss'>
                   Agregar Historia
                 </Link>
               </header>
@@ -74,21 +58,6 @@ const Left = ({ name }: { name: string }) => {
               </a> */}
             </div>
           </div>
-        </div>
-      </div>
-    </article>
-  )
-}
-const Right = ({ records }: { records: NursingRecord[] }) => {
-  return (
-    <article className='lg:w-1/2'>
-      <div className='flex-shrink-0'>
-        <div>
-          <ul className='grid grid-cols-1 gap-12 mt-6 list-none lg:mt-0 lg:gap-24' role='list'>
-            {records?.map((item) => (
-              <Item key={item.record_id} {...item} />
-            ))}
-          </ul>
         </div>
       </div>
     </article>

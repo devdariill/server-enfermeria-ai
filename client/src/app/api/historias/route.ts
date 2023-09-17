@@ -1,5 +1,5 @@
 import { NextResponse } from 'next/server'
-import { create, getAll } from './controller'
+import { getAll } from './controller'
 
 export async function GET (_request: Request) {
   // const { searchParams } = new URL(request.url)
@@ -18,19 +18,4 @@ export async function GET (_request: Request) {
     console.log(e)
     return new Response('Error Terceros', { status: 404 })
   }
-}
-
-export async function POST (request: Request) {
-  const data = await request.json()
-
-  try {
-    const tercero = await create(data)
-    console.log('🚀 ~ file: route.ts:54 ~ tercero:', tercero)
-    return NextResponse.json(tercero)
-  } catch (e) {
-    console.log(e)
-    return new Response('Error Terceros', { status: 404 })
-  }
-
-  // const data = await request.formData()
 }

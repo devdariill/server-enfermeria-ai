@@ -17,7 +17,6 @@ export function useIndex () {
 
 export function IndexProvider ({ children }: { children: ReactNode }) {
   const [terceros, setTerceros] = useState<Tercero[]>([])
-
   async function loadTerceros () {
     const res = await fetch('/api/terceros')
     const terceros = await res.json() as Tercero[]
@@ -25,12 +24,17 @@ export function IndexProvider ({ children }: { children: ReactNode }) {
   }
 
   const [historias, setHistorias] = useState<HistoriaClinica[]>([])
-
   async function loadHistorias ({ id }: { id: string }) {
     console.log('🚀 ~ file: IndexContext.tsx:30 ~ loadHistorias ~ id:', id)
     const historias = await api.get.historias({ id })
     console.log('🚀 ~ file: IndexContext.tsx:31 ~ loadHistorias ~ historias:', historias)
     setHistorias(historias)
+  }
+
+  const [historia, setHistoria] = useState<HistoriaClinica>()
+  async function getHistoria ({ id }: { id: string }) {
+    const historia = await api.get.historia({ id })
+    setHistoria(historia)
   }
 
   return (
@@ -39,7 +43,9 @@ export function IndexProvider ({ children }: { children: ReactNode }) {
       setTerceros,
       loadTerceros,
       historias,
-      loadHistorias
+      loadHistorias,
+      historia,
+      getHistoria
     }}
     >
       <Toaster expand={false} richColors />
@@ -54,4 +60,6 @@ interface TerceroContextType {
   loadTerceros: () => Promise<void>
   historias: HistoriaClinica[]
   loadHistorias: ({ id }: { id: string }) => Promise<void>
+  historia: HistoriaClinica | undefined
+  getHistoria: ({ id }: { id: string }) => Promise<void>
 }

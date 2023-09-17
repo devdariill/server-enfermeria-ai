@@ -1,4 +1,5 @@
 import type { HistoriaClinica } from '@/types'
+import Link from 'next/link'
 
 function ListHistorias ({ historias }: { historias: HistoriaClinica[] }) {
   return (
@@ -20,14 +21,14 @@ function ListHistorias ({ historias }: { historias: HistoriaClinica[] }) {
 
 export default ListHistorias
 
-const Item = ({ motivo_consulta, firma, enfermedad_actual, impresion_diagnostica }: HistoriaClinica) => {
+const Item = ({ id, motivo_consulta, firma, enfermedad_actual, impresion_diagnostica }: HistoriaClinica) => {
   return (
     <li>
       <div>
         <div className='flex items-center'>
-          <div className='flex items-center justify-center w-12 h-12 text-black bg-white rounded-xl'>
+          <Link href={`/enfermeria/historia?id=${id}`} className='flex items-center justify-center w-12 h-12 text-black bg-white rounded-xl hover:cursor-pointer hover:scale-105'>
             ❖
-          </div>
+          </Link>
           <div className='ml-auto'>
             {enfermedad_actual} - {firma}
           </div>

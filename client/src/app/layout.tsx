@@ -1,3 +1,4 @@
+import { TerceroProvider } from '@/context/TerceroContext'
 import { Inter } from 'next/font/google'
 import Link from 'next/link'
 import './globals.css'
@@ -25,7 +26,10 @@ export default function RootLayout ({
             <strong className='font-semibold tracking-wider capitalize text-sm'> Summary for low complexity nursing records. </strong>
           </h1>
         </header>
-        {children}
+
+        <TerceroProvider>
+          {children}
+        </TerceroProvider>
       </body>
     </html>
   )

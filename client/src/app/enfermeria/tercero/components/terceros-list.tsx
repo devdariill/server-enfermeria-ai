@@ -1,7 +1,7 @@
 'use client'
-import type { Tercero } from '@/types'
+import { useTerceros } from '@/context/TerceroContext'
 import Link from 'next/link'
-import { useEffect, useState } from 'react'
+import { useEffect } from 'react'
 
 const thousandRegex = (value: any) => {
   const number = Number(value) || 0
@@ -11,7 +11,7 @@ const thousandRegex = (value: any) => {
 const LINK_URL = ({ path }: { path: string }) => `/enfermeria/tercero/${path}`
 
 function Page () {
-  const [terceros, setTerceros] = useState<Tercero[]>([])
+  const { terceros, loadTerceros } = useTerceros()
 
   // const handleClick = async (id: string) => {
   //   setLoading(prevState => ({
@@ -40,12 +40,7 @@ function Page () {
   // }
 
   useEffect(() => {
-    const getTerceros = async () => {
-      const res = await fetch('/api/terceros')
-      const tercero = await res.json() as Tercero[]
-      setTerceros(tercero)
-    }
-    getTerceros()
+    loadTerceros()
   }, [])
   return (
     <article className='grid grid-cols-[repeat(auto-fill,minmax(230px,1fr))] gap-3'>

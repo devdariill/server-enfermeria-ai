@@ -2,7 +2,7 @@
 
 import type { Tercero } from '@/types'
 import { useEffect, useState } from 'react'
-import { Toaster, toast } from 'sonner'
+import { toast } from 'sonner'
 
 function Pages ({ params: { id } }: { params: { id: string } }) {
   // console.clear()
@@ -82,7 +82,6 @@ function Pages ({ params: { id } }: { params: { id: string } }) {
   }
   return (
     <>
-      <Toaster expand={false} richColors />
       <form onSubmit={handleSubmit}>
         <div className='grid grid-cols-2 gap-3 max-w-sm mx-auto [&>input]:'>
           <div>

@@ -1,20 +1,7 @@
-import type { Tercero } from '@/types'
 import { NextResponse } from 'next/server'
+import { create, getAll } from './model'
 
-const PAGE = '/terceros'
-const BASE_URL = 'http://localhost:3000' + PAGE
-
-async function getAll (id?: string) {
-  const res = await fetch(BASE_URL, {
-    headers: {
-      'Content-Type': 'application/json'
-      // Authorization: `Basic ${infojobsToken}`
-    }
-  })
-  const data = await res.json()
-  return data
-}
-export async function GET (request: Request) {
+export async function GET (_request: Request) {
   // const { searchParams } = new URL(request.url)
   // const id = searchParams.get('id')
   // if (id == null) {
@@ -33,18 +20,6 @@ export async function GET (request: Request) {
   }
 }
 
-type TerceroPost = Omit<Tercero, 'id' | 'fecha_ingreso'>
-async function create (tercero: TerceroPost) {
-  const res = await fetch(BASE_URL, {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json'
-    },
-    body: JSON.stringify(tercero)
-  })
-  const data = await res.json()
-  return data
-}
 export async function POST (request: Request) {
   const data = await request.json()
 

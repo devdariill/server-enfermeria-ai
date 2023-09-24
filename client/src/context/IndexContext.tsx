@@ -3,7 +3,7 @@ import api from '@/app/ai/api'
 import type { HistoriaClinica, Tercero } from '@/types'
 import type { ReactNode } from 'react'
 import { createContext, useContext, useState } from 'react'
-import { Toaster } from 'sonner'
+import { Toaster, toast } from 'sonner'
 
 export const IndexContext = createContext< TerceroContextType | undefined >(undefined)
 
@@ -40,6 +40,7 @@ export function IndexProvider ({ children }: { children: ReactNode }) {
   const [historia, setHistoria] = useState<HistoriaClinica>()
   async function getHistoria ({ id }: { id: string }) {
     const historia = await api.get.historia({ id })
+    if (!historia) return toast.error('No se encontró la historia')
     setHistoria(historia)
   }
 
@@ -68,6 +69,6 @@ interface TerceroContextType {
   historias: HistoriaClinica[]
   loadHistorias: ({ id }: { id: string }) => Promise<void>
   historia: HistoriaClinica | undefined
-  getHistoria: ({ id }: { id: string }) => Promise<void>
+  getHistoria: ({ id }: { id: string }) => Promise<string | number | undefined>
   getTercerosByValue: ({ search }: { search: string }) => Promise<void>
 }

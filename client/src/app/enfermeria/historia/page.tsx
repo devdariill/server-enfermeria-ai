@@ -30,6 +30,7 @@ function Page (params: any) {
 export default Page
 
 function View ({ id, TextArea, Input }: { id: string, TextArea: any, Input: any }) {
+  // const router = useRouter()
   const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault()
     const body = JSON.stringify({ ...FormToBody(event) })
@@ -55,6 +56,8 @@ function View ({ id, TextArea, Input }: { id: string, TextArea: any, Input: any 
       }
     })
     const response = await res.json()
+    // router.push(`/ai/${1}`)
+    window.history.back()
     console.log('🚀 ~ file: page.tsx:56 ~ handleDelete ~ response:', response)
   }
   return (

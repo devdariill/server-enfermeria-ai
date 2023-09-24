@@ -1,9 +1,13 @@
 Git 
 # Client
-NextJS
+NextJS 13 : client server
 Typescript
 CleanArquitecture
 MVC api
+
+.env NextJS
+
+
 
 Tailwind
 Fetch Nativo

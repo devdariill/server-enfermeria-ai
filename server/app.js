@@ -17,7 +17,7 @@ export const createApp = ({ terceroModel, historiaModel }) => {
   app.use('/historias', createHistoriaRouter({ historiaModel }))
   app.use('/terceros', createTerceroRouter({ terceroModel }))
 
-  const PORT = process.env.PORT ?? 3000
+  const PORT = process.env.PORT ?? 3001
 
   app.listen(PORT, () => {
     console.log(`server listening on port http://localhost:${PORT}`)

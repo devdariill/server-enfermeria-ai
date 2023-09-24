@@ -1,3 +1,4 @@
+import { Logout } from '@/app/Session/components'
 import { ButtonLink } from './components/button-link'
 
 export default async function Home () {
@@ -9,6 +10,9 @@ export default async function Home () {
       <ButtonLink href='/enfermeria/tercero'>
         Terceros
       </ButtonLink>
+
+      <Logout />
+
     </main>
   )
 }

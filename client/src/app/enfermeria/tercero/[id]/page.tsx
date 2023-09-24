@@ -1,6 +1,7 @@
 'use client'
 
 import type { Tercero } from '@/types'
+import { useRouter } from 'next/navigation'
 import { useEffect, useState } from 'react'
 import { toast } from 'sonner'
 
@@ -15,6 +16,7 @@ function Pages ({ params: { id } }: { params: { id: string } }) {
     }
     getById()
   }, [])
+
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault()
     const data = new FormData(event.currentTarget)
@@ -55,6 +57,8 @@ function Pages ({ params: { id } }: { params: { id: string } }) {
     toast.success('Event has been created')
   }
 
+  const router = useRouter()
+
   if (!tercero) return <div>Loading...</div>
 
   const Input = ({ name, type = 'string', autoFocus = false }: { name: string, type?: string, autoFocus?: boolean }) => (
@@ -79,6 +83,9 @@ function Pages ({ params: { id } }: { params: { id: string } }) {
     })
     const response = await res.json()
     console.log('🚀 ~ file: page.tsx:93 ~ handleDelete ~ response:', response)
+    if (!response.message.includes('deleted')) toast.error('Error al crear el tercero')
+    router.push('/enfermeria/tercero')
+    toast.success('Tercero eliminado')
   }
   return (
     <>

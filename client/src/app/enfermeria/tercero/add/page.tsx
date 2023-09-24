@@ -1,4 +1,8 @@
 'use client'
+
+import { useRouter } from 'next/navigation'
+import { toast } from 'sonner'
+
 // id: number
 // id_nacional: number
 // nombres: string
@@ -11,7 +15,8 @@
 // fecha_ingreso: string
 // celular: number
 function Pages () {
-  console.clear()
+  const router = useRouter()
+
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault()
     const data = new FormData(event.currentTarget)
@@ -49,8 +54,12 @@ function Pages () {
       body
     })
     const response = await res.json()
+
+    router.push('/enfermeria/tercero')
+    toast.success('Tercero creado')
     console.log('🚀 ~ file: page.tsx:50 ~ handleSubmit ~ response:', response)
   }
+
   return (
     <form onSubmit={handleSubmit}>
       <div className='grid grid-cols-2 gap-3 max-w-sm mx-auto [&>input]:'>

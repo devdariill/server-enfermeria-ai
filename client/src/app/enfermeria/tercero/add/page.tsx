@@ -44,7 +44,6 @@ function Pages () {
       celular,
       id_nacional
     })
-    console.log('🚀 ~ file: page.tsx:41 ~ handleSubmit ~ body:', body)
 
     const res = await fetch('/api/terceros', {
       method: 'POST',
@@ -54,7 +53,7 @@ function Pages () {
       body
     })
     const response = await res.json()
-
+    if (response?.error) return toast.error(response.error)
     router.push('/enfermeria/tercero')
     toast.success('Tercero creado')
     console.log('🚀 ~ file: page.tsx:50 ~ handleSubmit ~ response:', response)

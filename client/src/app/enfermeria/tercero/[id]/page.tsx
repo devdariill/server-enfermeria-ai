@@ -83,7 +83,7 @@ function Pages ({ params: { id } }: { params: { id: string } }) {
     })
     const response = await res.json()
     console.log('🚀 ~ file: page.tsx:93 ~ handleDelete ~ response:', response)
-    if (!response.message.includes('deleted')) toast.error('Error al crear el tercero')
+    if (response.message.includes('rimero')) return toast.error(response.message)
     router.push('/enfermeria/tercero')
     toast.success('Tercero eliminado')
   }

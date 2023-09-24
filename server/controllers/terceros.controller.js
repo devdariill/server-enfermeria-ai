@@ -35,8 +35,8 @@ export class TerceroController {
 
     const result = await this.terceroModel.delete({ id })
 
-    if (result === false) {
-      return res.status(404).json({ message: 'Tercero not found' })
+    if (result?.error === 1451) {
+      return res.status(404).json({ message: 'Eliminar Historias Clinicas Primero' })
     }
 
     return res.json({ message: 'Tercero deleted' })

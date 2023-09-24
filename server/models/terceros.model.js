@@ -19,7 +19,6 @@ export class TerceroModel {
         if (result.length === 0) return []
         return result
       }
-      console.log('🚀 ~ file: terceros.js:18 ~ TerceroModel ~ getAll ~ result:', result)
       return result
     }
 
@@ -55,6 +54,9 @@ export class TerceroModel {
     //   rate,
     //   poster
     // } = input
+
+    const exist = await this.getAll({ search: input.id_nacional })
+    if (exist.length > 0) { return { error: 'Ya existe un tercero con ese id nacional' } }
 
     const keys = Object.keys(input)
     const values = Object.values(input)
@@ -97,14 +99,14 @@ export class TerceroModel {
   static async delete ({ id }) {
     // crear el delete
     try {
-      await pool.query(
+      const [result] = await pool.query(
         'DELETE FROM ?? WHERE id = ?;',
         [DB_TABLE, id]
       )
-      console.log('🚀 ~ file: terceros.js:96 ~ TerceroModel ~ delete ~ id', id)
+      if (!result) return false
       return true
     } catch (error) {
-      console.log('🚀 ~ file: terceros.js:96 ~ TerceroModel ~ delete ~ error:', error)
+      if (error?.errno === 1451) return { error: 1451 }
       throw new Error('Error deleting tercero')
     }
   }

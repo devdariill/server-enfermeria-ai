@@ -30,7 +30,7 @@ const api = {
     parsedHistoria: async ({ id }: { id: string }) => {
       if (!MODE) throw new Error('🚀 ~ file: api.ts:33 ~ parsedHistoria: ~ Error: Not implemented fetch')
 
-      const res = await fetch(`http://localhost:3001/api/historias?id=${id}`)
+      const res = await fetch(`http://localhost:3000/api/historias?id=${id}`)
       const historias = await res.json() as HistoriaClinica[]
 
       const parsedHistoria = historias.map(historia => {

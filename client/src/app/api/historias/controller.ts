@@ -2,7 +2,7 @@ import type { HistoriaClinica } from '@/types'
 import { axios } from '../axios'
 
 const PAGE = '/historias'
-const BASE_URL = 'http://localhost:3000' + PAGE
+const BASE_URL = 'http://localhost:3001' + PAGE
 
 export async function getAll (id: string): Promise<HistoriaClinica[]> {
   return await axios<HistoriaClinica[]>(BASE_URL + '?id=' + id)

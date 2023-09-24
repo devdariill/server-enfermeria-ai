@@ -2,7 +2,7 @@ import type { Tercero } from '@/types'
 import { axios } from '../axios'
 
 const PAGE = '/terceros/'
-const BASE_URL = 'http://localhost:3000' + PAGE
+const BASE_URL = 'http://localhost:3001' + PAGE
 
 export async function getAll ({ search }: { search?: string }): Promise<Tercero[]> {
   if (search) {

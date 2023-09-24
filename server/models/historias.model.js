@@ -17,7 +17,7 @@ export class HistoriaModel {
 
   static async create ({ input }) {
     if (!input) throw new Error('Error creating historia')
-    input.firma = 1 // TODO: generate by gmail
+    if (!input.firma) input.firma = 1 // TODO: generate by gmail
     const keys = Object.keys(input)
     const values = Object.values(input)
     let id

@@ -17,20 +17,10 @@ const openai = new OpenAI({
 // { role: 'assistant', content: 'The Los Angeles Dodgers won the World Series in 2020.' },
 // { role: 'user', content: 'Where was it played?' }],
 
-const INITIAL_MESSAGES = [
-  {
-    role: 'system',
-    content: `Quiero que cuando te pase una descripción con las historias clinicas de baja complejidad de enfermeria con el formato de colombia de un paciente generes un resumen con maximo 300 caracteres.
-
-    El formato de respuesta JSON será el siguiente:
-    
-    {
-      "resumen": [resumen]
-    }
-    
-    Se conciso, estricto y directo. Apunta los errores clave.`
-  }
-]
+const INITIAL_MESSAGES = {
+  role: 'system',
+  content: 'Quiero que cuando te pase una descripción con las historias clinicas de baja complejidad de enfermeria con el formato de colombia de un paciente, generes un resumen con maximo 300 caracteres, se conciso, estricto y directo.'
+}
 
 // async function getOfferDescriptionById (id: string) {
 //   const res = await fetch(`https://api.infojobs.net/api/7/offer/${id}`, {
@@ -51,31 +41,20 @@ export async function GET (request: Request) {
   }
 
   const description = await api.get.parsedHistoria({ id })
-  // const description = 'capital de colombia'
-  // const description = await getOfferDescriptionById(id)
-  console.log('🚀 ~ file: route.ts:54 ~ GET ~ description:', description)
 
-  // const chatCompletion = await openai.chat.completions.create({
-  //   messages: [{ role: 'user', content: 'hola' }],
-  //   model: 'gpt-3.5-turbo'
-  // })
+  const chatCompletion = await openai.chat.completions.create({
+    messages: [
+      { role: 'system', content: INITIAL_MESSAGES.content },
+      { role: 'user', content: JSON.stringify(description) }
+    ],
+    model: 'gpt-3.5-turbo'
+  })
 
-  // // const completion = await openai.createChatCompletion({
-  // //   model: 'gpt-3.5-turbo',
-  // //   messages: [...INITIAL_MESSAGES, {
-  // //     role: ChatCompletionRequestMessageRoleEnum.User,
-  // //     content: description
-  // //   }]
-  // // })
-
-  // console.log(JSON.stringify(chatCompletion, null, 2))
-  // const data = chatCompletion.choices[0].message?.content ?? ''
-  // console.log('🚀 ~ file: route.ts:76 ~ GET ~ data:', data)
-  // const data = completion.data.choices[0].message?.content ?? ''
+  const data = chatCompletion.choices[0].message?.content ?? ''
   // let json
   try {
     // json = JSON.parse(data)
-    return NextResponse.json({ res: true })
+    return NextResponse.json({ data })
   } catch (e) {
     console.log(e)
     return new Response('Error parsing JSON', { status: 500 })

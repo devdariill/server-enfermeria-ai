@@ -5,7 +5,8 @@ import { useIndex } from '@/context/IndexContext'
 import type { HistoriaClinica } from '@/types'
 import Link from 'next/link'
 // import { useSearchParams } from 'next/navigation'
-import { useEffect } from 'react'
+import { useCallback, useEffect, useState } from 'react'
+import api from '../api'
 
 // import data from '../mock/data.json'
 
@@ -16,7 +17,6 @@ export default function Page ({ searchParams: { name }, params: { id } }: { sear
   }, [])
   return (
     <div className='h-full'>
-      {/* My Post: {params.id} */}
       <AiView historias={historias} id={id} name={name.split('%').join(' ')} />
     </div>
   )
@@ -36,6 +36,22 @@ export function AiView ({ name, id, historias }: { name: string, id: string, his
 }
 
 const SummaryAi = ({ name, id }: { name: string, id: string }) => {
+  const [summary, setSummary] = useState()
+  const [loading, setLoading] = useState(false)
+  const sleep = async (milliseconds: number) => {
+    return await new Promise(resolve => setTimeout(resolve, milliseconds))
+  }
+  const handleClick = useCallback(async () => {
+    setLoading(true)
+    if (summary) {
+      await sleep(2000)
+      setLoading(false)
+      return
+    }
+    const { data } = await api.get.summaryAi({ id })
+    setSummary(data)
+    setLoading(false)
+  }, [id])
   return (
     <article className='lg:w-1/2'>
       <div className='top-0 pt-8 pb-16 lg:sticky'>
@@ -50,19 +66,25 @@ const SummaryAi = ({ name, id }: { name: string, id: string }) => {
                   Agregar Historia
                 </Link>
               </header>
-              <p className='max-w-xl mt-4 text-lg tracking-tight text-gray-600'>
-                You are not your mistakes, you are not your struggles, and you are here NOW with
-                the power to shape your day and your future
-              </p>
+              {loading && (
+                <div className='flex items-center justify-center my-5'>
+                  <div className='w-16 h-16 border-t-4 border-b-4 border-gray-900 rounded-full animate-spin' />
+                </div>
+              )}
+              {!loading && summary && (
+                <p className='max-w-xl my-5 text-lg tracking-tight text-gray-600'>
+                  {summary}
+                </p>
+              )}
             </div>
-            <div className='flex flex-col items-center justify-center gap-3 mt-10 lg:flex-row lg:justify-start'>
-              <a
+            <div className='flex flex-col items-center justify-center gap-3 lg:flex-row lg:justify-start'>
+              <button
                 id='buttonCss'
                 className='buttonCss w-full'
-                href='#'
+                onClick={handleClick}
               >
                 Generar Resumen por AI
-              </a>
+              </button>
             </div>
           </div>
         </div>

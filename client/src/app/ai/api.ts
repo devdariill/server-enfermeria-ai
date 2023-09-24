@@ -39,11 +39,14 @@ const api = {
         const filteredRest = Object.fromEntries(
           Object.entries(rest).filter(([_key, value]) => value !== 'None' && value !== null)
         )
-
         return { ...filteredRest }
       })
-
       return parsedHistoria
+    },
+    summaryAi: async ({ id }: { id: string }) => {
+      const res = await fetch(`/api/check-description?id=${id}`)
+      const data = await res.json()
+      return data
     }
   }
 }

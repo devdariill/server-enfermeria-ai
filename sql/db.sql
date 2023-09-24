@@ -70,6 +70,8 @@ CREATE TABLE Historias_Clinicas (
   impresion_diagnostica VARCHAR(200),
   tratamiento TEXT,
   firma INT NOT NULL,
+
+  acudiente VARCHAR(255),
   PRIMARY KEY (id),
   FOREIGN KEY (id_tercero) REFERENCES Terceros (id),
   FOREIGN KEY (firma) REFERENCES Usuarios (id)

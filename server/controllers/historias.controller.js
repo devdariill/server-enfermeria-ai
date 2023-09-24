@@ -31,10 +31,10 @@ export class HistoriaController {
   }
 
   update = async (req, res) => {
-    const result = req.body
-    if (!result) return res.status(400).json({ DBHistoria: JSON.parse(result) })
+    const body = req.body
+    if (!body) return res.status(400).json({ DBHistoria: JSON.parse(body) })
     const { id } = req.params
-    const updatedMovie = await this.historiaModel.update({ id, input: result })
+    const updatedMovie = await this.historiaModel.update({ id, input: body })
     return res.json(updatedMovie)
   }
 }

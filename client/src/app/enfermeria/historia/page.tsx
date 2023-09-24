@@ -6,10 +6,12 @@ import { useEffect } from 'react'
 
 import type { FormEvent } from 'react'
 
+// let id_tercero = -1
 function Page (params: any) {
   const { historia, getHistoria } = useIndex()
   useEffect(() => {
     getHistoria({ id: params.searchParams.id })
+    // historia && (id_tercero = historia.id_tercero)
   }, [])
   if (!historia) return <div>Loading...</div>
 
@@ -30,10 +32,10 @@ export default Page
 function View ({ id, TextArea, Input }: { id: string, TextArea: any, Input: any }) {
   const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault()
-    const body = JSON.stringify({ ...FormToBody(event), id_tercero: id })
+    const body = JSON.stringify({ ...FormToBody(event) })
 
     const res = await fetch(`/api/historias/${id}`, {
-      method: 'POST',
+      method: 'PATCH',
       headers: {
         'Content-Type': 'application/json'
       },
@@ -58,6 +60,8 @@ function View ({ id, TextArea, Input }: { id: string, TextArea: any, Input: any 
   return (
     <form onSubmit={handleSubmit}>
       <div className='grid grid-cols-2 gap-3 mx-auto [&>div]:grid'>
+        <DynamicComponent Input={Input} />
+
         <FirstComponent TextArea={TextArea} />
         <SecondComponent TextArea={TextArea} />
         <ThirdComponent TextArea={TextArea} Input={Input} />
@@ -99,6 +103,30 @@ const FormToBody = (event: FormEvent<HTMLFormElement>) => {
   // const message = data.get('message')?.toString() ?? ''
   // const motivo_consulta = data.get('motivo_consulta')?.toString() ?? ''
   return body
+}
+
+const DynamicComponent = ({ Input }: { Input: any }) => {
+  // programa, codigo, eps, acudiente
+  return (
+    <>
+      <div>
+        <label className='font-bold'>Programa</label>
+        <Input name='programa' autoFocus />
+      </div>
+      <div>
+        <label className='font-bold'>Codigo</label>
+        <Input name='codigo' />
+      </div>
+      <div>
+        <label className='font-bold'>EPS</label>
+        <Input name='eps' />
+      </div>
+      <div>
+        <label className='font-bold'>Acudiente</label>
+        <Input name='acudiente' />
+      </div>
+    </>
+  )
 }
 
 const FirstComponent = ({ TextArea }: { TextArea: any }) => {

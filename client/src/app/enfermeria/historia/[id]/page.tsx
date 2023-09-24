@@ -28,6 +28,7 @@ function Pages ({ params: { id } }: { params: { id: string } }) {
   return (
     <form onSubmit={handleSubmit}>
       <div className='grid grid-cols-2 gap-3 mx-auto [&>div]:grid'>
+        <DynamicComponent />
         <FirstComponent />
         <SecondComponent />
         <ThirdComponent />
@@ -66,6 +67,32 @@ const TextArea = ({ name, autoFocus = false, required = false }: { name: string,
 const Input = ({ name, type = 'string', autoFocus = false }: { name: string, type?: string, autoFocus?: boolean }) => (
   <input type={type} className='w-full py-1 rounded pl-2 outline-gray-300' name={name} autoFocus={autoFocus} defaultValue={type === 'string' ? 'a' : 1} />
 )
+
+const DynamicComponent = () => {
+  // programa, codigo, eps, acudiente
+  return (
+    <>
+      <div>
+        <label className='font-bold'>Programa</label>
+        <Input name='programa' autoFocus />
+      </div>
+      <div>
+        <label className='font-bold'>Codigo</label>
+        <Input name='codigo' />
+      </div>
+      <div>
+        <label className='font-bold'>EPS</label>
+        <Input name='eps' />
+      </div>
+      <div>
+        <label className='font-bold'>Acudiente</label>
+        <Input name='acudiente' />
+      </div>
+
+      <hr className='col-span-2 p-5' />
+    </>
+  )
+}
 
 const FirstComponent = () => {
   return (

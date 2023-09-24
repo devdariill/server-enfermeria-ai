@@ -48,6 +48,7 @@ export interface HistoriaClinica {
   tratamiento: string | null
   id_tercero: number
   firma: number
+  acudiemte: string | null
 }
 
 export interface Usuario {

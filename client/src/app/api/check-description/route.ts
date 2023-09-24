@@ -1,3 +1,4 @@
+import api from '@/app/ai/api'
 import { NextResponse } from 'next/server'
 import OpenAI from 'openai'
 
@@ -24,7 +25,7 @@ const INITIAL_MESSAGES = [
     El formato de respuesta JSON será el siguiente:
     
     {
-      "message": [message]
+      "resumen": [resumen]
     }
     
     Se conciso, estricto y directo. Apunta los errores clave.`
@@ -43,36 +44,38 @@ const INITIAL_MESSAGES = [
 // }
 
 export async function GET (request: Request) {
-  // const { searchParams } = new URL(request.url)
-  // const id = searchParams.get('id')
-  // if (id == null) {
-  //   return new Response('Missing id', { status: 400 })
-  // }
-  const description = 'capital de colombia'
+  const { searchParams } = new URL(request.url)
+  const id = searchParams.get('id')
+  if (id == null) {
+    return new Response('Missing id', { status: 400 })
+  }
+
+  const description = await api.get.parsedHistoria({ id })
+  // const description = 'capital de colombia'
   // const description = await getOfferDescriptionById(id)
-  console.log(description)
+  console.log('🚀 ~ file: route.ts:54 ~ GET ~ description:', description)
 
-  const chatCompletion = await openai.chat.completions.create({
-    messages: [{ role: 'user', content: description }],
-    model: 'gpt-3.5-turbo'
-  })
-
-  // const completion = await openai.createChatCompletion({
-  //   model: 'gpt-3.5-turbo',
-  //   messages: [...INITIAL_MESSAGES, {
-  //     role: ChatCompletionRequestMessageRoleEnum.User,
-  //     content: description
-  //   }]
+  // const chatCompletion = await openai.chat.completions.create({
+  //   messages: [{ role: 'user', content: 'hola' }],
+  //   model: 'gpt-3.5-turbo'
   // })
 
-  console.log(JSON.stringify(chatCompletion, null, 2))
-  const data = chatCompletion.choices[0].message?.content ?? ''
-  console.log('🚀 ~ file: route.ts:76 ~ GET ~ data:', data)
+  // // const completion = await openai.createChatCompletion({
+  // //   model: 'gpt-3.5-turbo',
+  // //   messages: [...INITIAL_MESSAGES, {
+  // //     role: ChatCompletionRequestMessageRoleEnum.User,
+  // //     content: description
+  // //   }]
+  // // })
+
+  // console.log(JSON.stringify(chatCompletion, null, 2))
+  // const data = chatCompletion.choices[0].message?.content ?? ''
+  // console.log('🚀 ~ file: route.ts:76 ~ GET ~ data:', data)
   // const data = completion.data.choices[0].message?.content ?? ''
   // let json
   try {
     // json = JSON.parse(data)
-    return NextResponse.json({ res: data })
+    return NextResponse.json({ res: true })
   } catch (e) {
     console.log(e)
     return new Response('Error parsing JSON', { status: 500 })

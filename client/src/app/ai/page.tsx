@@ -24,17 +24,17 @@ export default function Home () {
 }
 
 const TablePeopleAi = () => {
-  const { terceros, loadTerceros } = useIndex()
-  console.log('🚀 ~ file: listOfPeople.tsx:21 ~ ListOfPeople ~ terceros:', terceros)
+  const { terceros, loadTerceros, getTercerosByValue } = useIndex()
   useEffect(() => {
     loadTerceros()
   }, [])
   const router = useRouter()
-  const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault()
     const data = new FormData(event.currentTarget)
     const search = data.get('search')?.toString().toLowerCase() ?? ''
     if (search.length > 0) {
+      await getTercerosByValue({ search })
       console.log('🚀 ~ file: listOfPeople.tsx:34 ~ ListOfPeople ~ search', search)
     }
   }
@@ -93,7 +93,7 @@ const Info = ({ length, handleSubmit }: { length: number, handleSubmit: FormEven
             type='search'
             name='search'
             className='ml-2 bg-white w-full border outline-0 rounded-l-md pl-3'
-            placeholder='Search by name'
+            placeholder='Search'
           />
           <button className='bg-gray-300 px-2 rounded-r-md'>Filter</button>
         </label>

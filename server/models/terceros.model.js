@@ -3,17 +3,22 @@ import { pool } from '../app.js'
 const DB_TABLE = 'terceros'
 
 export class TerceroModel {
-  static async getAll ({ nombre }) {
-    if (nombre) {
-      const lowerCase = nombre.toLowerCase()
+  static async getAll ({ search }) {
+    if (search) {
+      const lowerCase = search.toLowerCase()
 
       const [result] = await pool.query(
-        'SELECT * FROM ?? WHERE LOWER(nombre) = ? ;',
-        [DB_TABLE, lowerCase]
+        'SELECT * FROM ?? WHERE id_nacional LIKE ? ;',
+        [DB_TABLE, `%${lowerCase}%`]
       )
-
-      if (result.length === 0) return []
-
+      if (result.length === 0) {
+        const [result] = await pool.query(
+          'SELECT * FROM ?? WHERE LOWER(nombres) LIKE ? OR LOWER(apellidos) LIKE ? ;',
+          [DB_TABLE, `%${lowerCase}%`, `%${lowerCase}%`]
+        )
+        if (result.length === 0) return []
+        return result
+      }
       console.log('🚀 ~ file: terceros.js:18 ~ TerceroModel ~ getAll ~ result:', result)
       return result
     }

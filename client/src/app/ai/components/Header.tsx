@@ -9,8 +9,8 @@ function Header () {
 
   return (
     <header className='w-full text-center gap-2 flex flex-col justify-center max-w-[100px] fixed left-5 bottom-5 z-10 '>
-      <LinkC view={view} href='/'>Pacientes</LinkC>
-      <LinkC view={!view} href='/charts'>Graficas</LinkC>
+      <LinkC view={view} href='/ai'>Pacientes</LinkC>
+      <LinkC view={!view} href='/ai/charts'>Graficas</LinkC>
     </header>
   )
 }

@@ -4,8 +4,8 @@ export class TerceroController {
   }
 
   getAll = async (req, res) => {
-    const { nombre } = req.query
-    const terceros = await this.terceroModel.getAll({ nombre })
+    const { search } = req.query
+    const terceros = await this.terceroModel.getAll({ search })
     res.json(terceros)
   }
 

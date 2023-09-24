@@ -4,7 +4,10 @@ import { axios } from '../axios'
 const PAGE = '/terceros/'
 const BASE_URL = 'http://localhost:3000' + PAGE
 
-export async function getAll (id?: string): Promise<Tercero[]> {
+export async function getAll ({ search }: { search?: string }): Promise<Tercero[]> {
+  if (search) {
+    return await axios<Tercero[]>(`${BASE_URL}?search=${search}`)
+  }
   return await axios<Tercero[]>(BASE_URL)
 }
 

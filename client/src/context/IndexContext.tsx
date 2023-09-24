@@ -18,8 +18,14 @@ export function useIndex () {
 export function IndexProvider ({ children }: { children: ReactNode }) {
   const [terceros, setTerceros] = useState<Tercero[]>([])
   async function loadTerceros () {
-    const res = await fetch('/api/terceros')
-    const terceros = await res.json() as Tercero[]
+    // const res = await fetch('/api/terceros')
+    // const terceros = await res.json() as Tercero[]
+    const terceros = await api.get.terceros({})
+    setTerceros(terceros)
+  }
+
+  async function getTercerosByValue ({ search }: { search: string }) {
+    const terceros = await api.get.terceros({ search })
     setTerceros(terceros)
   }
 
@@ -45,7 +51,8 @@ export function IndexProvider ({ children }: { children: ReactNode }) {
       historias,
       loadHistorias,
       historia,
-      getHistoria
+      getHistoria,
+      getTercerosByValue
     }}
     >
       <Toaster expand={false} richColors />
@@ -62,4 +69,5 @@ interface TerceroContextType {
   loadHistorias: ({ id }: { id: string }) => Promise<void>
   historia: HistoriaClinica | undefined
   getHistoria: ({ id }: { id: string }) => Promise<void>
+  getTercerosByValue: ({ search }: { search: string }) => Promise<void>
 }

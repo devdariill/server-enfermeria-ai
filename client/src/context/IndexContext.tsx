@@ -1,6 +1,6 @@
 'use client'
 import api from '@/app/ai/api'
-import type { HistoriaClinica, Tercero } from '@/types'
+import type { HistoriaClinica, Planificacion, Tercero } from '@/types'
 import type { ReactNode } from 'react'
 import { createContext, useContext, useState } from 'react'
 import { Toaster, toast } from 'sonner'
@@ -16,6 +16,7 @@ export function useIndex () {
 }
 
 export function IndexProvider ({ children }: { children: ReactNode }) {
+  // Terceros
   const [terceros, setTerceros] = useState<Tercero[]>([])
   async function loadTerceros () {
     // const res = await fetch('/api/terceros')
@@ -29,6 +30,7 @@ export function IndexProvider ({ children }: { children: ReactNode }) {
     setTerceros(terceros)
   }
 
+  // Historias
   const [historias, setHistorias] = useState<HistoriaClinica[]>([])
   async function loadHistorias ({ id }: { id: string }) {
     console.log('🚀 ~ file: IndexContext.tsx:30 ~ loadHistorias ~ id:', id)
@@ -44,6 +46,20 @@ export function IndexProvider ({ children }: { children: ReactNode }) {
     setHistoria(historia)
   }
 
+  // Planificaciones
+  const [planificaciones, setPlanificaciones] = useState<Planificacion[]>([])
+  async function loadPlanificaciones ({ id }: { id: string }) {
+    const planificaciones = await api.get.planificaciones({ id })
+    setPlanificaciones(planificaciones)
+  }
+
+  const [planificacion, setPlanificacion] = useState<Planificacion>()
+  async function getPlanificacion ({ id }: { id: string }) {
+    const planificacion = await api.get.planificacion({ id })
+    if (!planificacion) return toast.error('No se encontró la planificacion')
+    setPlanificacion(planificacion)
+  }
+
   return (
     <IndexContext.Provider value={{
       terceros,
@@ -53,7 +69,11 @@ export function IndexProvider ({ children }: { children: ReactNode }) {
       loadHistorias,
       historia,
       getHistoria,
-      getTercerosByValue
+      getTercerosByValue,
+      planificaciones,
+      loadPlanificaciones,
+      planificacion,
+      getPlanificacion
     }}
     >
       <Toaster expand={false} richColors />
@@ -71,4 +91,8 @@ interface TerceroContextType {
   historia: HistoriaClinica | undefined
   getHistoria: ({ id }: { id: string }) => Promise<string | number | undefined>
   getTercerosByValue: ({ search }: { search: string }) => Promise<void>
+  planificaciones: Planificacion[]
+  loadPlanificaciones: ({ id }: { id: string }) => Promise<void>
+  planificacion: Planificacion | undefined
+  getPlanificacion: ({ id }: { id: string }) => Promise<string | number | undefined>
 }

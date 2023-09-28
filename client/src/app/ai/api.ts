@@ -47,6 +47,16 @@ const api = {
       const res = await fetch(`/api/check-description?id=${id}`)
       const data = await res.json()
       return data
+    },
+    planificaciones: async ({ id }: { id: string }) => {
+      const res = await fetch(`/api/planificaciones?id=${id}`)
+      const planificaciones = await res.json()
+      return planificaciones
+    },
+    planificacion: async ({ id }: { id: string }) => {
+      const res = await fetch(`/api/planificaciones/${id}`)
+      const planificacion = await res.json()
+      return planificacion
     }
   }
 }

@@ -1,5 +1,5 @@
 // Definición de tipos para la tabla Planificaciones
-interface Planificacion {
+export export interface Planificacion {
   id: number
   id_tercero: number
   fecha: string // Puedes usar el tipo Date si prefieres.
@@ -81,7 +81,7 @@ interface Planificacion {
 }
 
 // Definición de tipos para la tabla Seccion_B
-interface SeccionB {
+export interface SeccionB {
   id: number
   id_tercero: number
   id_planificacion: number

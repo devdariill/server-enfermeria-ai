@@ -19,7 +19,6 @@ export class PlanificaionModel {
 
   static async create ({ input }) {
     if (!input) throw new Error('Error creating planificacion')
-    if (!input.firma) input.firma = 1 // TODO: generate by gmail
     const keys = Object.keys(input)
     const values = Object.values(input)
     let id
@@ -31,8 +30,10 @@ export class PlanificaionModel {
       console.log('🚀 ~ file: planificacion.model.js:29 ~ PlanificaionModel ~ create ~ e:', error)
       throw new Error('Error creating planificacion')
     }
-    const [planificacion] = await pool.query('SELECT * FROM ?? WHERE id = ?;', [DB_TABLE_1, id])
-    return planificacion[0]
+    // const [planificacion] = await pool.query('SELECT * FROM ?? WHERE id = ?;', [DB_TABLE_1, id])
+    const planificacion = await this.getById({ id })
+    console.log('🚀 ~ file: planificacion.model.js:35 ~ PlanificaionModel ~ create ~ planificacion:', planificacion)
+    return planificacion
   }
 
   static async delete ({ id }) {

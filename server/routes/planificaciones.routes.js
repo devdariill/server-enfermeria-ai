@@ -8,7 +8,7 @@ export const createPlanificacionRouter = ({ planificacionModel }) => {
   const planificacioneController = new PlanificacionController({ planificacionModel })
 
   planificacionesRouter.get('/', planificacioneController.getAll)
-  planificacionesRouter.post('/:id', planificacioneController.create)
+  planificacionesRouter.post('/', planificacioneController.create)
 
   planificacionesRouter.get('/:id', planificacioneController.getById) // TODO :planificacione
   planificacionesRouter.delete('/:id', planificacioneController.delete)

@@ -151,7 +151,7 @@ CREATE TABLE Planificaciones (
   nac_vivos INT,
   nac_mtos INT, 
   vive INT,
-  mtps_primera_sem INT,
+  mtos_primer_sem INT,
   fec_ant_embarazo DATE,
 
   -- sensible
@@ -227,195 +227,195 @@ CREATE TABLE Seccion_B (
   FOREIGN KEY (id_planificacion) REFERENCES Planificaciones (id)
 );
 
-INSERT INTO Planificaciones (id_tercero,h_c,alfabeta,estudios,años_estudio,estado_civil,estado_ocu,af_diabetes,af_hipertension,af_ca_seno,af_ca_cervix,af_enf_cong,af_otros,ap_diabetes,ap_hipertension,ap_cancer,ap_ictericia,ap_infertil,ap_enf_cong,ap_otros,n_comp,enf_t_sex,cual,mes,año,neg,nic,nunca,gastac,ninguno,gemelar,mola,abortos,p_vag,cesarea,ectopica,esp,provoc,nac_vivos,nac_mtos,vive,mtps_primera_sem,fec_ant_embarazo,grupo,rh1,rh2,sensible,fuma,cig_d,vdrl_mes,vdrl_año,negativo,positivo,aco,diu,inyectable,implante,um_ninguno,condon,ritmo,otras,vosec,tiempo,observaciones)VALUES(1,1,1,'univ',4,'sol','estud',1,1,0,1,0,'ning',0,1,0,0,1,0,'ning',2,1,'ning',6,2023,0,1,0,0,1,0,0,0,1,0,0,0,0,2,0,1,3,'2023-09-27','grupo','1','2',1,1,10,3,2023,0,1,1,0,1,0,0,1,0,0,0,6,'Observacionesdeejemplo');
+INSERT INTO Planificaciones (id_tercero,h_c,alfabeta,estudios,años_estudio,estado_civil,estado_ocu,af_diabetes,af_hipertension,af_ca_seno,af_ca_cervix,af_enf_cong,af_otros,ap_diabetes,ap_hipertension,ap_cancer,ap_ictericia,ap_infertil,ap_enf_cong,ap_otros,n_comp,enf_t_sex,cual,mes,año,neg,nic,nunca,gastac,ninguno,gemelar,mola,abortos,p_vag,cesarea,ectopica,esp,provoc,nac_vivos,nac_mtos,vive,mtos_primer_sem,fec_ant_embarazo,grupo,rh1,rh2,sensible,fuma,cig_d,vdrl_mes,vdrl_año,negativo,positivo,aco,diu,inyectable,implante,um_ninguno,condon,ritmo,otras,vosec,tiempo,observaciones)VALUES(1,1,1,'univ',4,'sol','estud',1,1,0,1,0,'ning',0,1,0,0,1,0,'ning',2,1,'ning',6,2023,0,1,0,0,1,0,0,0,1,0,0,0,0,2,0,1,3,'2023-09-27','grupo','1','2',1,1,10,3,2023,0,1,1,0,1,0,0,1,0,0,0,6,'Observacionesdeejemplo');
 
 INSERT INTO Seccion_B (id_tercero,id_planificacion,metodo,ciclos,amenorrea,sangrado,manchado,fum,lactando,cefalea_mareo,dolor_mamario,dolor_pelvico,flujo_caracter,varices,senos,abdomen,cervix,utero,anexos,t_a_mm_hg,peso_kg,cambio_metodo,motivo,nuevo_metodo,observaciones,citologia) VALUES (1,1,'Método anticonceptivo utilizado','Descripción de ciclos menstruales','Descripción de amenorrea','Descripción de sangrado','Descripción de manchado','Descripción de fecha de última menstruación','Descripción de lactancia','Descripción de cefalea/mareo','Descripción de dolor mamario','Descripción de dolor pélvico','Descripción de flujo característico','Descripción de varices','Descripción de senos','Descripción de abdomen','Descripción de cervix','Descripción de útero','Descripción de anexos','Descripción de tensión arterial (mm Hg)','Descripción de peso (kg)','Descripción de cambio de método','Descripción del motivo','Descripción del nuevo método','Descripción de observaciones','Descripción de citología' );
 
-INSERT INTO Seccion_B (
-  id_tercero,
-  id_planificacion,
-  metodo,
-  ciclos,
-  amenorrea,
-  sangrado,
-  manchado,
-  fum,
-  lactando,
-  cefalea_mareo,
-  dolor_mamario,
-  dolor_pelvico,
-  flujo_caracter,
-  varices,
-  senos,
-  abdomen,
-  cervix,
-  utero,
-  anexos,
-  t_a_mm_hg,
-  peso_kg,
-  cambio_metodo,
-  motivo,
-  nuevo_metodo,
-  observaciones,
-  citologia
-) VALUES (
-  1, -- Reemplaza con el valor correcto para id_tercero
-  1, -- Reemplaza con el valor correcto para id_planificacion
-  'Método anticonceptivo utilizado', -- Reemplaza con el valor correcto para metodo
-  'Descripción de ciclos menstruales', -- Reemplaza con el valor correcto para ciclos
-  'Descripción de amenorrea', -- Reemplaza con el valor correcto para amenorrea
-  'Descripción de sangrado', -- Reemplaza con el valor correcto para sangrado
-  'Descripción de manchado', -- Reemplaza con el valor correcto para manchado
-  'Descripción de fecha de última menstruación', -- Reemplaza con el valor correcto para fum
-  'Descripción de lactancia', -- Reemplaza con el valor correcto para lactando
-  'Descripción de cefalea/mareo', -- Reemplaza con el valor correcto para cefalea_mareo
-  'Descripción de dolor mamario', -- Reemplaza con el valor correcto para dolor_mamario
-  'Descripción de dolor pélvico', -- Reemplaza con el valor correcto para dolor_pelvico
-  'Descripción de flujo característico', -- Reemplaza con el valor correcto para flujo_caracter
-  'Descripción de varices', -- Reemplaza con el valor correcto para varices
-  'Descripción de senos', -- Reemplaza con el valor correcto para senos
-  'Descripción de abdomen', -- Reemplaza con el valor correcto para abdomen
-  'Descripción de cervix', -- Reemplaza con el valor correcto para cervix
-  'Descripción de útero', -- Reemplaza con el valor correcto para utero
-  'Descripción de anexos', -- Reemplaza con el valor correcto para anexos
-  'Descripción de tensión arterial (mm Hg)', -- Reemplaza con el valor correcto para t_a_mm_hg
-  'Descripción de peso (kg)', -- Reemplaza con el valor correcto para peso_kg
-  'Descripción de cambio de método', -- Reemplaza con el valor correcto para cambio_metodo
-  'Descripción del motivo', -- Reemplaza con el valor correcto para motivo
-  'Descripción del nuevo método', -- Reemplaza con el valor correcto para nuevo_metodo
-  'Descripción de observaciones', -- Reemplaza con el valor correcto para observaciones
-  'Descripción de citología' -- Reemplaza con el valor correcto para citologia
-);
+-- INSERT INTO Seccion_B (
+--   id_tercero,
+--   id_planificacion,
+--   metodo,
+--   ciclos,
+--   amenorrea,
+--   sangrado,
+--   manchado,
+--   fum,
+--   lactando,
+--   cefalea_mareo,
+--   dolor_mamario,
+--   dolor_pelvico,
+--   flujo_caracter,
+--   varices,
+--   senos,
+--   abdomen,
+--   cervix,
+--   utero,
+--   anexos,
+--   t_a_mm_hg,
+--   peso_kg,
+--   cambio_metodo,
+--   motivo,
+--   nuevo_metodo,
+--   observaciones,
+--   citologia
+-- ) VALUES (
+--   1, -- Reemplaza con el valor correcto para id_tercero
+--   1, -- Reemplaza con el valor correcto para id_planificacion
+--   'Método anticonceptivo utilizado', -- Reemplaza con el valor correcto para metodo
+--   'Descripción de ciclos menstruales', -- Reemplaza con el valor correcto para ciclos
+--   'Descripción de amenorrea', -- Reemplaza con el valor correcto para amenorrea
+--   'Descripción de sangrado', -- Reemplaza con el valor correcto para sangrado
+--   'Descripción de manchado', -- Reemplaza con el valor correcto para manchado
+--   'Descripción de fecha de última menstruación', -- Reemplaza con el valor correcto para fum
+--   'Descripción de lactancia', -- Reemplaza con el valor correcto para lactando
+--   'Descripción de cefalea/mareo', -- Reemplaza con el valor correcto para cefalea_mareo
+--   'Descripción de dolor mamario', -- Reemplaza con el valor correcto para dolor_mamario
+--   'Descripción de dolor pélvico', -- Reemplaza con el valor correcto para dolor_pelvico
+--   'Descripción de flujo característico', -- Reemplaza con el valor correcto para flujo_caracter
+--   'Descripción de varices', -- Reemplaza con el valor correcto para varices
+--   'Descripción de senos', -- Reemplaza con el valor correcto para senos
+--   'Descripción de abdomen', -- Reemplaza con el valor correcto para abdomen
+--   'Descripción de cervix', -- Reemplaza con el valor correcto para cervix
+--   'Descripción de útero', -- Reemplaza con el valor correcto para utero
+--   'Descripción de anexos', -- Reemplaza con el valor correcto para anexos
+--   'Descripción de tensión arterial (mm Hg)', -- Reemplaza con el valor correcto para t_a_mm_hg
+--   'Descripción de peso (kg)', -- Reemplaza con el valor correcto para peso_kg
+--   'Descripción de cambio de método', -- Reemplaza con el valor correcto para cambio_metodo
+--   'Descripción del motivo', -- Reemplaza con el valor correcto para motivo
+--   'Descripción del nuevo método', -- Reemplaza con el valor correcto para nuevo_metodo
+--   'Descripción de observaciones', -- Reemplaza con el valor correcto para observaciones
+--   'Descripción de citología' -- Reemplaza con el valor correcto para citologia
+-- );
 
 
-INSERT INTO Planificaciones (
-  id_tercero,
-  h_c,
-  alfabeta,
-  estudios,
-  años_estudio,
-  estado_civil,
-  estado_ocu,
-  af_diabetes,
-  af_hipertension,
-  af_ca_seno,
-  af_ca_cervix,
-  af_enf_cong,
-  af_otros,
-  ap_diabetes,
-  ap_hipertension,
-  ap_cancer,
-  ap_ictericia,
-  ap_infertil,
-  ap_enf_cong,
-  ap_otros,
-  n_comp,
-  enf_t_sex,
-  cual,
-  mes,
-  año,
-  neg,
-  nic,
-  nunca,
-  gastac,
-  ninguno,
-  gemelar,
-  mola,
-  abortos,
-  p_vag,
-  cesarea,
-  ectopica,
-  esp,
-  provoc,
-  nac_vivos,
-  nac_mtos,
-  vive,
-  mtps_primera_sem,
-  fec_ant_embarazo,
-  grupo,
-  rh1,
-  rh2,
-  sensible,
-  fuma,
-  cig_d,
-  vdrl_mes,
-  vdrl_año,
-  negativo,
-  positivo,
-  aco,
-  diu,
-  inyectable,
-  implante,
-  um_ninguno,
-  condon,
-  ritmo,
-  otras,
-  vosec,
-  tiempo,
-  observaciones
-) VALUES (
-  1, -- Reemplaza con el valor correcto para id_tercero
-  1, -- Reemplaza con el valor correcto para h_c
-  1, -- Reemplaza con el valor correcto para alfabeta
-  'univ', -- Reemplaza con el valor correcto para estudios
-  4, -- Reemplaza con el valor correcto para años_estudio
-  'sol', -- Reemplaza con el valor correcto para estado_civil
-  'estud', -- Reemplaza con el valor correcto para estado_ocu
-  1, -- Reemplaza con el valor correcto para af_diabetes
-  1, -- Reemplaza con el valor correcto para af_hipertension
-  0, -- Reemplaza con el valor correcto para af_ca_seno
-  1, -- Reemplaza con el valor correcto para af_ca_cervix
-  0, -- Reemplaza con el valor correcto para af_enf_cong
-  'ning', -- Reemplaza con el valor correcto para af_otros
-  0, -- Reemplaza con el valor correcto para ap_diabetes
-  1, -- Reemplaza con el valor correcto para ap_hipertension
-  0, -- Reemplaza con el valor correcto para ap_cancer
-  0, -- Reemplaza con el valor correcto para ap_ictericia
-  1, -- Reemplaza con el valor correcto para ap_infertil
-  0, -- Reemplaza con el valor correcto para ap_enf_cong
-  'ning', -- Reemplaza con el valor correcto para ap_otros
-  2, -- Reemplaza con el valor correcto para n_comp
-  1, -- Reemplaza con el valor correcto para enf_t_sex
-  'ning', -- Reemplaza con el valor correcto para cual
-  6, -- Reemplaza con el valor correcto para mes
-  2023, -- Reemplaza con el valor correcto para año
-  0, -- Reemplaza con el valor correcto para neg
-  1, -- Reemplaza con el valor correcto para nic
-  0, -- Reemplaza con el valor correcto para nunca
-  0, -- Reemplaza con el valor correcto para gastac
-  1, -- Reemplaza con el valor correcto para ninguno
-  0, -- Reemplaza con el valor correcto para gemelar
-  0, -- Reemplaza con el valor correcto para mola
-  0, -- Reemplaza con el valor correcto para abortos
-  1, -- Reemplaza con el valor correcto para p_vag
-  0, -- Reemplaza con el valor correcto para cesarea
-  0, -- Reemplaza con el valor correcto para ectopica
-  0, -- Reemplaza con el valor correcto para esp
-  0, -- Reemplaza con el valor correcto para provoc
-  2, -- Reemplaza con el valor correcto para nac_vivos
-  0, -- Reemplaza con el valor correcto para nac_mtos
-  1, -- Reemplaza con el valor correcto para vive
-  3, -- Reemplaza con el valor correcto para mtps_primera_sem
-  '2023-09-27', -- Reemplaza con el valor correcto para fec_ant_embarazo
-  'grupo', -- Reemplaza con el valor correcto para grupo
-  '1', -- Reemplaza con el valor correcto para rh1
-  '2', -- Reemplaza con el valor correcto para rh2
-  1, -- Reemplaza con el valor correcto para sensible
-  1, -- Reemplaza con el valor correcto para fuma
-  10, -- Reemplaza con el valor correcto para cig_d
-  3, -- Reemplaza con el valor correcto para vdrl_mes
-  2023, -- Reemplaza con el valor correcto para vdrl_año
-  0, -- Reemplaza con el valor correcto para negativo
-  1, -- Reemplaza con el valor correcto para positivo
-  1, -- Reemplaza con el valor correcto para aco
-  0, -- Reemplaza con el valor correcto para diu
-  1, -- Reemplaza con el valor correcto para inyectable
-  0, -- Reemplaza con el valor correcto para implante
-  0, -- Reemplaza con el valor correcto para um_ninguno
-  1, -- Reemplaza con el valor correcto para condon
-  0, -- Reemplaza con el valor correcto para ritmo
-  0, -- Reemplaza con el valor correcto para otras
-  0, -- Reemplaza con el valor correcto para vosec
-  6, -- Reemplaza con el valor correcto para tiempo
-  'Observaciones de ejemplo' -- Reemplaza con las observaciones deseadas
-);
+-- INSERT INTO Planificaciones (
+--   id_tercero,
+--   h_c,
+--   alfabeta,
+--   estudios,
+--   años_estudio,
+--   estado_civil,
+--   estado_ocu,
+--   af_diabetes,
+--   af_hipertension,
+--   af_ca_seno,
+--   af_ca_cervix,
+--   af_enf_cong,
+--   af_otros,
+--   ap_diabetes,
+--   ap_hipertension,
+--   ap_cancer,
+--   ap_ictericia,
+--   ap_infertil,
+--   ap_enf_cong,
+--   ap_otros,
+--   n_comp,
+--   enf_t_sex,
+--   cual,
+--   mes,
+--   año,
+--   neg,
+--   nic,
+--   nunca,
+--   gastac,
+--   ninguno,
+--   gemelar,
+--   mola,
+--   abortos,
+--   p_vag,
+--   cesarea,
+--   ectopica,
+--   esp,
+--   provoc,
+--   nac_vivos,
+--   nac_mtos,
+--   vive,
+--   mtps_primera_sem,
+--   fec_ant_embarazo,
+--   grupo,
+--   rh1,
+--   rh2,
+--   sensible,
+--   fuma,
+--   cig_d,
+--   vdrl_mes,
+--   vdrl_año,
+--   negativo,
+--   positivo,
+--   aco,
+--   diu,
+--   inyectable,
+--   implante,
+--   um_ninguno,
+--   condon,
+--   ritmo,
+--   otras,
+--   vosec,
+--   tiempo,
+--   observaciones
+-- ) VALUES (
+--   1, -- Reemplaza con el valor correcto para id_tercero
+--   1, -- Reemplaza con el valor correcto para h_c
+--   1, -- Reemplaza con el valor correcto para alfabeta
+--   'univ', -- Reemplaza con el valor correcto para estudios
+--   4, -- Reemplaza con el valor correcto para años_estudio
+--   'sol', -- Reemplaza con el valor correcto para estado_civil
+--   'estud', -- Reemplaza con el valor correcto para estado_ocu
+--   1, -- Reemplaza con el valor correcto para af_diabetes
+--   1, -- Reemplaza con el valor correcto para af_hipertension
+--   0, -- Reemplaza con el valor correcto para af_ca_seno
+--   1, -- Reemplaza con el valor correcto para af_ca_cervix
+--   0, -- Reemplaza con el valor correcto para af_enf_cong
+--   'ning', -- Reemplaza con el valor correcto para af_otros
+--   0, -- Reemplaza con el valor correcto para ap_diabetes
+--   1, -- Reemplaza con el valor correcto para ap_hipertension
+--   0, -- Reemplaza con el valor correcto para ap_cancer
+--   0, -- Reemplaza con el valor correcto para ap_ictericia
+--   1, -- Reemplaza con el valor correcto para ap_infertil
+--   0, -- Reemplaza con el valor correcto para ap_enf_cong
+--   'ning', -- Reemplaza con el valor correcto para ap_otros
+--   2, -- Reemplaza con el valor correcto para n_comp
+--   1, -- Reemplaza con el valor correcto para enf_t_sex
+--   'ning', -- Reemplaza con el valor correcto para cual
+--   6, -- Reemplaza con el valor correcto para mes
+--   2023, -- Reemplaza con el valor correcto para año
+--   0, -- Reemplaza con el valor correcto para neg
+--   1, -- Reemplaza con el valor correcto para nic
+--   0, -- Reemplaza con el valor correcto para nunca
+--   0, -- Reemplaza con el valor correcto para gastac
+--   1, -- Reemplaza con el valor correcto para ninguno
+--   0, -- Reemplaza con el valor correcto para gemelar
+--   0, -- Reemplaza con el valor correcto para mola
+--   0, -- Reemplaza con el valor correcto para abortos
+--   1, -- Reemplaza con el valor correcto para p_vag
+--   0, -- Reemplaza con el valor correcto para cesarea
+--   0, -- Reemplaza con el valor correcto para ectopica
+--   0, -- Reemplaza con el valor correcto para esp
+--   0, -- Reemplaza con el valor correcto para provoc
+--   2, -- Reemplaza con el valor correcto para nac_vivos
+--   0, -- Reemplaza con el valor correcto para nac_mtos
+--   1, -- Reemplaza con el valor correcto para vive
+--   3, -- Reemplaza con el valor correcto para mtps_primera_sem
+--   '2023-09-27', -- Reemplaza con el valor correcto para fec_ant_embarazo
+--   'grupo', -- Reemplaza con el valor correcto para grupo
+--   '1', -- Reemplaza con el valor correcto para rh1
+--   '2', -- Reemplaza con el valor correcto para rh2
+--   1, -- Reemplaza con el valor correcto para sensible
+--   1, -- Reemplaza con el valor correcto para fuma
+--   10, -- Reemplaza con el valor correcto para cig_d
+--   3, -- Reemplaza con el valor correcto para vdrl_mes
+--   2023, -- Reemplaza con el valor correcto para vdrl_año
+--   0, -- Reemplaza con el valor correcto para negativo
+--   1, -- Reemplaza con el valor correcto para positivo
+--   1, -- Reemplaza con el valor correcto para aco
+--   0, -- Reemplaza con el valor correcto para diu
+--   1, -- Reemplaza con el valor correcto para inyectable
+--   0, -- Reemplaza con el valor correcto para implante
+--   0, -- Reemplaza con el valor correcto para um_ninguno
+--   1, -- Reemplaza con el valor correcto para condon
+--   0, -- Reemplaza con el valor correcto para ritmo
+--   0, -- Reemplaza con el valor correcto para otras
+--   0, -- Reemplaza con el valor correcto para vosec
+--   6, -- Reemplaza con el valor correcto para tiempo
+--   'Observaciones de ejemplo' -- Reemplaza con las observaciones deseadas
+-- );

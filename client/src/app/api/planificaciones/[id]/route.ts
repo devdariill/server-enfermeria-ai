@@ -5,7 +5,7 @@ import { create } from '../controller'
 export async function POST (request: Request, { params: { id } }: { params: { id: string } }) {
   const data = await request.json()
   try {
-    const planificacion = await create(id, data)
+    const planificacion = await create(data)
     return NextResponse.json(planificacion)
   } catch (e) {
     console.log(e)

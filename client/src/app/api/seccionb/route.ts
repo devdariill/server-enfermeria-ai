@@ -1,5 +1,5 @@
 import { NextResponse } from 'next/server'
-import { getAll } from './controller'
+import { getAll } from './planificacion.controller'
 
 export async function GET (request: Request) {
   const { searchParams } = new URL(request.url)
@@ -16,6 +16,6 @@ export async function GET (request: Request) {
     return NextResponse.json(terceros)
   } catch (e) {
     console.log(e)
-    return new Response('Error Historias', { status: 404 })
+    return new Response('Error Terceros', { status: 404 })
   }
 }

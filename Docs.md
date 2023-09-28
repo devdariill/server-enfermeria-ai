@@ -4,6 +4,7 @@ NextJS 13 : client server
 Typescript
 CleanArquitecture
 MVC api
+HTML semantica
 
 .env NextJS
 

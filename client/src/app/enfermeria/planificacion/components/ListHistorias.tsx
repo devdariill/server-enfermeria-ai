@@ -4,7 +4,7 @@ import Link from 'next/link'
 function ListHistorias ({ planificaciones }: { planificaciones: Planificacion[] }) {
   return (
     <article className='flex-shrink-0'>
-      <ul className='grid grid-cols-1 gap-12 mt-6 list-none lg:mt-0 lg:gap-24' role='list'>
+      <ul className='grid grid-cols-1 gap-5 mt-6 list-none ' role='list'>
         {planificaciones?.map((item) => (
           <Item key={item.id} {...item} />
         ))}

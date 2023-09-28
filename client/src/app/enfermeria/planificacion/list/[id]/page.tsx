@@ -26,8 +26,8 @@ function AiView ({ name, id, planificaciones }: { name: string, id: string, plan
   // const name = searchParams.name
 
   return (
-    <section aria-labelledby='feature-five' id='feature-five' className='lg:h-screen '>
-      <div className='px-8 py-24 mx-auto max-w-7xl'>
+    <section aria-labelledby='feature-five' id='feature-five' className='lg:h-screen'>
+      <div className='px-8 py-24 mx-auto max-w-xl'>
         <SummaryAi name={name} id={id} />
         <ListHistorias planificaciones={planificaciones} />
       </div>
@@ -42,7 +42,7 @@ const SummaryAi = ({ name, id }: { name: string, id: string }) => {
         {name}
       </p>
       <Link href={`/enfermeria/planificacion/${id}`} id='buttonCss'>
-        Agregar Historia
+        Agregar Planificacion
       </Link>
     </header>
   )

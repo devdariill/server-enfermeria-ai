@@ -48,7 +48,6 @@ function Page (params: any) {
   }
   const Date = ({ name }: { name: string }) => {
     const defaultValue = (planificacion[name as keyof Planificacion] as Planificacion['fec_ant_embarazo']).slice(0, 10)
-    console.log('🚀 ~ file: page.tsx:51 ~ Date ~ defaultValue:', defaultValue)
     return (
       <Label name={name}>
         <input type='date' className='w-full py-1 rounded pl-2 outline-gray-300' name={name} defaultValue={defaultValue} />
@@ -96,7 +95,7 @@ function View ({ id, Select, Input, Checkbox, Date }: { id: string, Select: any,
 
   return (
     <form onSubmit={handleSubmit}>
-      <div className='grid grid-cols-2 gap-3 mx-auto [&>div]:grid'>
+      <div className='grid grid-cols-2  md:grid-cols-4 gap-3 mx-auto [&>div]:grid '>
 
         <FirstComponent Select={Select} Input={Input} Checkbox={Checkbox} Date={Date} />
 
@@ -123,7 +122,7 @@ const FormToBody = (event: FormEvent<HTMLFormElement>) => {
 
 const FirstComponent = ({ Select, Input, Checkbox, Date }: { Select: any, Input: any, Checkbox: any, Date: any }) => {
   const Hr = () => (
-    <hr className='col-span-4 p-1 bg-black/20 rounded-full' />
+    <hr className='col-span-2 md:col-span-4 p-1 bg-black/20 rounded-full' />
   )
 
   return (

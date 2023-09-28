@@ -5,7 +5,7 @@ const DB_TABLE_1 = 'planificaciones'
 export class PlanificaionModel {
   static async getAll ({ id }) {
     const [result] = await pool.query(
-      'SELECT * FROM ?? WHERE id_tercero = ? OR id = ?;',
+      'SELECT * FROM ?? WHERE id_tercero = ? OR id = ? ORDER BY id DESC;',
       [DB_TABLE_1, id, id]
     )
     return result || []

@@ -21,14 +21,14 @@ function Page (params: any) {
   }, [])
   if (!planificacion) return <div>Loading...</div>
 
-  const Input = ({ name, type = 'string', autoFocus = false }: { name: string, type?: string, autoFocus?: boolean }) => {
+  const Input = ({ name, type = 'string' }: { name: string, type?: string }) => {
     return (
       <Label name={name}>
-        <input type={type} className='w-full py-1 rounded pl-2 outline-gray-300' name={name} autoFocus={autoFocus} defaultValue={planificacion[name as keyof Planificacion] ?? ''} />
+        <input type={type} className='w-full py-1 rounded pl-2 outline-gray-300' name={name} defaultValue={planificacion[name as keyof Planificacion] ?? ''} />
       </Label>
     )
   }
-  const Select = ({ name, options }: { name: string, options: string[], autoFocus?: boolean }) => {
+  const Select = ({ name, options }: { name: string, options: string[] }) => {
     const defaultValue = planificacion[name as keyof Planificacion] ?? options[0]
     return (
       <Label name={name}>
@@ -46,15 +46,24 @@ function Page (params: any) {
       </Label>
     )
   }
+  const Date = ({ name }: { name: string }) => {
+    const defaultValue = (planificacion[name as keyof Planificacion] as Planificacion['fec_ant_embarazo']).slice(0, 10)
+    console.log('🚀 ~ file: page.tsx:51 ~ Date ~ defaultValue:', defaultValue)
+    return (
+      <Label name={name}>
+        <input type='date' className='w-full py-1 rounded pl-2 outline-gray-300' name={name} defaultValue={defaultValue} />
+      </Label>
+    )
+  }
 
   return (
-    <View id={params.searchParams.id} Select={Select} Input={Input} Checkbox={Checkbox} />
+    <View id={params.searchParams.id} Select={Select} Input={Input} Checkbox={Checkbox} Date={Date} />
   )
 }
 
 export default Page
 
-function View ({ id, Select, Input, Checkbox }: { id: string, Select: any, Input: any, Checkbox: any }) {
+function View ({ id, Select, Input, Checkbox, Date }: { id: string, Select: any, Input: any, Checkbox: any, Date: any }) {
   const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault()
     const body = JSON.stringify({ ...FormToBody(event) })
@@ -88,7 +97,7 @@ function View ({ id, Select, Input, Checkbox }: { id: string, Select: any, Input
     <form onSubmit={handleSubmit}>
       <div className='grid grid-cols-2 gap-3 mx-auto [&>div]:grid'>
 
-        <FirstComponent Select={Select} Input={Input} Checkbox={Checkbox} />
+        <FirstComponent Select={Select} Input={Input} Checkbox={Checkbox} Date={Date} />
 
         <button className='bg-red-500 py-1 rounded hover:scale-105 hover:brightness-105 transition-all col-span-2' onClick={async () => await handleDelete()} type='button'>
           Eliminar
@@ -111,7 +120,7 @@ const FormToBody = (event: FormEvent<HTMLFormElement>) => {
   return body
 }
 
-const FirstComponent = ({ Select, Input, Checkbox }: { Select: any, Input: any, Checkbox: any }) => {
+const FirstComponent = ({ Select, Input, Checkbox, Date }: { Select: any, Input: any, Checkbox: any, Date: any }) => {
   const Hr = () => (
     <hr className='col-span-4 p-1 bg-black/20 rounded-full' />
   )
@@ -177,9 +186,7 @@ const FirstComponent = ({ Select, Input, Checkbox }: { Select: any, Input: any, 
       <Input name='vive' type='number' />
       <Input name='mtos_primer_sem' type='number' />
       {/* <Input name='fec_ant_embarazo' /> */}
-      <Label name='fec_ant_embarazo'>
-        <input type='date' className='w-full py-1 rounded pl-2 outline-gray-300' name='fec_ant_embarazo' />
-      </Label>
+      <Date name='fec_ant_embarazo' />
 
       <Hr />
     </>

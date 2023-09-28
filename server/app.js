@@ -1,13 +1,14 @@
 import 'dotenv/config'
 import express, { json } from 'express'
+import { createPool } from 'mysql2/promise'
 import { corsMiddleware } from './middlewares/cors.js'
+
+import { createHistoriaRouter } from './routes/historias.routes.js'
+import { createPlanificacionRouter, createSeccionBRouter } from './routes/planificaciones.routes.js'
 import { createTerceroRouter } from './routes/terceros.routes.js'
 
-import { createPool } from 'mysql2/promise'
-import { createHistoriaRouter } from './routes/historias.routes.js'
-
 // después
-export const createApp = ({ terceroModel, historiaModel }) => {
+export const createApp = ({ terceroModel, historiaModel, planificacionModel, seccionBModel }) => {
   const app = express()
   app.use(json())
   app.use(corsMiddleware())
@@ -16,6 +17,8 @@ export const createApp = ({ terceroModel, historiaModel }) => {
   // app.use('/movies', createMovieRouter({ movieModel }))
   app.use('/historias', createHistoriaRouter({ historiaModel }))
   app.use('/terceros', createTerceroRouter({ terceroModel }))
+  app.use('/planificaciones', createPlanificacionRouter({ planificacionModel }))
+  app.use('/seccionb', createSeccionBRouter({ seccionBModel }))
 
   const PORT = process.env.PORT ?? 3001
 

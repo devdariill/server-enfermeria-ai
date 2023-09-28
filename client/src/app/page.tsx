@@ -1,5 +1,5 @@
 import { Logout } from '@/app/Session/components'
-import { ButtonLink } from './components/button-link'
+import { ButtonLink } from '../components/button-link'
 
 export default async function Home () {
   return (

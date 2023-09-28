@@ -1,5 +1,5 @@
-import { ButtonLink } from '@/app/components/button-link'
 import TercerosList from '@/app/enfermeria/tercero/components/terceros-list'
+import { ButtonLink } from '@/components/button-link'
 
 function Page () {
   // const handleClick = async (id: string) => {

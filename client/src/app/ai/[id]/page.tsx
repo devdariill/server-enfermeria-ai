@@ -22,7 +22,7 @@ export default function Page ({ searchParams: { name }, params: { id } }: { sear
   )
 }
 
-export function AiView ({ name, id, historias }: { name: string, id: string, historias: HistoriaClinica[] }) {
+function AiView ({ name, id, historias }: { name: string, id: string, historias: HistoriaClinica[] }) {
   // const name = searchParams.name
 
   return (

@@ -5,9 +5,15 @@ const FormToBody = (event: FormEvent<HTMLFormElement>) => {
   event.preventDefault()
   const data = new FormData(event.currentTarget)
   const entries = Array.from(data.entries())
-  const body = Object.fromEntries(entries)
-  // const message = data.get('message')?.toString() ?? ''
-  // const motivo_consulta = data.get('motivo_consulta')?.toString() ?? ''
+  const body = Object.fromEntries(entries.map(([name, value]) => {
+    if (name === 'fec_ant_embarazo' && value === '') {
+      return [name, '2000-01-01']
+    } else if (value === 'on') {
+      return [name, 1]
+    } else {
+      return [name, value]
+    }
+  }))
   return body
 }
 
@@ -18,6 +24,7 @@ function Pages ({ params: { id } }: { params: { id: string } }) {
     const confirm = window.confirm('¿Estas seguro de agregar esta historia?')
     if (!confirm) return
     const body = JSON.stringify({ ...FormToBody(event), id_tercero: id })
+    console.log('🚀 ~ file: page.tsx:25 ~ handleSubmit ~ body:', body)
     const res = await fetch(`/api/planificaciones/${id}`, {
       method: 'POST',
       headers: {

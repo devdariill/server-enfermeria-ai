@@ -4,50 +4,57 @@ import { useIndex } from '@/context/IndexContext'
 import type { Planificacion } from '@/types'
 import { useEffect } from 'react'
 
-import type { FormEvent } from 'react'
+import type { FormEvent, ReactNode } from 'react'
+
+const Label = ({ name, children }: { name: string, children: ReactNode }) => (
+  <label className='font-semibold capitalize text-center items-center flex flex-col justify-center'>{name.split('_').join(' ')}
+    {children}
+  </label>
+)
 
 // let id_tercero = -1
 function Page (params: any) {
   const { planificacion, getPlanificacion } = useIndex()
+  console.log('🚀 ~ file: page.tsx:18 ~ Page ~ planificacion:', planificacion)
   useEffect(() => {
     getPlanificacion({ id: params.searchParams.id })
   }, [])
   if (!planificacion) return <div>Loading...</div>
 
-  const TextArea = ({ name, autoFocus = false, required = false }: { name: string, type?: string, autoFocus?: boolean, required?: boolean }) => {
-    return (
-      <div>
-        <label className='font-bold capitalize'>{name}</label>
-        <textarea className='py-1 rounded pl-2 outline-gray-300' name={name} autoFocus={autoFocus} defaultValue={planificacion[name as keyof Planificacion] ?? ''} required={required} />
-      </div>
-    )
-  }
   const Input = ({ name, type = 'string', autoFocus = false }: { name: string, type?: string, autoFocus?: boolean }) => {
     return (
-      <div>
-        <label className='font-bold capitalize'>{name}</label>
-        <input type={type} className='w-full py-1 rounded pl-2 outline-gray-300' name={name} autoFocus={autoFocus} defaultValue={type === 'string' ? 'a' : 1} />
-      </div>
+      <Label name={name}>
+        <input type={type} className='w-full py-1 rounded pl-2 outline-gray-300' name={name} autoFocus={autoFocus} defaultValue={planificacion[name as keyof Planificacion] ?? ''} />
+      </Label>
     )
   }
-  // const Checkbox = ({ name, autoFocus = false }: { name: string, autoFocus?: boolean }) => {
-  //   return (
-  //     <div>
-  //       <label className='font-bold capitalize'>{name}</label>
-  //       <input type='checkbox' className='w-full py-1 rounded pl-2 outline-gray-300' name={name} autoFocus={autoFocus} />
-  //     </div>
-  //   )
-  // }
+  const Select = ({ name, options }: { name: string, options: string[], autoFocus?: boolean }) => {
+    const defaultValue = planificacion[name as keyof Planificacion] ?? options[0]
+    return (
+      <Label name={name}>
+        <select className='col-span-3 w-full py-1 rounded pl-2 outline-gray-300' name={name} defaultValue={defaultValue}>
+          {options.map((option, i) => <option className='capitalize' key={i}>{option}</option>)}
+        </select>
+      </Label>
+    )
+  }
+  const Checkbox = ({ name, autoFocus = false }: { name: string, autoFocus?: boolean }) => {
+    const defaultValue = planificacion[name as keyof Planificacion] === 1
+    return (
+      <Label name={name}>
+        <input type='checkbox' className='py-1 rounded pl-2 outline-gray-300' name={name} autoFocus={autoFocus} defaultChecked={defaultValue} />
+      </Label>
+    )
+  }
 
   return (
-    <View id={params.searchParams.id} TextArea={TextArea} Input={Input} />
+    <View id={params.searchParams.id} Select={Select} Input={Input} Checkbox={Checkbox} />
   )
 }
 
 export default Page
 
-function View ({ id, TextArea, Input }: { id: string, TextArea: any, Input: any }) {
-  // const router = useRouter()
+function View ({ id, Select, Input, Checkbox }: { id: string, Select: any, Input: any, Checkbox: any }) {
   const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault()
     const body = JSON.stringify({ ...FormToBody(event) })
@@ -62,7 +69,6 @@ function View ({ id, TextArea, Input }: { id: string, TextArea: any, Input: any 
     const response = await res.json()
     console.log('🚀 ~ file: page.tsx:26 ~ handleSubmit ~ response:', response)
   }
-
   const handleDelete = async () => {
     const confirm = window.confirm('¿Está seguro de eliminar este tercero?')
     if (!confirm) return
@@ -77,22 +83,18 @@ function View ({ id, TextArea, Input }: { id: string, TextArea: any, Input: any 
     window.history.back()
     console.log('🚀 ~ file: page.tsx:56 ~ handleDelete ~ response:', response)
   }
+
   return (
     <form onSubmit={handleSubmit}>
       <div className='grid grid-cols-2 gap-3 mx-auto [&>div]:grid'>
 
-        <FirstComponent TextArea={TextArea} Input={Input} />
-        <SecondComponent TextArea={TextArea} />
-        <ThirdComponent TextArea={TextArea} Input={Input} />
+        <FirstComponent Select={Select} Input={Input} Checkbox={Checkbox} />
 
-        <TextArea name='impresion_diagnostica' />
-        <TextArea name='tratamiento' />
-
-        <button className='bg-red-500 py-1 rounded hover:scale-105 hover:brightness-105 transition-all' onClick={async () => await handleDelete()} type='button'>
+        <button className='bg-red-500 py-1 rounded hover:scale-105 hover:brightness-105 transition-all col-span-2' onClick={async () => await handleDelete()} type='button'>
           Eliminar
         </button>
 
-        <button id='buttonCss' type='submit'>
+        <button id='buttonCss' type='submit' className='col-span-2'>
           Guardar Cambios
         </button>
       </div>
@@ -109,51 +111,77 @@ const FormToBody = (event: FormEvent<HTMLFormElement>) => {
   return body
 }
 
-const FirstComponent = ({ TextArea, Input }: { TextArea: any, Input: any }) => {
-  return (
-    <>
-      <Input name='h_c' type='number' />
-      <Input name='alfabeta' type='number' />
-
-      <hr className='col-span-2 p-5' />
-    </>
+const FirstComponent = ({ Select, Input, Checkbox }: { Select: any, Input: any, Checkbox: any }) => {
+  const Hr = () => (
+    <hr className='col-span-4 p-1 bg-black/20 rounded-full' />
   )
-}
-const SecondComponent = ({ TextArea }: { TextArea: any }) => {
+
   return (
     <>
-      <TextArea name='ta' />
-      <TextArea name='fc' />
-      <TextArea name='p' />
-      <TextArea name='r' />
-      <TextArea name='t' />
+      <Checkbox name='alfabeta' autoFocus />
+      <Select name='estudios' options={['ning', 'prim', 'sec', 'univ']} />
+      <Input name='años_estudio' type='number' />
+      <Select name='estado_civil' options={['sol', 'cas', 'ul', 'otra']} />
+      <Select name='estado_ocu' options={['estud', 'trab']} />
 
-      <hr className='col-span-2 p-5' />
-    </>
-  )
-}
-const ThirdComponent = ({ TextArea, Input }: { TextArea: any, Input: any }) => {
-  return (
-    <>
-      <Input name='peso' />
-      <Input name='talla' />
+      <Hr />
 
-      <TextArea name='piel_faneras' />
-      <TextArea name='cabeza' />
-      <TextArea name='ojos' />
-      <TextArea name='nariz' />
-      <TextArea name='oidos' />
-      <TextArea name='boca' />
-      <TextArea name='cuello' />
-      <TextArea name='torax' />
-      <TextArea name='corazon' />
-      <TextArea name='pulmones' />
-      <TextArea name='abdomen' />
-      <TextArea name='extremidades' />
-      <TextArea name='genitourinario' />
-      <TextArea name='e_neurologico_elemental' />
+      <Checkbox name='af_diabetes' />
+      <Checkbox name='af_hipertension' />
+      <Checkbox name='af_ca_seno' />
+      <Checkbox name='af_ca_cervix' />
+      <Checkbox name='af_enf_cong' />
+      <Input name='af_otros' />
 
-      <hr className='col-span-2 p-5' />
+      <Hr />
+
+      <Checkbox name='ap_diabetes' />
+      <Checkbox name='ap_hipertension' />
+      <Checkbox name='ap_cancer' />
+      <Checkbox name='ap_ictericia' />
+      <Checkbox name='ap_infertil' />
+      <Checkbox name='ap_enf_cong' />
+      <Input name='ap_otros' />
+
+      <Hr />
+
+      <Input name='n_comp' type='number' />
+      <Checkbox name='enf_t_sex' />
+      <Input name='cual' />
+
+      <Hr />
+
+      <Input name='mes' type='number' />
+      <Input name='año' type='number' />
+      <Checkbox name='neg' />
+      <Checkbox name='nic' />
+      <Checkbox name='nunca' />
+
+      <Hr />
+
+      <Input name='gastac' type='number' />
+      <Checkbox name='ninguno' />
+      <Input name='gemelar' type='number' />
+      <Input name='mola' type='number' />
+
+      <Hr />
+
+      <Input name='abortos' type='number' />
+      <Input name='p_vag' type='number' />
+      <Input name='cesarea' type='number' />
+      <Input name='ectopica' type='number' />
+      <Input name='esp' type='number' />
+      <Input name='provoc' type='number' />
+      <Input name='nac_vivos' type='number' />
+      <Input name='nac_mtos' type='number' />
+      <Input name='vive' type='number' />
+      <Input name='mtos_primer_sem' type='number' />
+      {/* <Input name='fec_ant_embarazo' /> */}
+      <Label name='fec_ant_embarazo'>
+        <input type='date' className='w-full py-1 rounded pl-2 outline-gray-300' name='fec_ant_embarazo' />
+      </Label>
+
+      <Hr />
     </>
   )
 }

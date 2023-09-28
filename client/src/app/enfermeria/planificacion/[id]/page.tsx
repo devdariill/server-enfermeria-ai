@@ -11,6 +11,7 @@ const FormToBody = (event: FormEvent<HTMLFormElement>) => {
 }
 
 function Pages ({ params: { id } }: { params: { id: string } }) {
+  console.log('🚀 ~ file: page.tsx:14 ~ Pages ~ id:', id)
   const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault()
     const body = JSON.stringify({ ...FormToBody(event), id_tercero: id })

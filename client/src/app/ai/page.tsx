@@ -72,7 +72,7 @@ const TablePeopleAi = () => {
                       </Button>
                     </TableCell>
                     <TableCell className='text-center'>
-                      <Button onClick={() => router.push(`/planificacion/${item.id}?name=${item.apellidos}%${item.nombres}`)}>
+                      <Button onClick={() => router.push(`/enfermeria/planificacion/list/${item.id}?name=${item.apellidos}%${item.nombres}`)}>
                         Ver
                       </Button>
                     </TableCell>

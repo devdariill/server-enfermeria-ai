@@ -4,9 +4,11 @@ const DB_TABLE_1 = 'planificaciones'
 
 export class PlanificaionModel {
   static async getAll ({ id }) {
-    const [result] = await pool.query(`SELECT * FROM ${DB_TABLE_1} WHERE id_tercero = ? ;`, [id])
-    if (result.length === 0) return []
-    return result
+    const [result] = await pool.query(
+      'SELECT * FROM ?? WHERE id_tercero = ? OR id = ?;',
+      [DB_TABLE_1, id, id]
+    )
+    return result || []
   }
 
   static async getById ({ id }) {
@@ -59,9 +61,11 @@ const DB_TABLE = 'seccion_b'
 
 export class SeccionBModel {
   static async getAll ({ id }) {
-    const [result] = await pool.query(`SELECT * FROM ${DB_TABLE} WHERE id_tercero = ? ;`, [id])
-    if (result.length === 0) return []
-    return result
+    const [result] = await pool.query(
+      'SELECT * FROM ?? WHERE id_tercero = ? OR id = ?;',
+      [DB_TABLE, id, id]
+    )
+    return result || []
   }
 
   static async getById ({ id }) {

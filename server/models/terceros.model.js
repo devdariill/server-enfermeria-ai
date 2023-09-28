@@ -22,12 +22,10 @@ export class TerceroModel {
       return result
     }
 
-    const [terceros] = await pool.query(
-      `SELECT * FROM ${DB_TABLE} LIMIT 10;`
-      // 'SELECT title, year, director, duration, poster, rate, BIN_TO_UUID(id) id FROM movie;'
-    )
+    const [result] = await pool.query(`SELECT * FROM ${DB_TABLE} LIMIT 10;`)
+    // 'SELECT title, year, director, duration, poster, rate, BIN_TO_UUID(id) id FROM movie;'
 
-    return terceros
+    return result
   }
 
   static async getById ({ id }) {

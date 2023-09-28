@@ -67,21 +67,22 @@ function View ({ id, Select, Input, Checkbox, Date }: { id: string, Select: any,
   const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault()
     const body = JSON.stringify({ ...FormToBody(event) })
+    console.log('🚀 ~ file: page.tsx:70 ~ handleSubmit ~ body:', body)
 
-    const res = await fetch(`/api/historias/${id}`, {
-      method: 'PATCH',
-      headers: {
-        'Content-Type': 'application/json'
-      },
-      body
-    })
-    const response = await res.json()
-    console.log('🚀 ~ file: page.tsx:26 ~ handleSubmit ~ response:', response)
+    // const res = await fetch(`/api/historias/${id}`, {
+    //   method: 'PATCH',
+    //   headers: {
+    //     'Content-Type': 'application/json'
+    //   },
+    //   body
+    // })
+    // const response = await res.json()
+    // console.log('🚀 ~ file: page.tsx:26 ~ handleSubmit ~ response:', response)
   }
   const handleDelete = async () => {
     const confirm = window.confirm('¿Está seguro de eliminar este tercero?')
     if (!confirm) return
-    const res = await fetch(`/api/historias/${id}`, {
+    const res = await fetch(`/api/planificaciones/${id}`, {
       method: 'DELETE',
       headers: {
         'Content-Type': 'application/json'

@@ -50,7 +50,8 @@ const TablePeopleAi = () => {
           <TableRow>
             <TableHeaderCell>Nombre</TableHeaderCell>
             <TableHeaderCell>Edad</TableHeaderCell>
-            <TableHeaderCell className='text-center'>Acción</TableHeaderCell>
+            <TableHeaderCell className='text-center'>Historias</TableHeaderCell>
+            <TableHeaderCell className='text-center'>Planificaciones</TableHeaderCell>
           </TableRow>
         </TableHead>
 
@@ -66,8 +67,13 @@ const TablePeopleAi = () => {
                     {/* <TableCell>{item.diagnosis}</TableCell> */}
                     <TableCell className='text-center'>
                       <Button onClick={() => router.push(`/ai/${item.id}?name=${item.apellidos}%${item.nombres}`)}>
-                        Revisar Historial
+                        Ver
                         {/* ({item.nursing_records.length}) */}
+                      </Button>
+                    </TableCell>
+                    <TableCell className='text-center'>
+                      <Button onClick={() => router.push(`/planificacion/${item.id}?name=${item.apellidos}%${item.nombres}`)}>
+                        Ver
                       </Button>
                     </TableCell>
                   </TableRow>

@@ -5,7 +5,7 @@ import { useIndex } from '@/context/IndexContext'
 import type { HistoriaClinica } from '@/types'
 import Link from 'next/link'
 // import { useSearchParams } from 'next/navigation'
-import { useCallback, useEffect, useState } from 'react'
+import { useEffect, useState } from 'react'
 import api from '../api'
 
 // import data from '../mock/data.json'
@@ -38,7 +38,7 @@ function AiView ({ name, id, historias }: { name: string, id: string, historias:
 const SummaryAi = ({ name, id }: { name: string, id: string }) => {
   const [summary, setSummary] = useState()
   const [loading, setLoading] = useState(false)
-  const handleClick = useCallback(async () => {
+  const handleClick = async () => {
     setLoading(true)
     if (summary) {
       console.log('🚀 ~ file: page.tsx:47 ~ handleClick ~ summary:', summary)
@@ -47,11 +47,12 @@ const SummaryAi = ({ name, id }: { name: string, id: string }) => {
         return () => clearTimeout(timeout)
       })
       return setLoading(false)
+    } else {
+      const { data } = await api.get.summaryAi({ id })
+      setSummary(data)
+      setLoading(false)
     }
-    const { data } = await api.get.summaryAi({ id })
-    setSummary(data)
-    setLoading(false)
-  }, [id])
+  }
   return (
     <article className='lg:w-1/2'>
       <div className='top-0 pb-16 lg:sticky'>

@@ -88,7 +88,7 @@ function View ({ id, Select, Input, Checkbox, Date }: { id: string, Select: any,
       }
     })
     const response = await res.json()
-    // router.push(`/ai/${1}`)
+    // router.push(`/list/${1}`)
     window.history.back()
     console.log('🚀 ~ file: page.tsx:56 ~ handleDelete ~ response:', response)
   }

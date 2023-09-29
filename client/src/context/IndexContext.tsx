@@ -1,5 +1,5 @@
 'use client'
-import api from '@/app/ai/api'
+import api from '@/app/list/api'
 import type { HistoriaClinica, Planificacion, Tercero } from '@/types'
 import type { ReactNode } from 'react'
 import { createContext, useContext, useState } from 'react'

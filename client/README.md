@@ -3,7 +3,7 @@ function Page (params: { params: any, searchParams: any }) {
   ...}
 
 import { useRouter } from 'next/navigation'
-  router.push(`/ai/${item.patient_id}`)
+  router.push(`/list/${item.patient_id}`)
 
 import { usePathname } from 'next/navigation'
   const path = usePathname()

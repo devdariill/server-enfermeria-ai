@@ -1,6 +1,6 @@
 
 'use client'
-import ListHistorias from '@/app/enfermeria/planificacion/components/ListHistorias'
+import ListHistorias from '@/app/planificacion/components/ListHistorias'
 import { useIndex } from '@/context/IndexContext'
 import type { Planificacion } from '@/types'
 import Link from 'next/link'
@@ -41,7 +41,7 @@ const SummaryAi = ({ name, id }: { name: string, id: string }) => {
       <p className='text-2xl font-medium tracking-tight text-black sm:text-4xl mr-auto'>
         {name}
       </p>
-      <Link href={`/enfermeria/planificacion/${id}`} id='buttonCss'>
+      <Link href={`/planificacion/${id}`} id='buttonCss'>
         Agregar Planificacion
       </Link>
     </header>

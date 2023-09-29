@@ -1,4 +1,4 @@
-import DATA from '@/app/ai/mock/data.json'
+import DATA from '@/app/list/mock/data.json'
 import type { HistoriaClinica, People, Tercero } from '@/types'
 
 const MODE = process.env.NODE_ENV === 'development'

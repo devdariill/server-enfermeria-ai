@@ -54,7 +54,7 @@ function Pages () {
     })
     const response = await res.json()
     if (response?.error) return toast.error(response.error)
-    router.push('/enfermeria/tercero')
+    router.push('/tercero')
     toast.success('Tercero creado')
     console.log('🚀 ~ file: page.tsx:50 ~ handleSubmit ~ response:', response)
   }

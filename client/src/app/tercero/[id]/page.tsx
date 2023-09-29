@@ -84,7 +84,7 @@ function Pages ({ params: { id } }: { params: { id: string } }) {
     const response = await res.json()
     console.log('🚀 ~ file: page.tsx:93 ~ handleDelete ~ response:', response)
     if (response.message.includes('rimero')) return toast.error(response.message)
-    router.push('/enfermeria/tercero')
+    router.push('/tercero')
     toast.success('Tercero eliminado')
   }
   return (

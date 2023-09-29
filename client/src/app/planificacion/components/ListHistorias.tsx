@@ -18,7 +18,7 @@ export default ListHistorias
 const Item = ({ id, fecha }: Planificacion) => {
   return (
     <li className='flex items-center'>
-      <Link href={`/enfermeria/planificacion?id=${id}`} className='flex items-center justify-center w-12 h-12 text-black bg-white rounded-xl hover:cursor-pointer hover:scale-105'>
+      <Link href={`/planificacion?id=${id}`} className='flex items-center justify-center w-12 h-12 text-black bg-white rounded-xl hover:cursor-pointer hover:scale-105'>
         ❖ {id}
       </Link>
       <span className='ml-auto'>

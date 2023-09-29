@@ -10,7 +10,7 @@ const thousandRegex = (value: any) => {
   const fixedNumber = (Math.round(number))
   return fixedNumber.toString().replace(/\B(?=(\d{3})+(?!\d))/g, '.')
 }
-const LINK_URL = ({ path }: { path: string }) => `/enfermeria/tercero/${path}`
+const LINK_URL = ({ path }: { path: string }) => `/tercero/${path}`
 
 function Page () {
   const { terceros, loadTerceros } = useIndex()
@@ -52,7 +52,7 @@ function Page () {
       {terceros.length > 0
         ? terceros?.map(tercero => {
           return (
-            <PathComponent path={path === '/enfermeria/tercero'} tercero={tercero} key={tercero.id} />
+            <PathComponent path={path === '/tercero'} tercero={tercero} key={tercero.id} />
           )
         })
         : <h1>No hay terceros</h1>}
@@ -63,7 +63,7 @@ function Page () {
 export default Page
 
 const PathComponent = ({ path, tercero }: { path: boolean, tercero: Tercero }) => {
-  const toURL = path ? LINK_URL({ path: tercero.id.toString() }) : `/ai/${tercero.id}`
+  const toURL = path ? LINK_URL({ path: tercero.id.toString() }) : `/list/${tercero.id}`
   return (
     <Link href={toURL} key={tercero.id} id='buttonCss'>
       <Card tercero={tercero} />

@@ -1,4 +1,4 @@
-import TercerosList from '@/app/enfermeria/tercero/components/terceros-list'
+import TercerosList from '@/app/tercero/components/terceros-list'
 import { ButtonLink } from '@/components/button-link'
 
 function Page () {
@@ -44,4 +44,4 @@ function Page () {
 
 export default Page
 
-const LINK_URL = ({ path }: { path: string }) => `/enfermeria/tercero/${path}`
+const LINK_URL = ({ path }: { path: string }) => `/tercero/${path}`

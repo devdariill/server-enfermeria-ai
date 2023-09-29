@@ -26,7 +26,7 @@ const Item = ({ id, motivo_consulta, firma, enfermedad_actual, impresion_diagnos
     <li>
       <div>
         <div className='flex items-center'>
-          <Link href={`/enfermeria/historia?id=${id}`} className='flex items-center justify-center w-12 h-12 text-black bg-white rounded-xl hover:cursor-pointer hover:scale-105'>
+          <Link href={`/historia?id=${id}`} className='flex items-center justify-center w-12 h-12 text-black bg-white rounded-xl hover:cursor-pointer hover:scale-105'>
             ❖
           </Link>
           <div className='ml-auto'>

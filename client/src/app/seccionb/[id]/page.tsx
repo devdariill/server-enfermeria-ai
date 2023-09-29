@@ -17,7 +17,7 @@ const FormToBody = (event: FormEvent<HTMLFormElement>) => {
   return body
 }
 
-function Pages ({ params: { id }, searchParams: { name } }: { params: { id: string }, searchParams: { name: string } }) {
+function Pages ({ params: { id } }: { params: { id: string } }) {
 // function Pages ({ params, searchParams }: any) {
   const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault()
@@ -36,26 +36,16 @@ function Pages ({ params: { id }, searchParams: { name } }: { params: { id: stri
     console.log('🚀 ~ file: page.tsx:26 ~ handleSubmit ~ response:', response)
   }
   return (
-    <>
-      <header className='flex items-center justify-around'>
-        <h1 className='text-2xl font-medium tracking-tight text-black sm:text-4xl'>
-          {name}
-        </h1>
-        <h2 className='text-2xl tracking-tight text-black/80'>
-          Planificacion
-        </h2>
-      </header>
-      <form onSubmit={handleSubmit}>
-        <div className='grid grid-cols-4 gap-3 mx-auto p-5'>
+    <form onSubmit={handleSubmit}>
+      <div className='grid grid-cols-4 gap-3 mx-auto'>
 
-          <FirstComponent />
+        <FirstComponent />
 
-          <button id='buttonCss' className='w-full mt-2 col-span-4' type='submit'>
-            Agregar Planificacion
-          </button>
-        </div>
-      </form>
-    </>
+        <button id='buttonCss' className='w-full mt-2 col-span-4' type='submit'>
+          Agregar Planificacion
+        </button>
+      </div>
+    </form>
   )
 }
 

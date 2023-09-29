@@ -3,13 +3,11 @@
 import { useIndex } from '@/context/IndexContext'
 import type { Planificacion } from '@/types'
 import Link from 'next/link'
-// import { useSearchParams } from 'next/navigation'
 import { useEffect } from 'react'
-
-// import data from '../mock/data.json'
 
 export default function Page ({ searchParams: { name }, params: { id } }: { searchParams: { name: string }, params: { id: string } }) {
   const { planificaciones, loadPlanificaciones } = useIndex()
+  console.log('🚀 ~ file: page.tsx:14 ~ Page ~ planificaciones:', planificaciones)
   useEffect(() => {
     loadPlanificaciones({ id })
   }, [])
@@ -28,18 +26,17 @@ function AiView ({ name, id, planificaciones }: { name: string, id: string, plan
           <p className='text-2xl font-medium tracking-tight text-black sm:text-4xl mr-auto'>
             {name}
           </p>
-          <Link href={`/planificacion/${id}?name=${name}`} id='buttonCss'>
-            Agregar Planificacion
+          <Link href={`/planificacion/${id}`} id='buttonCss'>
+            Agregar Seccion B
           </Link>
         </header>
-
-        <ListHistorias planificaciones={planificaciones} name={name} />
+        <ListSeccionB planificaciones={planificaciones} name={name} />
       </div>
     </section>
   )
 }
 
-function ListHistorias ({ planificaciones, name }: { planificaciones: Planificacion[], name: string }) {
+function ListSeccionB ({ planificaciones, name }: { planificaciones: Planificacion[], name: string }) {
   return (
     <article className='flex-shrink-0'>
       <ul className='grid grid-cols-1 gap-5 mt-6 list-none ' role='list'>

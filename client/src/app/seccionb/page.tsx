@@ -2,7 +2,6 @@
 
 import { useIndex } from '@/context/IndexContext'
 import type { Planificacion } from '@/types'
-import Link from 'next/link'
 import { useEffect } from 'react'
 
 import type { FormEvent, ReactNode } from 'react'
@@ -97,9 +96,8 @@ function View ({ id, Select, Input, Checkbox, Date, name }: { id: string, Select
   return (
     <>
       <header className='flex justify-around items-center'>
-        <h1 className='text-2xl font-semibold text-center'>{name}</h1>
-        <h2 className='text-xl font-semibold text-center'>Planificación</h2>
-        <Link id='buttonCss' href={`/seccionb/list/${id}?name=${name}`}> Seccion B </Link>
+        <h2 className='text-xl font-semibold text-center'>{name}</h2>
+        <h1 className='text-2xl font-semibold text-center'>Planificación</h1>
       </header>
       <form onSubmit={handleSubmit} className='p-5'>
         <div className='grid grid-cols-2  md:grid-cols-4 gap-3 mx-auto [&>div]:grid '>

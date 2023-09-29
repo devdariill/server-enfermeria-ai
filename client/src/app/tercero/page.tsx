@@ -37,7 +37,6 @@ function Page () {
       </header>
 
       <TercerosList />
-
     </section>
   )
 }

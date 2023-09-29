@@ -18,7 +18,7 @@ export default function RootLayout ({
 }) {
   return (
     <html lang='es'>
-      <body className={inter.className + 'min-h-screen bg-[#e8e8e8]'}>
+      <body className={inter.className + 'min-h-screen bg-[#e8e8e8] grid grid-rows-[160px,1fr] '}>
         <header className='py-10 bg-[#0f8ece] justify-center grid'>
           <h1 className='flex flex-col items-center justify-center text-lg'>
             <Link href='/'>
@@ -27,11 +27,14 @@ export default function RootLayout ({
             <strong className='font-semibold tracking-wider capitalize text-sm'> Summary for low complexity nursing records. </strong>
           </h1>
         </header>
-        <Provider>
-          <IndexProvider>
-            {children}
-          </IndexProvider>
-        </Provider>
+        <main className='container mx-auto'>
+          <hr className='mt-5' />
+          <Provider>
+            <IndexProvider>
+              {children}
+            </IndexProvider>
+          </Provider>
+        </main>
       </body>
     </html>
   )

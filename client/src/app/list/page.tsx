@@ -2,14 +2,14 @@
 
 import { useIndex } from '@/context/IndexContext'
 import {
-    Button,
-    Card,
-    Table,
-    TableBody,
-    TableCell,
-    TableHead,
-    TableHeaderCell,
-    TableRow
+  Button,
+  Card,
+  Table,
+  TableBody,
+  TableCell,
+  TableHead,
+  TableHeaderCell,
+  TableRow
 } from '@tremor/react'
 import { useRouter } from 'next/navigation'
 import { Fragment, useEffect, type FormEvent, type FormEventHandler } from 'react'
@@ -51,7 +51,6 @@ const TablePeopleAi = () => {
             <TableHeaderCell>Nombre</TableHeaderCell>
             <TableHeaderCell>Edad</TableHeaderCell>
             <TableHeaderCell className='text-center'>Historias</TableHeaderCell>
-            <TableHeaderCell className='text-center'>Planificaciones</TableHeaderCell>
           </TableRow>
         </TableHead>
 
@@ -69,11 +68,6 @@ const TablePeopleAi = () => {
                       <Button onClick={() => router.push(`/list/${item.id}?name=${item.apellidos}%${item.nombres}`)}>
                         Ver
                         {/* ({item.nursing_records.length}) */}
-                      </Button>
-                    </TableCell>
-                    <TableCell className='text-center'>
-                      <Button onClick={() => router.push(`/planificacion/list/${item.id}?name=${item.apellidos}%${item.nombres}`)}>
-                        Ver
                       </Button>
                     </TableCell>
                   </TableRow>

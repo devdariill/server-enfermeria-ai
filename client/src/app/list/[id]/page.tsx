@@ -26,8 +26,8 @@ function AiView ({ name, id, historias }: { name: string, id: string, historias:
   // const name = searchParams.name
 
   return (
-    <section aria-labelledby='feature-five' id='feature-five' className='lg:h-screen '>
-      <div className='px-8 py-24 mx-auto lg:px-16 max-w-7xl md:px-12 xl:px-36 lg:flex'>
+    <section aria-labelledby='feature-five' id='feature-five' className='h-full'>
+      <div className='px-8 py-5 mx-auto lg:px-16 max-w-7xl md:px-12 xl:px-36 lg:flex'>
         <SummaryAi name={name} id={id} />
         <ListHistorias historias={historias} />
       </div>
@@ -54,16 +54,19 @@ const SummaryAi = ({ name, id }: { name: string, id: string }) => {
   }, [id])
   return (
     <article className='lg:w-1/2'>
-      <div className='top-0 pt-8 pb-16 lg:sticky'>
+      <div className='top-0 pb-16 lg:sticky'>
         <div>
           <div className='lg:pr-24 md:pr-12 grid gap-5'>
             <header className='flex items-center'>
               <p className='text-2xl font-medium tracking-tight text-black sm:text-4xl mr-auto'>
                 {name}
               </p>
-              <Link href={`/historia/${id}`} id='buttonCss'>
-                Agregar Historia
-              </Link>
+              <button
+                id='buttonCss'
+                onClick={handleClick}
+              >
+                Generar Resumen por AI
+              </button>
             </header>
             {loading && (
               <div className='flex items-center justify-center my-5'>
@@ -75,14 +78,10 @@ const SummaryAi = ({ name, id }: { name: string, id: string }) => {
                 {summary}
               </p>
             )}
-            <div className='flex flex-col items-center justify-center gap-3 lg:flex-row lg:justify-start'>
-              <button
-                id='buttonCss'
-                className='buttonCss w-full'
-                onClick={handleClick}
-              >
-                Generar Resumen por AI
-              </button>
+            <div className='flex items-center justify-center gap-3 lg:flex-row lg:justify-start'>
+              <Link href={`/historia/${id}`} id='buttonCss' className='w-full'>
+                Agregar Historia
+              </Link>
             </div>
           </div>
         </div>

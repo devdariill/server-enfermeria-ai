@@ -5,11 +5,10 @@ export const dynamic = 'force-dynamic'
 
 export default async function Home () {
   return (
-    <main className='mx-auto px-4 gap-5 grid py-10'>
-      <ButtonLink href='/ai'>Enfermeria</ButtonLink>
+    <section className='mx-auto px-4 gap-5 flex flex-col py-10 w-full'>
+      <ButtonLink href='/list'>Enfermeria</ButtonLink>
       <ButtonLink href='/tercero'>Terceros</ButtonLink>
       <Logout />
-
-    </main>
+    </section>
   )
 }

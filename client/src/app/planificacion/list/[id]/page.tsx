@@ -1,6 +1,5 @@
 
 'use client'
-import ListHistorias from '@/app/planificacion/components/ListHistorias'
 import { useIndex } from '@/context/IndexContext'
 import type { Planificacion } from '@/types'
 import Link from 'next/link'
@@ -25,9 +24,9 @@ function AiView ({ name, id, planificaciones }: { name: string, id: string, plan
 
   return (
     <section aria-labelledby='feature-five' id='feature-five' className='h-full'>
-      <div className='px-8 py-24 mx-auto max-w-xl'>
+      <div className='px-8 pt-5 pb-24 mx-auto max-w-xl'>
         <SummaryAi name={name} id={id} />
-        <ListHistorias planificaciones={planificaciones} />
+        <ListHistorias planificaciones={planificaciones} name={name} />
       </div>
     </section>
   )
@@ -43,5 +42,30 @@ const SummaryAi = ({ name, id }: { name: string, id: string }) => {
         Agregar Planificacion
       </Link>
     </header>
+  )
+}
+
+function ListHistorias ({ planificaciones, name }: { planificaciones: Planificacion[], name: string }) {
+  return (
+    <article className='flex-shrink-0'>
+      <ul className='grid grid-cols-1 gap-5 mt-6 list-none ' role='list'>
+        {planificaciones?.map((item) => (
+          <Item key={item.id} name={name} {...item} />
+        ))}
+      </ul>
+    </article>
+  )
+}
+
+const Item = ({ id, fecha, name }: Planificacion & { name: string }) => {
+  return (
+    <li className='flex items-center'>
+      <Link href={`/planificacion?id=${id}&name=${name}`} className='flex items-center justify-center w-12 h-12 text-black bg-white rounded-xl hover:cursor-pointer hover:scale-105'>
+        ❖ {id}
+      </Link>
+      <span className='ml-auto'>
+        {fecha} - length
+      </span>
+    </li>
   )
 }

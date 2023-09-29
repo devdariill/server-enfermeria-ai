@@ -94,20 +94,22 @@ function View ({ id, Select, Input, Checkbox, Date }: { id: string, Select: any,
   }
 
   return (
-    <form onSubmit={handleSubmit}>
-      <div className='grid grid-cols-2  md:grid-cols-4 gap-3 mx-auto [&>div]:grid '>
+    <>
+      <form onSubmit={handleSubmit} className='p-5'>
+        <div className='grid grid-cols-2  md:grid-cols-4 gap-3 mx-auto [&>div]:grid '>
 
-        <FirstComponent Select={Select} Input={Input} Checkbox={Checkbox} Date={Date} />
+          <FirstComponent Select={Select} Input={Input} Checkbox={Checkbox} Date={Date} />
 
-        <button className='bg-red-500 py-1 rounded hover:scale-105 hover:brightness-105 transition-all col-span-2' onClick={async () => await handleDelete()} type='button'>
-          Eliminar
-        </button>
+          <button className='bg-red-500 py-1 rounded hover:scale-105 hover:brightness-105 transition-all col-span-2' onClick={async () => await handleDelete()} type='button'>
+            Eliminar
+          </button>
 
-        <button id='buttonCss' type='submit' className='col-span-2'>
-          Guardar Cambios
-        </button>
-      </div>
-    </form>
+          <button id='buttonCss' type='submit' className='col-span-2'>
+            Guardar Cambios
+          </button>
+        </div>
+      </form>
+    </>
   )
 }
 

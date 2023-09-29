@@ -41,7 +41,7 @@ function Pages ({ params: { id } }: { params: { id: string } }) {
 
         <FirstComponent />
 
-        <button id='buttonCss' className='w-full mt-2 col-span-4'>
+        <button id='buttonCss' className='w-full mt-2 col-span-4' type='submit'>
           Agregar Planificacion
         </button>
       </div>

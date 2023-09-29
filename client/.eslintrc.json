@@ -15,6 +15,7 @@
     "@typescript-eslint/strict-boolean-expressions" : "off",
     "@typescript-eslint/no-floating-promises": "off",
     "react-hooks/exhaustive-deps": "off",
-    "@typescript-eslint/no-non-null-assertion": "off"
+    "@typescript-eslint/no-non-null-assertion": "off",
+    "react/button-has-type": "error"
   }
 }

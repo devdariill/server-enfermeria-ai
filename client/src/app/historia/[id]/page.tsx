@@ -45,7 +45,7 @@ function Pages ({ params: { id } }: { params: { id: string } }) {
           <Input name='firma' />
         </div> */}
 
-        <button id='buttonCss' className='w-full mt-2 col-span-2'>
+        <button id='buttonCss' className='w-full mt-2 col-span-2' type='submit'>
           Agregar Historia
         </button>
       </div>

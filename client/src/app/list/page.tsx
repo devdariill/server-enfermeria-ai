@@ -95,7 +95,7 @@ const Info = ({ length, handleSubmit }: { length: number, handleSubmit: FormEven
             className='ml-2 bg-white w-full border outline-0 rounded-l-md pl-3'
             placeholder='Search'
           />
-          <button className='bg-gray-300 px-2 rounded-r-md'>Filter</button>
+          <button className='bg-gray-300 px-2 rounded-r-md' type='submit'>Filter</button>
         </label>
       </form>
 

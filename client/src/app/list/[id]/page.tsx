@@ -81,6 +81,7 @@ const SummaryAi = ({ name, id }: { name: string, id: string }) => {
                 id='buttonCss'
                 className='buttonCss w-full'
                 onClick={handleClick}
+                type='button'
               >
                 Generar Resumen por AI
               </button>

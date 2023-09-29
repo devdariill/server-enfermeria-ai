@@ -98,7 +98,7 @@ function Pages () {
           <label className='font-bold'>ID Nacional</label>
           <Input type='number' name='id_nacional' />
         </div>
-        <button id='buttonCss' className='w-full mt-2'>
+        <button id='buttonCss' className='w-full mt-2' type='submit'>
           Crear Tercero
         </button>
       </div>

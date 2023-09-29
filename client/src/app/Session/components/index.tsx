@@ -11,7 +11,7 @@ export function Logout () {
   }, [session])
 
   return (
-    <button id='buttonCss' onClick={async () => await signOut()}>
+    <button id='buttonCss' onClick={async () => await signOut()} type='button'>
       Logout
     </button>
   )

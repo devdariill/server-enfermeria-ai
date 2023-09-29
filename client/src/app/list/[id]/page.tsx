@@ -89,6 +89,7 @@ const SummaryAi = ({ name, id }: { name: string, id: string }) => {
     </article>
   )
 }
+
 function ListHistorias ({ historias, name }: { historias: HistoriaClinica[], name: string }) {
   return (
     <article className='lg:w-1/2'>
@@ -105,7 +106,6 @@ function ListHistorias ({ historias, name }: { historias: HistoriaClinica[], nam
 
   )
 }
-
 const Item = ({ id, motivo_consulta, firma, enfermedad_actual, impresion_diagnostica, name }: HistoriaClinica & { name: string }) => {
   return (
     <li>

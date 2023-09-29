@@ -24,7 +24,8 @@ function Pages ({ params: { id }, searchParams: { name } }: { params: { id: stri
     const confirm = window.confirm('¿Estas seguro de agregar esta historia?')
     if (!confirm) return
     const body = JSON.stringify({ ...FormToBody(event), id_tercero: id })
-    console.log('🚀 ~ file: page.tsx:25 ~ handleSubmit ~ body:', body)
+    console.log('🚀 ~ file: page.tsx:27 ~ handleSubmit ~ body:', body)
+
     const res = await fetch(`/api/planificaciones/${id}`, {
       method: 'POST',
       headers: {

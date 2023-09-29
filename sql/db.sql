@@ -97,8 +97,7 @@ VALUES ('Program A', '12345', 'EPS A', 1, 'Headache', 'Fever', 'None', 'None', '
 
 CREATE TABLE Planificaciones (
   id INT NOT NULL AUTO_INCREMENT,
-  id_historia INT NOT NULL,
-  id_tercero INT NOT NULL,  
+  id_historia INT NOT NULL,  
   fecha TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
 
   -- Menor de 18, Mayor 35
@@ -184,7 +183,6 @@ CREATE TABLE Planificaciones (
   observaciones TEXT,
 
   PRIMARY KEY (id),
-  FOREIGN KEY (id_tercero) REFERENCES Terceros (id),
   FOREIGN KEY (id_historia) REFERENCES Historias_Clinicas (id)
 );
 
@@ -226,7 +224,7 @@ CREATE TABLE Seccion_B (
   FOREIGN KEY (id_planificacion) REFERENCES Planificaciones (id)
 );
 
-INSERT INTO Planificaciones (id_historia,id_tercero,h_c,alfabeta,estudios,años_estudio,estado_civil,estado_ocu,af_diabetes,af_hipertension,af_ca_seno,af_ca_cervix,af_enf_cong,af_otros,ap_diabetes,ap_hipertension,ap_cancer,ap_ictericia,ap_infertil,ap_enf_cong,ap_otros,n_comp,enf_t_sex,cual,mes,año,neg,nic,nunca,gastac,ninguno,gemelar,mola,abortos,p_vag,cesarea,ectopica,esp,provoc,nac_vivos,nac_mtos,vive,mtos_primer_sem,fec_ant_embarazo,grupo,rh1,rh2,sensible,fuma,cig_d,vdrl_mes,vdrl_año,negativo,positivo,aco,diu,inyectable,implante,um_ninguno,condon,ritmo,otras,vosec,tiempo,observaciones)VALUES(1,1,1,1,'univ',4,'sol','estud',1,1,0,1,0,'ning',0,1,0,0,1,0,'ning',2,1,'ning',6,2023,0,1,0,0,1,0,0,0,1,0,0,0,0,2,0,1,3,'2023-09-27','grupo','1','2',1,1,10,3,2023,0,1,1,0,1,0,0,1,0,0,0,6,'Observacionesdeejemplo');
+INSERT INTO Planificaciones (id_historia,h_c,alfabeta,estudios,años_estudio,estado_civil,estado_ocu,af_diabetes,af_hipertension,af_ca_seno,af_ca_cervix,af_enf_cong,af_otros,ap_diabetes,ap_hipertension,ap_cancer,ap_ictericia,ap_infertil,ap_enf_cong,ap_otros,n_comp,enf_t_sex,cual,mes,año,neg,nic,nunca,gastac,ninguno,gemelar,mola,abortos,p_vag,cesarea,ectopica,esp,provoc,nac_vivos,nac_mtos,vive,mtos_primer_sem,fec_ant_embarazo,grupo,rh1,rh2,sensible,fuma,cig_d,vdrl_mes,vdrl_año,negativo,positivo,aco,diu,inyectable,implante,um_ninguno,condon,ritmo,otras,vosec,tiempo,observaciones)VALUES(1,1,1,'univ',4,'sol','estud',1,1,0,1,0,'ning',0,1,0,0,1,0,'ning',2,1,'ning',6,2023,0,1,0,0,1,0,0,0,1,0,0,0,0,2,0,1,3,'2023-09-27','grupo','1','2',1,1,10,3,2023,0,1,1,0,1,0,0,1,0,0,0,6,'Observacionesdeejemplo');
 
 INSERT INTO Seccion_B (id_planificacion,metodo,ciclos,amenorrea,sangrado,manchado,fum,lactando,cefalea_mareo,dolor_mamario,dolor_pelvico,flujo_caracter,varices,senos,abdomen,cervix,utero,anexos,t_a_mm_hg,peso_kg,cambio_metodo,motivo,nuevo_metodo,observaciones,citologia) VALUES (1,'Método anticonceptivo utilizado','Descripción de ciclos menstruales','Descripción de amenorrea','Descripción de sangrado','Descripción de manchado','Descripción de fecha de última menstruación','Descripción de lactancia','Descripción de cefalea/mareo','Descripción de dolor mamario','Descripción de dolor pélvico','Descripción de flujo característico','Descripción de varices','Descripción de senos','Descripción de abdomen','Descripción de cervix','Descripción de útero','Descripción de anexos','Descripción de tensión arterial (mm Hg)','Descripción de peso (kg)','Descripción de cambio de método','Descripción del motivo','Descripción del nuevo método','Descripción de observaciones','Descripción de citología' );
 

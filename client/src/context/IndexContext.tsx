@@ -1,6 +1,6 @@
 'use client'
 import api from '@/app/list/api'
-import type { HistoriaClinica, Planificacion, Tercero } from '@/types'
+import type { HistoriaClinica, Planificacion, SeccionB, Tercero } from '@/types'
 import type { ReactNode } from 'react'
 import { createContext, useContext, useState } from 'react'
 import { Toaster, toast } from 'sonner'
@@ -60,6 +60,19 @@ export function IndexProvider ({ children }: { children: ReactNode }) {
     setPlanificacion(planificacion)
   }
 
+  // Seccion B
+  const [seccionesB, setSeccionesB] = useState<SeccionB>()
+  async function loadSeccionesB ({ id }: { id: string }) {
+    const seccionesB = await api.get.seccionesB({ id })
+    setSeccionesB(seccionesB)
+  }
+
+  const [seccionB, setSeccionB] = useState<SeccionB>()
+  async function getSeccionB ({ id }: { id: string }) {
+    const seccionB = await api.get.seccionB({ id })
+    if (!seccionB) return toast.error('No se encontró la seccionB')
+    setSeccionB(seccionB)
+  }
   return (
     <IndexContext.Provider value={{
       terceros,
@@ -73,7 +86,11 @@ export function IndexProvider ({ children }: { children: ReactNode }) {
       planificaciones,
       loadPlanificaciones,
       planificacion,
-      getPlanificacion
+      getPlanificacion,
+      seccionesB,
+      loadSeccionesB,
+      seccionB,
+      getSeccionB
     }}
     >
       <Toaster expand={false} richColors />
@@ -95,4 +112,8 @@ interface TerceroContextType {
   loadPlanificaciones: ({ id }: { id: string }) => Promise<void>
   planificacion: Planificacion | undefined
   getPlanificacion: ({ id }: { id: string }) => Promise<string | number | undefined>
+  seccionesB: SeccionB | undefined
+  loadSeccionesB: ({ id }: { id: string }) => Promise<void>
+  seccionB: SeccionB | undefined
+  getSeccionB: ({ id }: { id: string }) => Promise<string | number | undefined>
 }

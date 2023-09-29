@@ -92,12 +92,12 @@ VALUES
 
 -- Insert data into the Historias_Clinicas table
 INSERT INTO Historias_Clinicas (programa, codigo, eps, id_tercero, motivo_consulta, enfermedad_actual, antecedente_familiar, antecedente_personal, habitos, antecedentes_ginecologico, ta, fc, p, r, t, peso, talla, piel_faneras, cabeza, ojos, nariz, oidos, boca, cuello, torax, corazon, pulmones, abdomen, extremidades, genitourinario, e_neurologico_elemental, impresion_diagnostica, tratamiento, firma)
-VALUES
-('Program A', '12345', 'EPS A', 1, 'Headache', 'Fever', 'None', 'None', 'Good', 'None', '120/80', '75', '16', '18', '98.6', '70 kg', '170 cm', 'Normal', 'Normal', 'Normal', 'Normal', 'Normal', 'Normal', 'Normal', 'Normal', 'Normal', 'Normal', 'Normal', 'Normal', 'Normal', 'Normal', 'Normal', 'Treatment A', 1),
+VALUES ('Program A', '12345', 'EPS A', 1, 'Headache', 'Fever', 'None', 'None', 'Good', 'None', '120/80', '75', '16', '18', '98.6', '70 kg', '170 cm', 'Normal', 'Normal', 'Normal', 'Normal', 'Normal', 'Normal', 'Normal', 'Normal', 'Normal', 'Normal', 'Normal', 'Normal', 'Normal', 'Normal', 'Normal', 'Treatment A', 1),
 ('Program B', '54321', 'EPS B', 2, 'Back pain', 'Flu', 'Hypertension', 'None', 'Good', 'None', '130/90', '80', '16', '18', '98.4', '65 kg', '165 cm', 'Normal', 'Normal', 'Normal', 'Normal', 'Normal', 'Normal', 'Normal', 'Normal', 'Normal', 'Normal', 'Normal', 'Normal', 'Normal', 'Normal', 'Normal', 'Treatment B', 1);
 
 CREATE TABLE Planificaciones (
   id INT NOT NULL AUTO_INCREMENT,
+  id_historia INT NOT NULL,
   id_tercero INT NOT NULL,  
   fecha TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
 
@@ -184,12 +184,12 @@ CREATE TABLE Planificaciones (
   observaciones TEXT,
 
   PRIMARY KEY (id),
-  FOREIGN KEY (id_tercero) REFERENCES Terceros (id)
+  FOREIGN KEY (id_tercero) REFERENCES Terceros (id),
+  FOREIGN KEY (id_historia) REFERENCES Historias_Clinicas (id)
 );
 
 CREATE TABLE Seccion_B (
   id INT NOT NULL AUTO_INCREMENT,
-  id_tercero INT NOT NULL,
   id_planificacion INT NOT NULL,
 
   -- anamesis
@@ -223,13 +223,12 @@ CREATE TABLE Seccion_B (
   citologia TEXT,
 
   PRIMARY KEY (id),
-  FOREIGN KEY (id_tercero) REFERENCES Terceros (id),
   FOREIGN KEY (id_planificacion) REFERENCES Planificaciones (id)
 );
 
-INSERT INTO Planificaciones (id_tercero,h_c,alfabeta,estudios,años_estudio,estado_civil,estado_ocu,af_diabetes,af_hipertension,af_ca_seno,af_ca_cervix,af_enf_cong,af_otros,ap_diabetes,ap_hipertension,ap_cancer,ap_ictericia,ap_infertil,ap_enf_cong,ap_otros,n_comp,enf_t_sex,cual,mes,año,neg,nic,nunca,gastac,ninguno,gemelar,mola,abortos,p_vag,cesarea,ectopica,esp,provoc,nac_vivos,nac_mtos,vive,mtos_primer_sem,fec_ant_embarazo,grupo,rh1,rh2,sensible,fuma,cig_d,vdrl_mes,vdrl_año,negativo,positivo,aco,diu,inyectable,implante,um_ninguno,condon,ritmo,otras,vosec,tiempo,observaciones)VALUES(1,1,1,'univ',4,'sol','estud',1,1,0,1,0,'ning',0,1,0,0,1,0,'ning',2,1,'ning',6,2023,0,1,0,0,1,0,0,0,1,0,0,0,0,2,0,1,3,'2023-09-27','grupo','1','2',1,1,10,3,2023,0,1,1,0,1,0,0,1,0,0,0,6,'Observacionesdeejemplo');
+INSERT INTO Planificaciones (id_historia,id_tercero,h_c,alfabeta,estudios,años_estudio,estado_civil,estado_ocu,af_diabetes,af_hipertension,af_ca_seno,af_ca_cervix,af_enf_cong,af_otros,ap_diabetes,ap_hipertension,ap_cancer,ap_ictericia,ap_infertil,ap_enf_cong,ap_otros,n_comp,enf_t_sex,cual,mes,año,neg,nic,nunca,gastac,ninguno,gemelar,mola,abortos,p_vag,cesarea,ectopica,esp,provoc,nac_vivos,nac_mtos,vive,mtos_primer_sem,fec_ant_embarazo,grupo,rh1,rh2,sensible,fuma,cig_d,vdrl_mes,vdrl_año,negativo,positivo,aco,diu,inyectable,implante,um_ninguno,condon,ritmo,otras,vosec,tiempo,observaciones)VALUES(1,1,1,1,'univ',4,'sol','estud',1,1,0,1,0,'ning',0,1,0,0,1,0,'ning',2,1,'ning',6,2023,0,1,0,0,1,0,0,0,1,0,0,0,0,2,0,1,3,'2023-09-27','grupo','1','2',1,1,10,3,2023,0,1,1,0,1,0,0,1,0,0,0,6,'Observacionesdeejemplo');
 
-INSERT INTO Seccion_B (id_tercero,id_planificacion,metodo,ciclos,amenorrea,sangrado,manchado,fum,lactando,cefalea_mareo,dolor_mamario,dolor_pelvico,flujo_caracter,varices,senos,abdomen,cervix,utero,anexos,t_a_mm_hg,peso_kg,cambio_metodo,motivo,nuevo_metodo,observaciones,citologia) VALUES (1,1,'Método anticonceptivo utilizado','Descripción de ciclos menstruales','Descripción de amenorrea','Descripción de sangrado','Descripción de manchado','Descripción de fecha de última menstruación','Descripción de lactancia','Descripción de cefalea/mareo','Descripción de dolor mamario','Descripción de dolor pélvico','Descripción de flujo característico','Descripción de varices','Descripción de senos','Descripción de abdomen','Descripción de cervix','Descripción de útero','Descripción de anexos','Descripción de tensión arterial (mm Hg)','Descripción de peso (kg)','Descripción de cambio de método','Descripción del motivo','Descripción del nuevo método','Descripción de observaciones','Descripción de citología' );
+INSERT INTO Seccion_B (id_planificacion,metodo,ciclos,amenorrea,sangrado,manchado,fum,lactando,cefalea_mareo,dolor_mamario,dolor_pelvico,flujo_caracter,varices,senos,abdomen,cervix,utero,anexos,t_a_mm_hg,peso_kg,cambio_metodo,motivo,nuevo_metodo,observaciones,citologia) VALUES (1,'Método anticonceptivo utilizado','Descripción de ciclos menstruales','Descripción de amenorrea','Descripción de sangrado','Descripción de manchado','Descripción de fecha de última menstruación','Descripción de lactancia','Descripción de cefalea/mareo','Descripción de dolor mamario','Descripción de dolor pélvico','Descripción de flujo característico','Descripción de varices','Descripción de senos','Descripción de abdomen','Descripción de cervix','Descripción de útero','Descripción de anexos','Descripción de tensión arterial (mm Hg)','Descripción de peso (kg)','Descripción de cambio de método','Descripción del motivo','Descripción del nuevo método','Descripción de observaciones','Descripción de citología' );
 
 -- INSERT INTO Seccion_B (
 --   id_tercero,

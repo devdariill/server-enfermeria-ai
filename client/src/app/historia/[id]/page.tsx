@@ -1,5 +1,5 @@
 'use client'
-import type { FormEvent } from 'react'
+import type { FormEvent, ReactNode } from 'react'
 
 const FormToBody = (event: FormEvent<HTMLFormElement>) => {
   event.preventDefault()
@@ -33,14 +33,8 @@ function Pages ({ params: { id } }: { params: { id: string } }) {
         <SecondComponent />
         <ThirdComponent />
 
-        <div>
-          <label className='font-bold'>Impresion Diagnostica</label>
-          <TextArea name='impresion_diagnostica' />
-        </div>
-        <div>
-          <label className='font-bold'>Tratamiento</label>
-          <TextArea name='tratamiento' />
-        </div>
+        <TextArea name='impresion_diagnostica' />
+        <TextArea name='tratamiento' />
 
         {/* <div>
           <label className='font-bold'>ID Tercero</label>
@@ -61,33 +55,30 @@ function Pages ({ params: { id } }: { params: { id: string } }) {
 
 export default Pages
 
+const Label = ({ name, children }: { name: string, children: ReactNode }) => (
+  <label className='font-semibold capitalize text-center items-center flex flex-col justify-center'>{name.split('_').join(' ')}
+    {children}
+  </label>
+)
 const TextArea = ({ name, autoFocus = false, required = false }: { name: string, type?: string, autoFocus?: boolean, required?: boolean }) => (
-  <textarea className='py-1 rounded pl-2 outline-gray-300' name={name} autoFocus={autoFocus} defaultValue='a' required={required} />
+  <Label name={name}>
+    <textarea className='py-1 rounded pl-2 outline-gray-300 w-full' name={name} autoFocus={autoFocus} defaultValue='a' required={required} />
+  </Label>
 )
 const Input = ({ name, type = 'string', autoFocus = false }: { name: string, type?: string, autoFocus?: boolean }) => (
-  <input type={type} className='w-full py-1 rounded pl-2 outline-gray-300' name={name} autoFocus={autoFocus} defaultValue={type === 'string' ? 'a' : 1} />
+  <Label name={name}>
+    <input type={type} className='w-full py-1 rounded pl-2 outline-gray-300' name={name} autoFocus={autoFocus} defaultValue={type === 'string' ? 'a' : 1} />
+  </Label>
 )
 
 const DynamicComponent = () => {
   // programa, codigo, eps, acudiente
   return (
     <>
-      <div>
-        <label className='font-bold'>Programa</label>
-        <Input name='programa' autoFocus />
-      </div>
-      <div>
-        <label className='font-bold'>Codigo</label>
-        <Input name='codigo' />
-      </div>
-      <div>
-        <label className='font-bold'>EPS</label>
-        <Input name='eps' />
-      </div>
-      <div>
-        <label className='font-bold'>Acudiente</label>
-        <Input name='acudiente' />
-      </div>
+      <Input name='programa' autoFocus />
+      <Input name='codigo' />
+      <Input name='eps' />
+      <Input name='acudiente' />
 
       <hr className='col-span-2 p-5' />
     </>
@@ -97,31 +88,12 @@ const DynamicComponent = () => {
 const FirstComponent = () => {
   return (
     <>
-      <div>
-        <label className='font-bold'>Motivo de Consulta</label>
-        <TextArea name='motivo_consulta' autoFocus required />
-      </div>
-      <div>
-        <label className='font-bold'>Enfermedad Actual</label>
-        <TextArea name='enfermedad_actual' />
-      </div>
-
-      <div>
-        <label className='font-bold'>Antecedente Familiar</label>
-        <TextArea name='antecedente_familiar' />
-      </div>
-      <div>
-        <label className='font-bold'>Antecedente Personal</label>
-        <TextArea name='antecedente_personal' />
-      </div>
-      <div>
-        <label className='font-bold'>Habitos</label>
-        <TextArea name='habitos' />
-      </div>
-      <div>
-        <label className='font-bold'>Antecedentes Ginecologicos</label>
-        <TextArea name='antecedentes_ginecologico' />
-      </div>
+      <TextArea name='motivo_consulta' autoFocus required />
+      <TextArea name='enfermedad_actual' />
+      <TextArea name='antecedente_familiar' />
+      <TextArea name='antecedente_personal' />
+      <TextArea name='habitos' />
+      <TextArea name='antecedentes_ginecologico' />
 
       <hr className='col-span-2 p-5' />
     </>
@@ -130,28 +102,12 @@ const FirstComponent = () => {
 const SecondComponent = () => {
   return (
     <>
-      <div>
-        <label className='font-bold'>TA</label>
-        <TextArea name='ta' />
-      </div>
-      <div>
-        <label className='font-bold'>FC</label>
-        <TextArea name='fc' />
-      </div>
-      <div>
-        <label className='font-bold'>P</label>
-        <TextArea name='p' />
-      </div>
-      <div>
-        <label className='font-bold'>R</label>
-        <TextArea name='r' />
-      </div>
-      <div>
-        <label className='font-bold'>T</label>
-        <TextArea name='t' />
-      </div>
+      <TextArea name='ta' />
+      <TextArea name='fc' />
+      <TextArea name='p' />
+      <TextArea name='r' />
+      <TextArea name='t' />
 
-      <hr />
       <hr className='col-span-2 p-5' />
     </>
   )
@@ -159,70 +115,22 @@ const SecondComponent = () => {
 const ThirdComponent = () => {
   return (
     <>
-      <div>
-        <label className='font-bold'>Peso Kg</label>
-        <Input name='peso' />
-      </div>
-      <div>
-        <label className='font-bold'>Talla Cm</label>
-        <Input name='talla' />
-      </div>
-      <div>
-        <label className='font-bold'>Piel y Faneras</label>
-        <TextArea name='piel_faneras' />
-      </div>
-      <div>
-        <label className='font-bold'>Cabeza</label>
-        <TextArea name='cabeza' />
-      </div>
-      <div>
-        <label className='font-bold'>Ojos</label>
-        <TextArea name='ojos' />
-      </div>
-      <div>
-        <label className='font-bold'>Nariz</label>
-        <TextArea name='nariz' />
-      </div>
-      <div>
-        <label className='font-bold'>Oidos</label>
-        <TextArea name='oidos' />
-      </div>
-      <div>
-        <label className='font-bold'>Boca</label>
-        <TextArea name='boca' />
-      </div>
-      <div>
-        <label className='font-bold'>Cuello</label>
-        <TextArea name='cuello' />
-      </div>
-      <div>
-        <label className='font-bold'>Torax</label>
-        <TextArea name='torax' />
-      </div>
-      <div>
-        <label className='font-bold'>Corazon</label>
-        <TextArea name='corazon' />
-      </div>
-      <div>
-        <label className='font-bold'>Pulmones</label>
-        <TextArea name='pulmones' />
-      </div>
-      <div>
-        <label className='font-bold'>Abdomen</label>
-        <TextArea name='abdomen' />
-      </div>
-      <div>
-        <label className='font-bold'>Extremidades</label>
-        <TextArea name='extremidades' />
-      </div>
-      <div>
-        <label className='font-bold'>Genitourinario</label>
-        <TextArea name='genitourinario' />
-      </div>
-      <div>
-        <label className='font-bold'>E. Neurologico Elemental</label>
-        <TextArea name='e_neurologico_elemental' />
-      </div>
+      <Input name='peso' />
+      <Input name='talla' />
+      <TextArea name='piel_faneras' />
+      <TextArea name='cabeza' />
+      <TextArea name='ojos' />
+      <TextArea name='nariz' />
+      <TextArea name='oidos' />
+      <TextArea name='boca' />
+      <TextArea name='cuello' />
+      <TextArea name='torax' />
+      <TextArea name='corazon' />
+      <TextArea name='pulmones' />
+      <TextArea name='abdomen' />
+      <TextArea name='extremidades' />
+      <TextArea name='genitourinario' />
+      <TextArea name='e_neurologico_elemental' />
 
       <hr className='col-span-2 p-5' />
     </>

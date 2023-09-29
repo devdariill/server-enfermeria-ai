@@ -2,6 +2,7 @@
 
 import { useIndex } from '@/context/IndexContext'
 import type { HistoriaClinica } from '@/types'
+import Link from 'next/link'
 import { useEffect } from 'react'
 
 import type { FormEvent, ReactNode } from 'react'
@@ -27,13 +28,13 @@ function Page (params: any) {
   )
 
   return (
-    <View id={params.searchParams.id} TextArea={TextArea} Input={Input} />
+    <View id={params.searchParams.id} name={params.searchParams.name} TextArea={TextArea} Input={Input} />
   )
 }
 
 export default Page
 
-function View ({ id, TextArea, Input }: { id: string, TextArea: any, Input: any }) {
+function View ({ id, TextArea, Input, name }: { id: string, TextArea: any, Input: any, name: string }) {
   // const router = useRouter()
   const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault()
@@ -65,19 +66,25 @@ function View ({ id, TextArea, Input }: { id: string, TextArea: any, Input: any 
     console.log('🚀 ~ file: page.tsx:56 ~ handleDelete ~ response:', response)
   }
   return (
-    <form onSubmit={handleSubmit} className='py-10'>
-      <div className='grid grid-cols-2 gap-3 mx-auto [&>div]:grid'>
-        <DynamicComponent Input={Input} />
+    <>
+      <header className='flex items-center justify-around mb-5'>
+        <h1 className='text-3xl font-semibold text-center capitalize'>{name.split('%').join(' ')}</h1>
+        <h2 className='text-2xl font-semibold text-center capitalize'>Historia Clinica</h2>
+        <Link href={`/planificacion/list/${id}?name=${name}`} id='buttonCss'>Planificaciones</Link>
+      </header>
+      <form onSubmit={handleSubmit} className='py-10'>
+        <div className='grid grid-cols-2 gap-3 mx-auto [&>div]:grid'>
+          <DynamicComponent Input={Input} />
 
-        <FirstComponent TextArea={TextArea} />
-        <SecondComponent TextArea={TextArea} />
-        <ThirdComponent TextArea={TextArea} Input={Input} />
+          <FirstComponent TextArea={TextArea} />
+          <SecondComponent TextArea={TextArea} />
+          <ThirdComponent TextArea={TextArea} Input={Input} />
 
-        <TextArea name='impresion_diagnostica' />
+          <TextArea name='impresion_diagnostica' />
 
-        <TextArea name='tratamiento' />
+          <TextArea name='tratamiento' />
 
-        {/* <div>
+          {/* <div>
           <label className='font-bold'>ID Tercero</label>
           <Input name='id_tercero' />
         </div>
@@ -86,15 +93,17 @@ function View ({ id, TextArea, Input }: { id: string, TextArea: any, Input: any 
           <Input name='firma' />
         </div> */}
 
-        <button className='bg-red-500 py-1 rounded hover:scale-105 hover:brightness-105 transition-all' onClick={async () => await handleDelete()} type='button'>
-          Eliminar
-        </button>
+          <button className='bg-red-500 py-1 rounded hover:scale-105 hover:brightness-105 transition-all' onClick={async () => await handleDelete()} type='button'>
+            Eliminar
+          </button>
 
-        <button id='buttonCss' type='submit'>
-          Guardar Cambios
-        </button>
-      </div>
-    </form>
+          <button id='buttonCss' type='submit'>
+            Guardar Cambios
+          </button>
+        </div>
+      </form>
+    </>
+
   )
 }
 

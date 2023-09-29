@@ -23,13 +23,11 @@ export default function Page ({ searchParams: { name }, params: { id } }: { sear
 }
 
 function AiView ({ name, id, historias }: { name: string, id: string, historias: HistoriaClinica[] }) {
-  // const name = searchParams.name
-
   return (
     <section aria-labelledby='feature-five' id='feature-five' className='h-full'>
       <div className='px-8 py-5 mx-auto lg:px-16 max-w-7xl md:px-12 xl:px-36 lg:flex'>
         <SummaryAi name={name} id={id} />
-        <ListHistorias historias={historias} />
+        <ListHistorias historias={historias} name={name} />
       </div>
     </section>
   )
@@ -55,14 +53,14 @@ const SummaryAi = ({ name, id }: { name: string, id: string }) => {
   }
   return (
     <article className='lg:w-1/2'>
-      <div className='top-0 pt-8 pb-16 lg:sticky'>
+      <div className='top-0 pt-8 pb-5 lg:sticky'>
         <div>
           <div className='lg:pr-24 md:pr-12 grid gap-5'>
             <header className='flex items-center'>
               <p className='text-2xl font-medium tracking-tight text-black sm:text-4xl mr-auto'>
                 {name}
               </p>
-              <Link href={`/historia/${id}`} id='buttonCss'>
+              <Link href={`/historia/${id}?name=${name}`} id='buttonCss'>
                 Agregar Historia
               </Link>
             </header>

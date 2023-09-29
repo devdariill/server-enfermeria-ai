@@ -16,9 +16,7 @@ export default function Page ({ searchParams: { name }, params: { id } }: { sear
     loadPlanificaciones({ id })
   }, [])
   return (
-    <div className='h-full'>
-      <AiView planificaciones={planificaciones} id={id} name={name.split('%').join(' ')} />
-    </div>
+    <AiView planificaciones={planificaciones} id={id} name={name.split('%').join(' ')} />
   )
 }
 
@@ -26,7 +24,7 @@ function AiView ({ name, id, planificaciones }: { name: string, id: string, plan
   // const name = searchParams.name
 
   return (
-    <section aria-labelledby='feature-five' id='feature-five' className='lg:h-screen'>
+    <section aria-labelledby='feature-five' id='feature-five' className='h-full'>
       <div className='px-8 py-24 mx-auto max-w-xl'>
         <SummaryAi name={name} id={id} />
         <ListHistorias planificaciones={planificaciones} />

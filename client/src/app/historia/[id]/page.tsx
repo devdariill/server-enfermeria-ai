@@ -10,7 +10,7 @@ const FormToBody = (event: FormEvent<HTMLFormElement>) => {
   return body
 }
 
-function Pages ({ params: { id } }: { params: { id: string } }) {
+function Pages ({ params: { id }, searchParams }: { params: { id: string }, searchParams: { name: string } }) {
   const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault()
     const body = JSON.stringify({ ...FormToBody(event), id_tercero: id })
@@ -26,30 +26,36 @@ function Pages ({ params: { id } }: { params: { id: string } }) {
     console.log('🚀 ~ file: page.tsx:26 ~ handleSubmit ~ response:', response)
   }
   return (
-    <form onSubmit={handleSubmit}>
-      <div className='grid grid-cols-2 gap-3 mx-auto [&>div]:grid'>
-        <DynamicComponent />
-        <FirstComponent />
-        <SecondComponent />
-        <ThirdComponent />
+    <>
+      <header className='flex items-center mb-5'>
+        <h1 className='text-3xl font-semibold text-center capitalize mr-auto'>{searchParams.name.split('%').join(' ')}</h1>
+        <h2 className='text-2xl font-semibold text-center capitalize'>Historia Clinica</h2>
+      </header>
+      <form onSubmit={handleSubmit}>
+        <div className='grid grid-cols-2 gap-3 mx-auto [&>div]:grid'>
+          <DynamicComponent />
+          <FirstComponent />
+          <SecondComponent />
+          <ThirdComponent />
 
-        <TextArea name='impresion_diagnostica' />
-        <TextArea name='tratamiento' />
+          <TextArea name='impresion_diagnostica' />
+          <TextArea name='tratamiento' />
 
-        {/* <div>
+          {/* <div>
           <label className='font-bold'>ID Tercero</label>
           <Input name='id_tercero' />
-        </div>
-        <div>
+          </div>
+          <div>
           <label className='font-bold'>Firma</label>
           <Input name='firma' />
         </div> */}
 
-        <button id='buttonCss' className='w-full mt-2 col-span-2' type='submit'>
-          Agregar Historia
-        </button>
-      </div>
-    </form>
+          <button id='buttonCss' className='w-full mt-2 col-span-2' type='submit'>
+            Agregar Historia
+          </button>
+        </div>
+      </form>
+    </>
   )
 }
 

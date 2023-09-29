@@ -1,4 +1,3 @@
-
 'use client'
 import { useIndex } from '@/context/IndexContext'
 import type { Planificacion } from '@/types'
@@ -10,15 +9,16 @@ import { useEffect } from 'react'
 
 export default function Page ({ searchParams: { name }, params: { id } }: { searchParams: { name: string }, params: { id: string } }) {
   const { planificaciones, loadPlanificaciones } = useIndex()
+  const idHistoria = id
   useEffect(() => {
-    loadPlanificaciones({ id })
+    loadPlanificaciones({ id: idHistoria })
   }, [])
   return (
-    <AiView planificaciones={planificaciones} id={id} name={name.split('%').join(' ')} />
+    <AiView planificaciones={planificaciones} idHistoria={idHistoria} name={name.split('%').join(' ')} />
   )
 }
 
-function AiView ({ name, id, planificaciones }: { name: string, id: string, planificaciones: Planificacion[] }) {
+function AiView ({ name, idHistoria, planificaciones }: { name: string, idHistoria: string, planificaciones: Planificacion[] }) {
   // const name = searchParams.name
 
   return (
@@ -28,7 +28,7 @@ function AiView ({ name, id, planificaciones }: { name: string, id: string, plan
           <p className='text-2xl font-medium tracking-tight text-black sm:text-4xl mr-auto'>
             {name}
           </p>
-          <Link href={`/planificacion/${id}?name=${name}`} id='buttonCss'>
+          <Link href={`/planificacion/${idHistoria}?name=${name}`} id='buttonCss'>
             Agregar Planificacion
           </Link>
         </header>

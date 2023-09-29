@@ -11,11 +11,12 @@ const FormToBody = (event: FormEvent<HTMLFormElement>) => {
 }
 
 function Pages ({ params: { id }, searchParams }: { params: { id: string }, searchParams: { name: string } }) {
+  const idTercero = id
   const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault()
-    const body = JSON.stringify({ ...FormToBody(event), id_tercero: id })
+    const body = JSON.stringify({ ...FormToBody(event), id_tercero: idTercero })
 
-    const res = await fetch(`/api/historias/${id}`, {
+    const res = await fetch(`/api/historias/${idTercero}`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'

@@ -10,29 +10,30 @@ import api from '../api'
 // import data from '../mock/data.json'
 
 export default function Page ({ searchParams: { name }, params: { id } }: { searchParams: { name: string }, params: { id: string } }) {
+  const idTercero = id
   const { historias, loadHistorias } = useIndex()
   useEffect(() => {
-    loadHistorias({ id })
+    loadHistorias({ id: idTercero })
   }, [])
   return (
     <div className='h-full'>
-      <AiView historias={historias} id={id} name={name.split('%').join(' ')} />
+      <AiView historias={historias} idTercero={idTercero} name={name.split('%').join(' ')} />
     </div>
   )
 }
 
-function AiView ({ name, id, historias }: { name: string, id: string, historias: HistoriaClinica[] }) {
+function AiView ({ name, idTercero, historias }: { name: string, idTercero: string, historias: HistoriaClinica[] }) {
   return (
     <section aria-labelledby='feature-five' id='feature-five' className='h-full'>
       <div className='px-8 py-5 mx-auto lg:px-16 max-w-7xl md:px-12 xl:px-36 lg:flex'>
-        <SummaryAi name={name} id={id} />
+        <SummaryAi name={name} idTercero={idTercero} />
         <ListHistorias historias={historias} name={name} />
       </div>
     </section>
   )
 }
 
-const SummaryAi = ({ name, id }: { name: string, id: string }) => {
+const SummaryAi = ({ name, idTercero }: { name: string, idTercero: string }) => {
   const [summary, setSummary] = useState()
   const [loading, setLoading] = useState(false)
   const handleClick = async () => {
@@ -45,7 +46,7 @@ const SummaryAi = ({ name, id }: { name: string, id: string }) => {
       })
       return setLoading(false)
     } else {
-      const { data } = await api.get.summaryAi({ id })
+      const { data } = await api.get.summaryAi({ id: idTercero })
       setSummary(data)
       setLoading(false)
     }
@@ -59,7 +60,7 @@ const SummaryAi = ({ name, id }: { name: string, id: string }) => {
               <p className='text-2xl font-medium tracking-tight text-black sm:text-4xl mr-auto'>
                 {name}
               </p>
-              <Link href={`/historia/${id}?name=${name}`} id='buttonCss'>
+              <Link href={`/historia/${idTercero}?name=${name}`} id='buttonCss'>
                 Agregar Historia
               </Link>
             </header>

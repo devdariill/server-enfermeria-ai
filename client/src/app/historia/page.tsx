@@ -10,8 +10,9 @@ import type { FormEvent, ReactNode } from 'react'
 // let id_tercero = -1
 function Page (params: any) {
   const { historia, getHistoria } = useIndex()
+  const idHistoria = params.searchParams.id
   useEffect(() => {
-    getHistoria({ id: params.searchParams.id })
+    getHistoria({ id: idHistoria })
     // historia && (id_tercero = historia.id_tercero)
   }, [])
   if (!historia) return <div>Loading...</div>
@@ -28,19 +29,19 @@ function Page (params: any) {
   )
 
   return (
-    <View id={params.searchParams.id} name={params.searchParams.name} TextArea={TextArea} Input={Input} />
+    <View idHistoria={idHistoria} name={params.searchParams.name} TextArea={TextArea} Input={Input} />
   )
 }
 
 export default Page
 
-function View ({ id, TextArea, Input, name }: { id: string, TextArea: any, Input: any, name: string }) {
+function View ({ idHistoria, TextArea, Input, name }: { idHistoria: string, TextArea: any, Input: any, name: string }) {
   // const router = useRouter()
   const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault()
     const body = JSON.stringify({ ...FormToBody(event) })
 
-    const res = await fetch(`/api/historias/${id}`, {
+    const res = await fetch(`/api/historias/${idHistoria}`, {
       method: 'PATCH',
       headers: {
         'Content-Type': 'application/json'
@@ -54,7 +55,7 @@ function View ({ id, TextArea, Input, name }: { id: string, TextArea: any, Input
   const handleDelete = async () => {
     const confirm = window.confirm('¿Está seguro de eliminar este tercero?')
     if (!confirm) return
-    const res = await fetch(`/api/historias/${id}`, {
+    const res = await fetch(`/api/historias/${idHistoria}`, {
       method: 'DELETE',
       headers: {
         'Content-Type': 'application/json'
@@ -70,7 +71,7 @@ function View ({ id, TextArea, Input, name }: { id: string, TextArea: any, Input
       <header className='flex items-center justify-around mb-5'>
         <h1 className='text-3xl font-semibold text-center capitalize'>{name.split('%').join(' ')}</h1>
         <h2 className='text-2xl font-semibold text-center capitalize'>Historia Clinica</h2>
-        <Link href={`/planificacion/list/${id}?name=${name}`} id='buttonCss'>Planificaciones</Link>
+        <Link href={`/planificacion/list/${idHistoria}?name=${name}`} id='buttonCss'>Planificaciones</Link>
       </header>
       <form onSubmit={handleSubmit} className='py-10'>
         <div className='grid grid-cols-2 gap-3 mx-auto [&>div]:grid'>

@@ -1,5 +1,6 @@
 'use client'
-import type { FormEvent, ReactNode } from 'react'
+import { useIndex } from '@/context/IndexContext'
+import { useEffect, type FormEvent, type ReactNode } from 'react'
 
 const FormToBody = (event: FormEvent<HTMLFormElement>) => {
   event.preventDefault()
@@ -18,12 +19,19 @@ const FormToBody = (event: FormEvent<HTMLFormElement>) => {
 }
 
 function Pages ({ params: { id }, searchParams: { name } }: { params: { id: string }, searchParams: { name: string } }) {
-// function Pages ({ params, searchParams }: any) {
+  const idHistoria = id
+  const { getHistoria, historia } = useIndex()
+  useEffect(() => {
+    getHistoria({ id: idHistoria })
+  }, [])
+  if (!historia) return <div>Loading...</div>
+
+  // function Pages ({ params, searchParams }: any) {
   const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault()
     const confirm = window.confirm('¿Estas seguro de agregar esta historia?')
     if (!confirm) return
-    const body = JSON.stringify({ ...FormToBody(event), id_tercero: id })
+    const body = JSON.stringify({ ...FormToBody(event), id_tercero: historia?.id_tercero, id_historia: idHistoria })
     console.log('🚀 ~ file: page.tsx:27 ~ handleSubmit ~ body:', body)
 
     const res = await fetch(`/api/planificaciones/${id}`, {

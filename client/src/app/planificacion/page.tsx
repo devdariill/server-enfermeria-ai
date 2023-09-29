@@ -7,18 +7,12 @@ import { useEffect } from 'react'
 
 import type { FormEvent, ReactNode } from 'react'
 
-const Label = ({ name, children }: { name: string, children: ReactNode }) => (
-  <label className='font-semibold capitalize text-center items-center flex flex-col justify-center'>{name.split('_').join(' ')}
-    {children}
-  </label>
-)
-
 // let id_tercero = -1
 function Page (params: any) {
+  const idPlanificacion = params.searchParams.id
   const { planificacion, getPlanificacion } = useIndex()
-  console.log('🚀 ~ file: page.tsx:18 ~ Page ~ planificacion:', planificacion)
   useEffect(() => {
-    getPlanificacion({ id: params.searchParams.id })
+    getPlanificacion({ id: idPlanificacion })
   }, [])
   if (!planificacion) return <div>Loading...</div>
 
@@ -57,32 +51,22 @@ function Page (params: any) {
   }
 
   return (
-    <View id={params.searchParams.id} name={params.searchParams.name} Select={Select} Input={Input} Checkbox={Checkbox} Date={Date} />
+    <View idPlanificacion={idPlanificacion} name={params.searchParams.name} Select={Select} Input={Input} Checkbox={Checkbox} Date={Date} />
   )
 }
 
 export default Page
 
-function View ({ id, Select, Input, Checkbox, Date, name }: { id: string, Select: any, Input: any, Checkbox: any, Date: any, name: string }) {
+function View ({ idPlanificacion, Select, Input, Checkbox, Date, name }: { idPlanificacion: string, Select: any, Input: any, Checkbox: any, Date: any, name: string }) {
   const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault()
     const body = JSON.stringify({ ...FormToBody(event) })
     console.log('🚀 ~ file: page.tsx:70 ~ handleSubmit ~ body:', body)
-
-    // const res = await fetch(`/api/historias/${id}`, {
-    //   method: 'PATCH',
-    //   headers: {
-    //     'Content-Type': 'application/json'
-    //   },
-    //   body
-    // })
-    // const response = await res.json()
-    // console.log('🚀 ~ file: page.tsx:26 ~ handleSubmit ~ response:', response)
   }
   const handleDelete = async () => {
     const confirm = window.confirm('¿Está seguro de eliminar este tercero?')
     if (!confirm) return
-    const res = await fetch(`/api/planificaciones/${id}`, {
+    const res = await fetch(`/api/planificaciones/${idPlanificacion}`, {
       method: 'DELETE',
       headers: {
         'Content-Type': 'application/json'
@@ -99,7 +83,7 @@ function View ({ id, Select, Input, Checkbox, Date, name }: { id: string, Select
       <header className='flex justify-around items-center'>
         <h1 className='text-2xl font-semibold text-center'>{name}</h1>
         <h2 className='text-xl font-semibold text-center'>Planificación</h2>
-        <Link id='buttonCss' href={`/seccionb/list/${id}?name=${name}`}> Seccion B </Link>
+        <Link id='buttonCss' href={`/seccionb/list/${idPlanificacion}?name=${name}`}> Seccion B </Link>
       </header>
       <form onSubmit={handleSubmit} className='p-5'>
         <div className='grid grid-cols-2  md:grid-cols-4 gap-3 mx-auto [&>div]:grid '>
@@ -128,6 +112,11 @@ const FormToBody = (event: FormEvent<HTMLFormElement>) => {
   return body
 }
 
+const Label = ({ name, children }: { name: string, children: ReactNode }) => (
+  <label className='font-semibold capitalize text-center items-center flex flex-col justify-center'>{name.split('_').join(' ')}
+    {children}
+  </label>
+)
 const FirstComponent = ({ Select, Input, Checkbox, Date }: { Select: any, Input: any, Checkbox: any, Date: any }) => {
   const Hr = () => (
     <hr className='col-span-2 md:col-span-4 p-1 bg-black/20 rounded-full' />

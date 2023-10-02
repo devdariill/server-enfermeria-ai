@@ -1,6 +1,5 @@
-import { deleteById, getById, update } from '@/app/api/historias/controller'
 import { NextResponse } from 'next/server'
-import { create } from '../controller'
+import { create, deleteById, getById, update } from '../controller'
 
 export async function POST (request: Request, { params: { id } }: { params: { id: string } }) {
   const data = await request.json()

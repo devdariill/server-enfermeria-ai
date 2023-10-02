@@ -77,7 +77,6 @@ export class SeccionBModel {
 
   static async create ({ input }) {
     if (!input) throw new Error('Error creating seccion_b')
-    if (!input.firma) input.firma = 1 // TODO: generate by gmail
     const keys = Object.keys(input)
     const values = Object.values(input)
     let id
@@ -85,12 +84,13 @@ export class SeccionBModel {
       const query = `INSERT INTO ?? (${keys.join(',')}) VALUES (${values.map(() => '?').join(',')})`
       const [result] = await pool.query(query, [DB_TABLE, ...values])
       id = result.insertId
+
+      const seccionB = await this.getById({ id })
+      return seccionB
     } catch (error) {
-      console.log('🚀 ~ file: seccion-b.model.js:29 ~ SeccionBModel ~ create ~ error:', error)
+      console.log('🚀 ~ file: seccion-b.model.js:92 ~ SeccionBModel ~ create ~ error:', error)
       throw new Error('Error creating seccion_b')
     }
-    const [planificacion] = await pool.query('SELECT * FROM ?? WHERE id = ?;', [DB_TABLE, id])
-    return planificacion[0]
   }
 
   static async delete ({ id }) {

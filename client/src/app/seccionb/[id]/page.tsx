@@ -25,16 +25,15 @@ function Pages (props: any) {
     const confirm = window.confirm('¿Estas seguro de agregar esta historia?')
     if (!confirm) return
     const body = JSON.stringify({ ...FormToBody(event), id_planificacion: idPlanificacion })
-    console.log('🚀 ~ file: page.tsx:28 ~ handleSubmit ~ body:', body)
-    // const res = await fetch(`/api/seccionb/${idPlanificacion}`, {
-    //   method: 'POST',
-    //   headers: {
-    //     'Content-Type': 'application/json'
-    //   },
-    //   body
-    // })
-    // const response = await res.json()
-    // console.log('🚀 ~ file: page.tsx:26 ~ handleSubmit ~ response:', response)
+    const res = await fetch(`/api/seccionb/${idPlanificacion}`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body
+    })
+    const response = await res.json()
+    console.log('🚀 ~ file: page.tsx:26 ~ handleSubmit ~ response:', response)
   }
   return (
     <>
@@ -43,7 +42,7 @@ function Pages (props: any) {
           {props?.searchParams?.name.split('%').join(' ')}
         </h1>
         <h2 className='text-2xl tracking-tight text-black/80'>
-          Planificacion
+          Seccion B
         </h2>
       </header>
       <form onSubmit={handleSubmit} className='py-10'>
@@ -70,18 +69,11 @@ const Input = ({ name, type = 'string', autoFocus = false }: { name: string, typ
     <input type={type} className='w-full py-1 rounded pl-2 outline-gray-300' name={name} autoFocus={autoFocus} defaultValue={type === 'string' ? 'a' : 1} />
   </Label>
 )
-const Checkbox = ({ name, autoFocus = false }: { name: string, autoFocus?: boolean }) => (
-  <Label name={name}>
-    <input type='checkbox' className='py-1 rounded pl-2 outline-gray-300' name={name} autoFocus={autoFocus} />
-  </Label>
-)
-const Select = ({ name, options, autoFocus = false }: { name: string, options: string[], autoFocus?: boolean }) => (
-  <Label name={name}>
-    <select className='col-span-3 w-full py-1 rounded pl-2 outline-gray-300' name={name} autoFocus={autoFocus}>
-      {options.map((option, i) => <option className='capitalize' key={i}>{option}</option>)}
-    </select>
-  </Label>
-)
+// const Checkbox = ({ name, autoFocus = false }: { name: string, autoFocus?: boolean }) => (
+//   <Label name={name}>
+//     <input type='checkbox' className='py-1 rounded pl-2 outline-gray-300' name={name} autoFocus={autoFocus} />
+//   </Label>
+// )
 const Hr = () => (
   <hr className='col-span-4 p-1 bg-black/20 rounded-full' />
 )
@@ -90,151 +82,68 @@ const FirstComponent = () => {
   return (
     <>
       {/* <Input name='h_c' type='number' autoFocus /> */}
-      <Checkbox name='alfabeta' autoFocus />
-      <Select name='estudios' options={['ning', 'prim', 'sec', 'univ']} />
-      <Input name='años_estudio' type='number' />
-      <Select name='estado_civil' options={['sol', 'cas', 'ul', 'otra']} />
-      <Select name='estado_ocu' options={['estud', 'trab']} />
+      <Input name='metodo' />
+      <Input name='ciclos' type='number' />
+      <Input name='amenorrea' />
+      <Input name='sangrado' />
+      <Input name='manchado' />
+      <Input name='fum' />
+      <Input name='lactando' />
+      <Input name='cefalea_mareo' />
+      <Input name='dolor_mamario' />
+      <Input name='dolor_pelvico' />
+      <Input name='flujo_caracter' />
+      <Input name='varices' />
 
       <Hr />
 
-      <Checkbox name='af_diabetes' />
-      <Checkbox name='af_hipertension' />
-      <Checkbox name='af_ca_seno' />
-      <Checkbox name='af_ca_cervix' />
-      <Checkbox name='af_enf_cong' />
-      <Input name='af_otros' />
+      <Input name='senos' />
+      <Input name='abdomen' />
+      <Input name='cervix' />
+      <Input name='utero' />
+      <Input name='anexos' />
+      <Input name='t_a_mm_hg' />
+      <Input name='peso_kg' />
 
       <Hr />
 
-      <Checkbox name='ap_diabetes' />
-      <Checkbox name='ap_hipertension' />
-      <Checkbox name='ap_cancer' />
-      <Checkbox name='ap_ictericia' />
-      <Checkbox name='ap_infertil' />
-      <Checkbox name='ap_enf_cong' />
-      <Input name='ap_otros' />
+      <Input name='cambio_metodo' />
+      <Input name='motivo' />
+      <Input name='nuevo_metodo' />
+      <Input name='observaciones' />
+      <Input name='citologia' />
 
-      <Hr />
-
-      <Input name='n_comp' type='number' />
-      <Checkbox name='enf_t_sex' />
-      <Input name='cual' />
-
-      <Hr />
-
-      <Input name='mes' type='number' />
-      <Input name='año' type='number' />
-      <Checkbox name='neg' />
-      <Checkbox name='nic' />
-      <Checkbox name='nunca' />
-
-      <Hr />
-
-      <Input name='gastac' type='number' />
-      <Checkbox name='ninguno' />
-      <Input name='gemelar' type='number' />
-      <Input name='mola' type='number' />
-
-      <Hr />
-
-      <Input name='abortos' type='number' />
-      <Input name='p_vag' type='number' />
-      <Input name='cesarea' type='number' />
-      <Input name='ectopica' type='number' />
-      <Input name='esp' type='number' />
-      <Input name='provoc' type='number' />
-      <Input name='nac_vivos' type='number' />
-      <Input name='nac_mtos' type='number' />
-      <Input name='vive' type='number' />
-      <Input name='mtos_primer_sem' type='number' />
-      {/* <Input name='fec_ant_embarazo' /> */}
-      <Label name='fec_ant_embarazo'>
-        <input type='date' className='w-full py-1 rounded pl-2 outline-gray-300' name='fec_ant_embarazo' />
-      </Label>
-
-      <Hr />
     </>
   )
 }
-
-// export interface Planificacion {
+// export interface SeccionB {
 //   id: number
-//   id_tercero: number
-//   fecha: string // Puedes usar el tipo Date si prefieres.
+//   id_planificacion: number
 
-//   h_c: number
+//   metodo: string
+//   ciclos: string
+//   amenorrea: string
+//   sangrado: string
+//   manchado: string
+//   fum: string
+//   lactando: string
+//   cefalea_mareo: string
+//   dolor_mamario: string
+//   dolor_pelvico: string
+//   flujo_caracter: string
+//   varices: string
 
-//   alfabeta: number
-//   estudios: string
-//   años_estudio: number
-//   estado_civil: string
-//   estado_ocu: string
+//   senos: string
+//   abdomen: string
+//   cervix: string
+//   utero: string
+//   anexos: string
+//   t_a_mm_hg: string
+//   peso_kg: string
 
-//   af_diabetes: number
-//   af_hipertension: number
-//   af_ca_seno: number
-//   af_ca_cervix: number
-//   af_enf_cong: number
-//   af_otros: string
-
-//   ap_diabetes: number
-//   ap_hipertension: number
-//   ap_cancer: number
-//   ap_ictericia: number
-//   ap_infertil: number
-//   ap_enf_cong: number
-//   ap_otros: string
-
-//   n_comp: number
-//   enf_t_sex: number
-//   cual: string
-
-//   mes: number
-//   año: number
-//   neg: number
-//   nic: number
-//   nunca: number
-
-//   gastac: number
-//   ninguno: number
-//   gemelar: number
-//   mola: number
-//   abortos: number
-//   p_vag: number
-//   cesarea: number
-//   ectopica: number
-//   esp: number
-//   provoc: number
-//   nac_vivos: number
-//   nac_mtos: number
-//   vive: number
-//   mtps_primera_sem: number
-//   fec_ant_embarazo: string // Puedes usar el tipo Date si prefieres.
-
-//   grupo: string
-//   rh1: string
-//   rh2: string
-//   sensible: number
-
-//   fuma: number
-//   cig_d: number
-
-//   vdrl_mes: number
-//   vdrl_año: number
-//   negativo: number
-//   positivo: number
-
-//   aco: number
-//   diu: number
-//   inyectable: number
-//   implante: number
-//   um_ninguno: number
-//   condon: number
-//   ritmo: number
-//   otras: number
-//   vosec: number
-//   tiempo: number
-
+//   cambio_metodo: string
+//   motivo: string
+//   nuevo_metodo: string
 //   observaciones: string
+//   citologia: string
 // }

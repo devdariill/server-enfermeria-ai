@@ -1,7 +1,7 @@
 'use client'
 
 import { useIndex } from '@/context/IndexContext'
-import type { Planificacion } from '@/types'
+import type { SeccionB } from '@/types'
 import { useEffect } from 'react'
 
 import type { FormEvent, ReactNode } from 'react'
@@ -14,55 +14,57 @@ const Label = ({ name, children }: { name: string, children: ReactNode }) => (
 
 // let id_tercero = -1
 function Page (params: any) {
-  const { planificacion, getPlanificacion } = useIndex()
-  console.log('🚀 ~ file: page.tsx:18 ~ Page ~ planificacion:', planificacion)
+  const { seccionB, getSeccionB } = useIndex()
   useEffect(() => {
-    getPlanificacion({ id: params.searchParams.id })
+    getSeccionB({ id: params.searchParams.id })
   }, [])
-  if (!planificacion) return <div>Loading...</div>
+  if (!seccionB) return <div>Loading...</div>
+  console.log('🚀 ~ file: page.tsx:18 ~ Page ~ seccionB:', seccionB)
 
-  const Input = ({ name, type = 'string' }: { name: string, type?: string }) => {
+  const Input = ({ name, type = 'string' }: { name: keyof SeccionB, type?: string }) => {
+    const defaultValue = seccionB[name]
+    console.log('🚀 ~ file: page.tsx:25 ~ Input ~ defaultValue:', name, defaultValue)
     return (
       <Label name={name}>
-        <input type={type} className='w-full py-1 rounded pl-2 outline-gray-300' name={name} defaultValue={planificacion[name as keyof Planificacion] ?? ''} />
+        <input type={type} className='w-full py-1 rounded pl-2 outline-gray-300' name={name} defaultValue={defaultValue} />
       </Label>
     )
   }
-  const Select = ({ name, options }: { name: string, options: string[] }) => {
-    const defaultValue = planificacion[name as keyof Planificacion] ?? options[0]
-    return (
-      <Label name={name}>
-        <select className='col-span-3 w-full py-1 rounded pl-2 outline-gray-300' name={name} defaultValue={defaultValue}>
-          {options.map((option, i) => <option className='capitalize' key={i}>{option}</option>)}
-        </select>
-      </Label>
-    )
-  }
-  const Checkbox = ({ name, autoFocus = false }: { name: string, autoFocus?: boolean }) => {
-    const defaultValue = planificacion[name as keyof Planificacion] === 1
-    return (
-      <Label name={name}>
-        <input type='checkbox' className='py-1 rounded pl-2 outline-gray-300' name={name} autoFocus={autoFocus} defaultChecked={defaultValue} />
-      </Label>
-    )
-  }
-  const Date = ({ name }: { name: string }) => {
-    const defaultValue = (planificacion[name as keyof Planificacion] as Planificacion['fec_ant_embarazo']).slice(0, 10)
-    return (
-      <Label name={name}>
-        <input type='date' className='w-full py-1 rounded pl-2 outline-gray-300' name={name} defaultValue={defaultValue} />
-      </Label>
-    )
-  }
+  // const Select = ({ name, options }: { name: string, options: string[] }) => {
+  //   const defaultValue = planificacion[name as keyof Planificacion] ?? options[0]
+  //   return (
+  //     <Label name={name}>
+  //       <select className='col-span-3 w-full py-1 rounded pl-2 outline-gray-300' name={name} defaultValue={defaultValue}>
+  //         {options.map((option, i) => <option className='capitalize' key={i}>{option}</option>)}
+  //       </select>
+  //     </Label>
+  //   )
+  // }
+  // const Checkbox = ({ name, autoFocus = false }: { name: string, autoFocus?: boolean }) => {
+  //   const defaultValue = planificacion[name as keyof Planificacion] === 1
+  //   return (
+  //     <Label name={name}>
+  //       <input type='checkbox' className='py-1 rounded pl-2 outline-gray-300' name={name} autoFocus={autoFocus} defaultChecked={defaultValue} />
+  //     </Label>
+  //   )
+  // }
+  // const Date = ({ name }: { name: string }) => {
+  //   const defaultValue = (planificacion[name as keyof Planificacion] as Planificacion['fec_ant_embarazo']).slice(0, 10)
+  //   return (
+  //     <Label name={name}>
+  //       <input type='date' className='w-full py-1 rounded pl-2 outline-gray-300' name={name} defaultValue={defaultValue} />
+  //     </Label>
+  //   )
+  // }
 
   return (
-    <View id={params.searchParams.id} name={params.searchParams.name} Select={Select} Input={Input} Checkbox={Checkbox} Date={Date} />
+    <View id={params.searchParams.id} name={params.searchParams.name} Input={Input} />
   )
 }
 
 export default Page
 
-function View ({ id, Select, Input, Checkbox, Date, name }: { id: string, Select: any, Input: any, Checkbox: any, Date: any, name: string }) {
+function View ({ id, Input, name }: { id: string, Input: any, name: string }) {
   const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault()
     const body = JSON.stringify({ ...FormToBody(event) })
@@ -97,20 +99,24 @@ function View ({ id, Select, Input, Checkbox, Date, name }: { id: string, Select
     <>
       <header className='flex justify-around items-center'>
         <h2 className='text-xl font-semibold text-center'>{name}</h2>
-        <h1 className='text-2xl font-semibold text-center'>Planificación</h1>
+        <h1 className='text-2xl font-semibold text-center'>Seccion B</h1>
       </header>
       <form onSubmit={handleSubmit} className='p-5'>
         <div className='grid grid-cols-2  md:grid-cols-4 gap-3 mx-auto [&>div]:grid '>
 
-          <FirstComponent Select={Select} Input={Input} Checkbox={Checkbox} Date={Date} />
+          <FirstComponent Input={Input} />
 
-          <button className='bg-red-500 py-1 rounded hover:scale-105 hover:brightness-105 transition-all col-span-2' onClick={async () => await handleDelete()} type='button'>
-            Eliminar
-          </button>
+          <div className='flex gap-3 col-span-2 md:col-span-4 grid-cols-1 md:grid-cols-2'>
+            <button
+              className='bg-red-500 py-2 rounded hover:scale-105 hover:brightness-105 transition-all ' onClick={async () => await handleDelete()} type='button'
+            >
+              Eliminar
+            </button>
 
-          <button id='buttonCss' type='submit' className='col-span-2'>
-            Guardar Cambios
-          </button>
+            <button id='buttonCss' type='submit'>
+              Guardar Cambios
+            </button>
+          </div>
         </div>
       </form>
     </>
@@ -126,75 +132,43 @@ const FormToBody = (event: FormEvent<HTMLFormElement>) => {
   return body
 }
 
-const FirstComponent = ({ Select, Input, Checkbox, Date }: { Select: any, Input: any, Checkbox: any, Date: any }) => {
+const FirstComponent = ({ Input }: { Input: any }) => {
   const Hr = () => (
     <hr className='col-span-2 md:col-span-4 p-1 bg-black/20 rounded-full' />
   )
 
   return (
     <>
-      <Checkbox name='alfabeta' autoFocus />
-      <Select name='estudios' options={['ning', 'prim', 'sec', 'univ']} />
-      <Input name='años_estudio' type='number' />
-      <Select name='estado_civil' options={['sol', 'cas', 'ul', 'otra']} />
-      <Select name='estado_ocu' options={['estud', 'trab']} />
+      <Input name='metodo' />
+      <Input name='ciclos' type='number' />
+      <Input name='amenorrea' />
+      <Input name='sangrado' />
+      <Input name='manchado' />
+      <Input name='fum' />
+      <Input name='lactando' />
+      <Input name='cefalea_mareo' />
+      <Input name='dolor_mamario' />
+      <Input name='dolor_pelvico' />
+      <Input name='flujo_caracter' />
+      <Input name='varices' />
 
       <Hr />
 
-      <Checkbox name='af_diabetes' />
-      <Checkbox name='af_hipertension' />
-      <Checkbox name='af_ca_seno' />
-      <Checkbox name='af_ca_cervix' />
-      <Checkbox name='af_enf_cong' />
-      <Input name='af_otros' />
+      <Input name='senos' />
+      <Input name='abdomen' />
+      <Input name='cervix' />
+      <Input name='utero' />
+      <Input name='anexos' />
+      <Input name='t_a_mm_hg' />
+      <Input name='peso_kg' />
 
       <Hr />
 
-      <Checkbox name='ap_diabetes' />
-      <Checkbox name='ap_hipertension' />
-      <Checkbox name='ap_cancer' />
-      <Checkbox name='ap_ictericia' />
-      <Checkbox name='ap_infertil' />
-      <Checkbox name='ap_enf_cong' />
-      <Input name='ap_otros' />
-
-      <Hr />
-
-      <Input name='n_comp' type='number' />
-      <Checkbox name='enf_t_sex' />
-      <Input name='cual' />
-
-      <Hr />
-
-      <Input name='mes' type='number' />
-      <Input name='año' type='number' />
-      <Checkbox name='neg' />
-      <Checkbox name='nic' />
-      <Checkbox name='nunca' />
-
-      <Hr />
-
-      <Input name='gastac' type='number' />
-      <Checkbox name='ninguno' />
-      <Input name='gemelar' type='number' />
-      <Input name='mola' type='number' />
-
-      <Hr />
-
-      <Input name='abortos' type='number' />
-      <Input name='p_vag' type='number' />
-      <Input name='cesarea' type='number' />
-      <Input name='ectopica' type='number' />
-      <Input name='esp' type='number' />
-      <Input name='provoc' type='number' />
-      <Input name='nac_vivos' type='number' />
-      <Input name='nac_mtos' type='number' />
-      <Input name='vive' type='number' />
-      <Input name='mtos_primer_sem' type='number' />
-      {/* <Input name='fec_ant_embarazo' /> */}
-      <Date name='fec_ant_embarazo' />
-
-      <Hr />
+      <Input name='cambio_metodo' />
+      <Input name='motivo' />
+      <Input name='nuevo_metodo' />
+      <Input name='observaciones' />
+      <Input name='citologia' />
     </>
   )
 }

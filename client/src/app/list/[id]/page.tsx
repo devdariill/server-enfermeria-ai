@@ -5,7 +5,7 @@ import type { HistoriaClinica } from '@/types'
 import Link from 'next/link'
 // import { useSearchParams } from 'next/navigation'
 import { useEffect, useState } from 'react'
-import api from '../api'
+import api from '../../../api'
 
 // import data from '../mock/data.json'
 

@@ -1,4 +1,4 @@
-import api from '@/app/list/api'
+import api from '@/api'
 import { NextResponse } from 'next/server'
 import OpenAI from 'openai'
 

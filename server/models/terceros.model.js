@@ -76,7 +76,7 @@ export class TerceroModel {
     } catch (e) {
       console.log('🚀 ~ file: terceros.model.js:72 ~ TerceroModel ~ create ~ e:', e)
       // puede enviarle información sensible
-      throw new Error('Error creating movie')
+      // throw new Error('Error creating movie')
       // enviar la traza a un servicio interno
       // sendLog(e)
     }
@@ -105,7 +105,7 @@ export class TerceroModel {
       return true
     } catch (error) {
       if (error?.errno === 1451) return { error: 1451 }
-      throw new Error('Error deleting tercero')
+      // throw new Error('Error deleting tercero')
     }
   }
 
@@ -118,7 +118,7 @@ export class TerceroModel {
       return true
     } catch (error) {
       console.log('🚀 ~ file: terceros.model.js:113 ~ TerceroModel ~ update ~ error:', error)
-      throw new Error('Error updating tercero')
+      // throw new Error('Error updating tercero')
     }
   }
 }

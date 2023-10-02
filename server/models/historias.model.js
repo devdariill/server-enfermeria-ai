@@ -26,8 +26,8 @@ export class HistoriaModel {
       const [result] = await pool.query(query, [DB_TABLE, ...values])
       id = result.insertId
     } catch (e) {
-      console.log('🚀 ~ file: historias.model.js:28 ~ HistoriaModel ~ create ~ e:', e)
-      throw new Error('Error creating history')
+      console.error('🚀 ~ file: historias.model.js:28 ~ HistoriaModel ~ create ~ e:', e)
+      // throw new Error('Error creating history')
     }
     const [historia] = await pool.query('SELECT * FROM ?? WHERE id = ?;', [DB_TABLE, id])
     return historia[0]
@@ -38,8 +38,8 @@ export class HistoriaModel {
       await pool.query('DELETE FROM ?? WHERE id = ?;', [DB_TABLE, id])
       return true
     } catch (error) {
-      console.log('🚀 ~ file: historias.js:96 ~ HistoriaModel ~ delete ~ error:', error)
-      throw new Error('Error deleting historia')
+      console.error('🚀 ~ file: historias.js:96 ~ HistoriaModel ~ delete ~ error:', error)
+      // throw new Error('Error deleting historia')
     }
   }
 
@@ -49,8 +49,8 @@ export class HistoriaModel {
       await pool.query(query, [DB_TABLE, input, id])
       return true
     } catch (error) {
-      console.log('🚀 ~ file: historias.model.js:113 ~ HistoriaModel ~ update ~ error:', error)
-      throw new Error('Error updating historia')
+      console.error('🚀 ~ file: historias.model.js:113 ~ HistoriaModel ~ update ~ error:', error)
+      // throw new Error('Error updating historia')
     }
   }
 }

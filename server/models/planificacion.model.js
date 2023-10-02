@@ -27,8 +27,8 @@ export class PlanificaionModel {
       const [result] = await pool.query(query, [DB_TABLE_1, ...values])
       id = result.insertId
     } catch (error) {
-      console.log('🚀 ~ file: planificacion.model.js:29 ~ PlanificaionModel ~ create ~ e:', error)
-      throw new Error('Error creating planificacion')
+      console.error('🚀 ~ file: planificacion.model.js:29 ~ PlanificaionModel ~ create ~ e:', error)
+      // throw new Error('Error creating planificacion')
     }
     // const [planificacion] = await pool.query('SELECT * FROM ?? WHERE id = ?;', [DB_TABLE_1, id])
     const planificacion = await this.getById({ id })
@@ -42,7 +42,7 @@ export class PlanificaionModel {
       return true
     } catch (error) {
       console.log('🚀 ~ file: planificacion.model.js:41 ~ PlanificaionModel ~ delete ~ error:', error)
-      throw new Error('Error deleting planificacion')
+      // throw new Error('Error deleting planificacion')
     }
   }
 
@@ -53,7 +53,7 @@ export class PlanificaionModel {
       return true
     } catch (error) {
       console.log('🚀 ~ file: planificacion.model.js:52 ~ PlanificaionModel ~ update ~ error:', error)
-      throw new Error('Error updating planificacion')
+      // throw new Error('Error updating planificacion')
     }
   }
 }
@@ -89,7 +89,7 @@ export class SeccionBModel {
       return seccionB
     } catch (error) {
       console.log('🚀 ~ file: seccion-b.model.js:92 ~ SeccionBModel ~ create ~ error:', error)
-      throw new Error('Error creating seccion_b')
+      // throw new Error('Error creating seccion_b')
     }
   }
 
@@ -99,7 +99,7 @@ export class SeccionBModel {
       return true
     } catch (error) {
       console.log('🚀 ~ file: seccion-b.model.js:41 ~ SeccionBModel ~ delete ~ error:', error)
-      throw new Error('Error deleting seccion_b')
+      // throw new Error('Error deleting seccion_b')
     }
   }
 
@@ -110,7 +110,7 @@ export class SeccionBModel {
       return true
     } catch (error) {
       console.log('🚀 ~ file: seccion-b.model.js:52 ~ SeccionBModel ~ update ~ error:', error)
-      throw new Error('Error updating seccion_b')
+      // throw new Error('Error updating seccion_b')
     }
   }
 }

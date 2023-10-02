@@ -71,8 +71,9 @@ export class MovieModel {
         [title, year, director, duration, poster, rate]
       )
     } catch (e) {
+      console.log('🚀 ~ file: movie.js:74 ~ MovieModel ~ create ~ e:', e)
       // puede enviarle información sensible
-      throw new Error('Error creating movie')
+      // throw new Error('Error creating movie')
       // enviar la traza a un servicio interno
       // sendLog(e)
     }

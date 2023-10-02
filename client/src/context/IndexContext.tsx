@@ -1,8 +1,10 @@
 'use client'
 import api from '@/api'
 import type { HistoriaClinica, Planificacion, SeccionB, Tercero } from '@/types'
+import { useSession } from 'next-auth/react'
+import { useRouter } from 'next/navigation'
 import type { ReactNode } from 'react'
-import { createContext, useContext, useState } from 'react'
+import { createContext, useContext, useEffect, useState } from 'react'
 import { Toaster, toast } from 'sonner'
 
 export const IndexContext = createContext< TerceroContextType | undefined >(undefined)
@@ -10,12 +12,13 @@ export const IndexContext = createContext< TerceroContextType | undefined >(unde
 export function useIndex () {
   const context = useContext(IndexContext)
   if (context === undefined) {
-    throw new Error('useTasks must be used within a TaskProvider')
+    throw new Error('useIndex must be used within a IndexProvider')
   }
   return context
 }
 
 export function IndexProvider ({ children }: { children: ReactNode }) {
+  // const [localSession, setLocalSession] = useState<Session | null>(null)
   // Terceros
   const [terceros, setTerceros] = useState<Tercero[]>([])
   async function loadTerceros () {
@@ -73,6 +76,15 @@ export function IndexProvider ({ children }: { children: ReactNode }) {
     if (!seccionB) return toast.error('No se encontró la seccionB')
     setSeccionB(seccionB)
   }
+
+  const { data: session } = useSession()
+  const router = useRouter()
+  useEffect(() => {
+    if (session?.user == null) {
+      router.push('/')
+    }
+  }, [session])
+
   return (
     <IndexContext.Provider value={{
       terceros,
@@ -91,6 +103,8 @@ export function IndexProvider ({ children }: { children: ReactNode }) {
       loadSeccionesB,
       seccionB,
       getSeccionB
+      // localSession,
+      // setLocalSession
     }}
     >
       <Toaster expand={false} richColors />
@@ -116,4 +130,6 @@ interface TerceroContextType {
   loadSeccionesB: ({ id }: { id: string }) => Promise<void>
   seccionB: SeccionB | undefined
   getSeccionB: ({ id }: { id: string }) => Promise<string | number | undefined>
+  // localSession: Session | null
+  // setLocalSession: React.Dispatch<React.SetStateAction<Session | null>>
 }

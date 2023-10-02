@@ -7,8 +7,7 @@ import './globals.css'
 const inter = Inter({ subsets: ['latin'] })
 
 export const metadata = {
-  title: 'InfoJobs - Mejora la descripcion',
-  description: 'Herramienta para mejorar la descripcion de las ofertas de InfoJobs'
+  title: 'U.Mariana - Mejora la descripcion'
 }
 
 export default function RootLayout ({

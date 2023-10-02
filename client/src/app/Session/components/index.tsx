@@ -2,14 +2,10 @@
 import { signIn, signOut, useSession } from 'next-auth/react'
 import { useRouter } from 'next/navigation'
 import { useEffect } from 'react'
+import { useAuth } from '../hook/useAuth'
 
 export function Logout () {
-  const { data: session } = useSession()
-  const router = useRouter()
-  useEffect(() => {
-    if (session?.user == null) router.push('Session')
-  }, [session])
-
+  useAuth()
   return (
     <button id='buttonCss' onClick={async () => await signOut()} type='button'>
       Logout

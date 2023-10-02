@@ -1,22 +1,24 @@
 
 'use client'
 import { useIndex } from '@/context/IndexContext'
-import type { Planificacion } from '@/types'
+import type { SeccionB } from '@/types'
 import Link from 'next/link'
 import { useEffect } from 'react'
 
 export default function Page ({ searchParams: { name }, params: { id } }: { searchParams: { name: string }, params: { id: string } }) {
-  const { planificaciones, loadPlanificaciones } = useIndex()
-  console.log('🚀 ~ file: page.tsx:14 ~ Page ~ planificaciones:', planificaciones)
+  const idPlanificacion = id
+  const { seccionesB, loadSeccionesB } = useIndex()
+  console.log('🚀 ~ file: page.tsx:11 ~ Page ~ seccionesB:', seccionesB)
   useEffect(() => {
-    loadPlanificaciones({ id })
+    loadSeccionesB({ id: idPlanificacion })
   }, [])
+  if (!seccionesB) return <div>loading...</div>
   return (
-    <AiView planificaciones={planificaciones} id={id} name={name.split('%').join(' ')} />
+    <AiView seccionesB={seccionesB} id={id} name={name.split('%').join(' ')} />
   )
 }
 
-function AiView ({ name, id, planificaciones }: { name: string, id: string, planificaciones: Planificacion[] }) {
+function AiView ({ name, id, seccionesB }: { name: string, id: string, seccionesB: SeccionB[] }) {
   // const name = searchParams.name
 
   return (
@@ -30,17 +32,17 @@ function AiView ({ name, id, planificaciones }: { name: string, id: string, plan
             Agregar Seccion B
           </Link>
         </header>
-        <ListSeccionB planificaciones={planificaciones} name={name} />
+        <ListSeccionB seccionesB={seccionesB} name={name} />
       </div>
     </section>
   )
 }
 
-function ListSeccionB ({ planificaciones, name }: { planificaciones: Planificacion[], name: string }) {
+function ListSeccionB ({ seccionesB, name }: { seccionesB: SeccionB[], name: string }) {
   return (
     <article className='flex-shrink-0'>
       <ul className='grid grid-cols-1 gap-5 mt-6 list-none ' role='list'>
-        {planificaciones?.map((item) => (
+        {seccionesB?.map((item) => (
           <Item key={item.id} name={name} {...item} />
         ))}
       </ul>
@@ -48,14 +50,14 @@ function ListSeccionB ({ planificaciones, name }: { planificaciones: Planificaci
   )
 }
 
-const Item = ({ id, fecha, name }: Planificacion & { name: string }) => {
+const Item = ({ id, name }: SeccionB & { name: string }) => {
   return (
     <li className='flex items-center'>
       <Link href={`/planificacion?id=${id}&name=${name}`} className='flex items-center justify-center w-12 h-12 text-black bg-white rounded-xl hover:cursor-pointer hover:scale-105'>
         ❖ {id}
       </Link>
       <span className='ml-auto'>
-        {fecha} - length
+        length
       </span>
     </li>
   )

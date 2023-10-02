@@ -61,7 +61,7 @@ export function IndexProvider ({ children }: { children: ReactNode }) {
   }
 
   // Seccion B
-  const [seccionesB, setSeccionesB] = useState<SeccionB>()
+  const [seccionesB, setSeccionesB] = useState<SeccionB[]>()
   async function loadSeccionesB ({ id }: { id: string }) {
     const seccionesB = await api.get.seccionesB({ id })
     setSeccionesB(seccionesB)
@@ -112,7 +112,7 @@ interface TerceroContextType {
   loadPlanificaciones: ({ id }: { id: string }) => Promise<void>
   planificacion: Planificacion | undefined
   getPlanificacion: ({ id }: { id: string }) => Promise<string | number | undefined>
-  seccionesB: SeccionB | undefined
+  seccionesB: SeccionB[] | undefined
   loadSeccionesB: ({ id }: { id: string }) => Promise<void>
   seccionB: SeccionB | undefined
   getSeccionB: ({ id }: { id: string }) => Promise<string | number | undefined>

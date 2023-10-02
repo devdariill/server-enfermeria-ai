@@ -1,5 +1,5 @@
 import { NextResponse } from 'next/server'
-import { getAll } from './planificacion.controller'
+import { getAll } from './controller'
 
 export async function GET (request: Request) {
   const { searchParams } = new URL(request.url)

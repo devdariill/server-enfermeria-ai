@@ -59,12 +59,12 @@ const api = {
       return planificacion
     },
     seccionesB: async ({ id }: { id: string }) => {
-      const res = await fetch(`/api/seccionesb?id=${id}`)
+      const res = await fetch(`/api/seccionb?id=${id}`)
       const secciones = await res.json()
       return secciones
     },
     seccionB: async ({ id }: { id: string }) => {
-      const res = await fetch(`/api/seccionesb/${id}`)
+      const res = await fetch(`/api/seccionb/${id}`)
       const seccion = await res.json()
       return seccion
     }

@@ -63,7 +63,7 @@ const DB_TABLE = 'seccion_b'
 export class SeccionBModel {
   static async getAll ({ id }) {
     const [result] = await pool.query(
-      'SELECT * FROM ?? WHERE id_tercero = ? OR id = ?;',
+      'SELECT * FROM ?? WHERE id_planificacion = ? OR id = ?;',
       [DB_TABLE, id, id]
     )
     return result || []

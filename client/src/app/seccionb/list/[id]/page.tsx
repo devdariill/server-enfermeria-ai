@@ -28,7 +28,7 @@ function AiView ({ name, id, seccionesB }: { name: string, id: string, secciones
           <p className='text-2xl font-medium tracking-tight text-black sm:text-4xl mr-auto'>
             {name}
           </p>
-          <Link href={`/planificacion/${id}`} id='buttonCss'>
+          <Link href={`/seccionb/${id}?name=${name}`} id='buttonCss'>
             Agregar Seccion B
           </Link>
         </header>
@@ -53,7 +53,7 @@ function ListSeccionB ({ seccionesB, name }: { seccionesB: SeccionB[], name: str
 const Item = ({ id, name }: SeccionB & { name: string }) => {
   return (
     <li className='flex items-center'>
-      <Link href={`/planificacion?id=${id}&name=${name}`} className='flex items-center justify-center w-12 h-12 text-black bg-white rounded-xl hover:cursor-pointer hover:scale-105'>
+      <Link href={`/seccionb?id=${id}&name=${name}`} className='flex items-center justify-center w-12 h-12 text-black bg-white rounded-xl hover:cursor-pointer hover:scale-105'>
         ❖ {id}
       </Link>
       <span className='ml-auto'>

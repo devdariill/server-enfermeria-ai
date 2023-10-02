@@ -17,35 +17,44 @@ const FormToBody = (event: FormEvent<HTMLFormElement>) => {
   return body
 }
 
-function Pages ({ params: { id } }: { params: { id: string } }) {
-// function Pages ({ params, searchParams }: any) {
+function Pages (props: any) {
+  console.log('🚀 ~ file: page.tsx:21 ~ Pages ~ props:', props)
+  const idPlanificacion: string = props.params.id
   const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault()
     const confirm = window.confirm('¿Estas seguro de agregar esta historia?')
     if (!confirm) return
-    const body = JSON.stringify({ ...FormToBody(event), id_tercero: id })
-    console.log('🚀 ~ file: page.tsx:25 ~ handleSubmit ~ body:', body)
-    const res = await fetch(`/api/planificaciones/${id}`, {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json'
-      },
-      body
-    })
-    const response = await res.json()
-    console.log('🚀 ~ file: page.tsx:26 ~ handleSubmit ~ response:', response)
+    const body = JSON.stringify({ ...FormToBody(event), id_planificacion: idPlanificacion })
+    console.log('🚀 ~ file: page.tsx:28 ~ handleSubmit ~ body:', body)
+    // const res = await fetch(`/api/seccionb/${idPlanificacion}`, {
+    //   method: 'POST',
+    //   headers: {
+    //     'Content-Type': 'application/json'
+    //   },
+    //   body
+    // })
+    // const response = await res.json()
+    // console.log('🚀 ~ file: page.tsx:26 ~ handleSubmit ~ response:', response)
   }
   return (
-    <form onSubmit={handleSubmit}>
-      <div className='grid grid-cols-4 gap-3 mx-auto'>
-
-        <FirstComponent />
-
-        <button id='buttonCss' className='w-full mt-2 col-span-4' type='submit'>
-          Agregar Planificacion
-        </button>
-      </div>
-    </form>
+    <>
+      <header className='flex items-center justify-around'>
+        <h1 className='text-2xl font-medium tracking-tight text-black sm:text-4xl'>
+          {props?.searchParams?.name.split('%').join(' ')}
+        </h1>
+        <h2 className='text-2xl tracking-tight text-black/80'>
+          Planificacion
+        </h2>
+      </header>
+      <form onSubmit={handleSubmit} className='py-10'>
+        <div className='grid grid-cols-4 gap-3 mx-auto'>
+          <FirstComponent />
+          <button id='buttonCss' className='w-full mt-2 col-span-4' type='submit'>
+            Agregar Seccion B
+          </button>
+        </div>
+      </form>
+    </>
   )
 }
 

@@ -38,6 +38,7 @@ export class HistoriaModel {
       await pool.query('DELETE FROM ?? WHERE id = ?;', [DB_TABLE, id])
       return true
     } catch (error) {
+      if (error?.errno === 1451) return { error: 1451 }
       console.error('🚀 ~ file: historias.js:96 ~ HistoriaModel ~ delete ~ error:', error)
       // throw new Error('Error deleting historia')
     }

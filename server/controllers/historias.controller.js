@@ -27,6 +27,7 @@ export class HistoriaController {
     const { id } = req.params
     const result = await this.historiaModel.delete({ id })
     if (result === false) return res.status(404).json({ message: 'Historia not found' })
+    if (result.error === 1451) return res.status(409).json({ message: 'Historia has dependencies' })
     return res.json({ message: 'Historia deleted' })
   }
 

@@ -43,16 +43,6 @@ export class TerceroModel {
   }
 
   static async create ({ input }) {
-    // const {
-    //   genre: genreInput, // genre is an array
-    //   title,
-    //   year,
-    //   duration,
-    //   director,
-    //   rate,
-    //   poster
-    // } = input
-
     const exist = await this.getAll({ search: input.id_nacional })
     if (exist.length > 0) { return { error: 'Ya existe un tercero con ese id nacional' } }
 
@@ -75,10 +65,6 @@ export class TerceroModel {
       id = result.insertId
     } catch (e) {
       console.log('🚀 ~ file: terceros.model.js:72 ~ TerceroModel ~ create ~ e:', e)
-      // puede enviarle información sensible
-      // throw new Error('Error creating movie')
-      // enviar la traza a un servicio interno
-      // sendLog(e)
     }
 
     // const [movies] = await pool.query(
@@ -105,6 +91,7 @@ export class TerceroModel {
       return true
     } catch (error) {
       if (error?.errno === 1451) return { error: 1451 }
+      console.log('🚀 ~ file: terceros.model.js:107 ~ TerceroModel ~ delete ~ error:', error)
       // throw new Error('Error deleting tercero')
     }
   }

@@ -3,26 +3,26 @@ import { Card, BarChart as Chart, Subtitle, Title } from '@tremor/react'
 
 const chartdata = [
   {
-    name: 'Amphibians',
-    'Number of threatened species': 2488
+    name: 'Agosto',
+    'Cantidad de Historias': 2488
   },
   {
-    name: 'Birds',
-    'Number of threatened species': 1445
+    name: 'Septiembre',
+    'Cantidad de Historias': 1445
   },
   {
-    name: 'Crustaceans',
-    'Number of threatened species': 743
+    name: 'Octubre',
+    'Cantidad de Historias': 743
   }
 ]
 
 const dataFormatter = (number: number) => {
-  return '$ ' + Intl.NumberFormat('us').format(number).toString()
+  return '# ' + Intl.NumberFormat('us').format(number).toString()
 }
 
 export const BarChart = () => (
   <Card>
-    <Title>Number of species threatened with extinction (2021)</Title>
+    <Title>Registro de Historias (2023)</Title>
     <Subtitle>
       The IUCN Red List has assessed only a small share of the total known species in the world.
     </Subtitle>
@@ -30,7 +30,7 @@ export const BarChart = () => (
       className='mt-6'
       data={chartdata}
       index='name'
-      categories={['Number of threatened species']}
+      categories={['Cantidad de Historias']}
       colors={['blue']}
       valueFormatter={dataFormatter}
       yAxisWidth={48}

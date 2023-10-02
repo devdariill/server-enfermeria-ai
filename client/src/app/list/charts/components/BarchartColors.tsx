@@ -2,11 +2,11 @@
 import { Card, BarChart as Chart, Title } from '@tremor/react'
 
 const dataFormatter = (number: number) => {
-  return '$ ' + Intl.NumberFormat('us').format(number).toString()
+  return '# ' + Intl.NumberFormat('us').format(number).toString()
 }
 const chartdata2 = [
   {
-    name: 'Topic 1',
+    name: '2022',
     'Group A': 890,
     'Group B': 338,
     'Group C': 538,
@@ -15,7 +15,7 @@ const chartdata2 = [
     'Group F': 436
   },
   {
-    name: 'Topic 2',
+    name: '2023',
     'Group A': 289,
     'Group B': 233,
     'Group C': 253,
@@ -26,7 +26,7 @@ const chartdata2 = [
 ]
 export const BarChartColors = () => (
   <Card>
-    <Title>Writing Contest: Entries</Title>
+    <Title>Resumen de todas las tablas</Title>
     <Chart
       className='mt-6'
       data={chartdata2}

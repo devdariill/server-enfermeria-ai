@@ -5,11 +5,11 @@ import { usePathname } from 'next/navigation'
 import { type ReactNode } from 'react'
 
 function Header () {
-  const view = usePathname() === '/'
+  const view = usePathname() === '/list'
 
   return (
     <header className='w-full text-center gap-2 flex flex-col justify-center max-w-[100px] fixed left-5 bottom-5 z-10 '>
-      <LinkC view={view} href='/ai'>Pacientes</LinkC>
+      <LinkC view={view} href='/list'>Pacientes</LinkC>
       <LinkC view={!view} href='/list/charts'>Informes</LinkC>
     </header>
   )

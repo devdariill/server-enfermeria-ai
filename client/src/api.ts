@@ -68,6 +68,9 @@ const api = {
       const seccion = await res.json()
       return seccion
     }
+  },
+  stats: {
+
   }
 }
 export default api

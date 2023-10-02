@@ -4,11 +4,12 @@ import { createPool } from 'mysql2/promise'
 import { corsMiddleware } from './middlewares/cors.js'
 
 import { createHistoriaRouter } from './routes/historias.routes.js'
+import { createInformeRouter } from './routes/informes.routes.js'
 import { createPlanificacionRouter, createSeccionBRouter } from './routes/planificaciones.routes.js'
 import { createTerceroRouter } from './routes/terceros.routes.js'
 
 // después
-export const createApp = ({ terceroModel, historiaModel, planificacionModel, seccionBModel }) => {
+export const createApp = ({ terceroModel, historiaModel, planificacionModel, seccionBModel, informeModel }) => {
   const app = express()
   app.use(json())
   app.use(corsMiddleware())
@@ -19,6 +20,7 @@ export const createApp = ({ terceroModel, historiaModel, planificacionModel, sec
   app.use('/terceros', createTerceroRouter({ terceroModel }))
   app.use('/planificaciones', createPlanificacionRouter({ planificacionModel }))
   app.use('/seccionb', createSeccionBRouter({ seccionBModel }))
+  app.use('/informes', createInformeRouter({ informeModel }))
 
   const PORT = process.env.PORT ?? 3001
 

@@ -8,7 +8,7 @@ export async function POST (request: Request, { params: { id } }: { params: { id
     return NextResponse.json(historia)
   } catch (e) {
     console.log(e)
-    return new Response('Error Historys', { status: 404 })
+    return new Response('Error SeccionB', { status: 404 })
   }
 }
 
@@ -30,7 +30,7 @@ export async function PATCH (request: Request, { params: { id } }: { params: { i
     return NextResponse.json(historia)
   } catch (e) {
     console.log(e)
-    return new Response('Error Historys', { status: 404 })
+    return new Response('Error SeccionB', { status: 404 })
   }
 }
 

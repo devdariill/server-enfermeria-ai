@@ -83,7 +83,7 @@ function View ({ id, Input, name }: { id: string, Input: any, name: string }) {
   const handleDelete = async () => {
     const confirm = window.confirm('¿Está seguro de eliminar este tercero?')
     if (!confirm) return
-    const res = await fetch(`/api/planificaciones/${id}`, {
+    const res = await fetch(`/api/seccionb/${id}`, {
       method: 'DELETE',
       headers: {
         'Content-Type': 'application/json'

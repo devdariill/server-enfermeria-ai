@@ -11,7 +11,7 @@ HTML semantica
 
 
 
-Tailwind
+Tailwind / responsive
 Fetch Nativo
 Form Nativo
 

@@ -5,7 +5,7 @@ const DB_TABLE_1 = 'planificaciones'
 export class PlanificaionModel {
   static async getAll ({ id }) {
     const [result] = await pool.query(
-      'SELECT * FROM ?? WHERE id_tercero = ? OR id_historia = ? ORDER BY id DESC;',
+      'SELECT * FROM ?? WHERE id_historia = ? ORDER BY id DESC;',
       [DB_TABLE_1, id, id]
     )
     return result || []
@@ -32,7 +32,6 @@ export class PlanificaionModel {
     }
     // const [planificacion] = await pool.query('SELECT * FROM ?? WHERE id = ?;', [DB_TABLE_1, id])
     const planificacion = await this.getById({ id })
-    console.log('🚀 ~ file: planificacion.model.js:35 ~ PlanificaionModel ~ create ~ planificacion:', planificacion)
     return planificacion
   }
 

@@ -189,6 +189,7 @@ CREATE TABLE Planificaciones (
 CREATE TABLE Seccion_B (
   id INT NOT NULL AUTO_INCREMENT,
   id_planificacion INT NOT NULL,
+  created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
 
   -- anamesis
   metodo TEXT,

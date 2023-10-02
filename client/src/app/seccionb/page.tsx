@@ -21,12 +21,11 @@ function Page (params: any) {
   if (!seccionB) return <div>Loading...</div>
   console.log('🚀 ~ file: page.tsx:18 ~ Page ~ seccionB:', seccionB)
 
-  const Input = ({ name, type = 'string' }: { name: keyof SeccionB, type?: string }) => {
+  const Input = ({ name, type = 'string', autoFocus = false }: { name: keyof SeccionB, type?: string, autoFocus?: boolean }) => {
     const defaultValue = seccionB[name]
-    console.log('🚀 ~ file: page.tsx:25 ~ Input ~ defaultValue:', name, defaultValue)
     return (
       <Label name={name}>
-        <input type={type} className='w-full py-1 rounded pl-2 outline-gray-300' name={name} defaultValue={defaultValue} />
+        <input type={type} className='w-full py-1 rounded pl-2 outline-gray-300' name={name} defaultValue={defaultValue} autoFocus={autoFocus} />
       </Label>
     )
   }
@@ -102,11 +101,11 @@ function View ({ id, Input, name }: { id: string, Input: any, name: string }) {
         <h1 className='text-2xl font-semibold text-center'>Seccion B</h1>
       </header>
       <form onSubmit={handleSubmit} className='p-5'>
-        <div className='grid grid-cols-2  md:grid-cols-4 gap-3 mx-auto [&>div]:grid '>
+        <div className='grid grid-cols-1  md:grid-cols-2 gap-3 mx-auto [&>div]:grid '>
 
           <FirstComponent Input={Input} />
 
-          <div className='flex gap-3 col-span-2 md:col-span-4 grid-cols-1 md:grid-cols-2'>
+          <div className='flex gap-3 col-span-1 md:col-span-2 grid-cols-1 md:grid-cols-2'>
             <button
               className='bg-red-500 py-2 rounded hover:scale-105 hover:brightness-105 transition-all ' onClick={async () => await handleDelete()} type='button'
             >
@@ -134,13 +133,13 @@ const FormToBody = (event: FormEvent<HTMLFormElement>) => {
 
 const FirstComponent = ({ Input }: { Input: any }) => {
   const Hr = () => (
-    <hr className='col-span-2 md:col-span-4 p-1 bg-black/20 rounded-full' />
+    <hr className='col-span-1 md:col-span-2 p-1 bg-black/20 rounded-full' />
   )
 
   return (
     <>
-      <Input name='metodo' />
-      <Input name='ciclos' type='number' />
+      <Input name='metodo' autoFocus />
+      <Input name='ciclos' />
       <Input name='amenorrea' />
       <Input name='sangrado' />
       <Input name='manchado' />

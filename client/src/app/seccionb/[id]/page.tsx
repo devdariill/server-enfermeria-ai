@@ -1,5 +1,6 @@
 'use client'
 import type { FormEvent, ReactNode } from 'react'
+import { toast } from 'sonner'
 
 const FormToBody = (event: FormEvent<HTMLFormElement>) => {
   event.preventDefault()
@@ -33,6 +34,8 @@ function Pages (props: any) {
       body
     })
     const response = await res.json()
+    toast.success('Seccion B agregada')
+    window.history.back()
     console.log('🚀 ~ file: page.tsx:26 ~ handleSubmit ~ response:', response)
   }
   return (
@@ -46,9 +49,9 @@ function Pages (props: any) {
         </h2>
       </header>
       <form onSubmit={handleSubmit} className='py-10'>
-        <div className='grid grid-cols-4 gap-3 mx-auto'>
+        <div className='grid grid-cols-2 gap-3 mx-auto'>
           <FirstComponent />
-          <button id='buttonCss' className='w-full mt-2 col-span-4' type='submit'>
+          <button id='buttonCss' className='w-full mt-2 col-span-2' type='submit'>
             Agregar Seccion B
           </button>
         </div>
@@ -75,15 +78,15 @@ const Input = ({ name, type = 'string', autoFocus = false }: { name: string, typ
 //   </Label>
 // )
 const Hr = () => (
-  <hr className='col-span-4 p-1 bg-black/20 rounded-full' />
+  <hr className='col-span-2 p-1 bg-black/20 rounded-full' />
 )
 
 const FirstComponent = () => {
   return (
     <>
       {/* <Input name='h_c' type='number' autoFocus /> */}
-      <Input name='metodo' />
-      <Input name='ciclos' type='number' />
+      <Input name='metodo' autoFocus />
+      <Input name='ciclos' />
       <Input name='amenorrea' />
       <Input name='sangrado' />
       <Input name='manchado' />

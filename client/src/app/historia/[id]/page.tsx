@@ -1,5 +1,6 @@
 'use client'
 import type { FormEvent, ReactNode } from 'react'
+import { toast } from 'sonner'
 
 const FormToBody = (event: FormEvent<HTMLFormElement>) => {
   event.preventDefault()
@@ -14,6 +15,8 @@ function Pages ({ params: { id }, searchParams }: { params: { id: string }, sear
   const idTercero = id
   const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault()
+    const confirm = window.confirm('¿Estas seguro de agregar esta historia?')
+    if (!confirm) return
     const body = JSON.stringify({ ...FormToBody(event), id_tercero: idTercero })
 
     const res = await fetch(`/api/historias/${idTercero}`, {
@@ -24,6 +27,8 @@ function Pages ({ params: { id }, searchParams }: { params: { id: string }, sear
       body
     })
     const response = await res.json()
+    window.history.back()
+    toast.success('Historia agregada')
     console.log('🚀 ~ file: page.tsx:26 ~ handleSubmit ~ response:', response)
   }
   return (

@@ -85,6 +85,7 @@ export export interface Planificacion {
 export interface SeccionB {
   id: number
   id_planificacion: number
+  created_at: string // Puedes usar el tipo Date si prefieres.
 
   metodo: string
   ciclos: string

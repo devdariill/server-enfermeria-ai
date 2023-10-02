@@ -1,6 +1,7 @@
 'use client'
 import { useIndex } from '@/context/IndexContext'
 import { useEffect, type FormEvent, type ReactNode } from 'react'
+import { toast } from 'sonner'
 
 const FormToBody = (event: FormEvent<HTMLFormElement>) => {
   event.preventDefault()
@@ -31,7 +32,7 @@ function Pages ({ params: { id }, searchParams: { name } }: { params: { id: stri
     event.preventDefault()
     const confirm = window.confirm('¿Estas seguro de agregar esta historia?')
     if (!confirm) return
-    const body = JSON.stringify({ ...FormToBody(event), id_tercero: historia?.id_tercero, id_historia: idHistoria })
+    const body = JSON.stringify({ ...FormToBody(event), id_historia: idHistoria })
     console.log('🚀 ~ file: page.tsx:27 ~ handleSubmit ~ body:', body)
 
     const res = await fetch(`/api/planificaciones/${id}`, {
@@ -42,6 +43,8 @@ function Pages ({ params: { id }, searchParams: { name } }: { params: { id: stri
       body
     })
     const response = await res.json()
+    toast.success('Planificacion agregada')
+    window.history.back()
     console.log('🚀 ~ file: page.tsx:26 ~ handleSubmit ~ response:', response)
   }
   return (

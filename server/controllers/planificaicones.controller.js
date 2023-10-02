@@ -27,6 +27,7 @@ export class PlanificacionController {
     const { id } = req.params
     const result = await this.planificacionModel.delete({ id })
     if (result === false) return res.status(404).json({ DBPlanificacion: 'Planificacion not found' })
+    if (result.error === 1451) return res.status(409).json({ DBPlanificacion: 'Planificacion has dependencies' })
     return res.json({ DBPlanificacion: 'Planificacion deleted' })
   }
 

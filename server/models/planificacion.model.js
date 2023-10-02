@@ -41,6 +41,7 @@ export class PlanificaionModel {
       await pool.query('DELETE FROM ?? WHERE id = ?;', [DB_TABLE_1, id])
       return true
     } catch (error) {
+      if (error?.errno === 1451) return { error: 1451 }
       console.log('🚀 ~ file: planificacion.model.js:41 ~ PlanificaionModel ~ delete ~ error:', error)
       // throw new Error('Error deleting planificacion')
     }

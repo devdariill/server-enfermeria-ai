@@ -6,6 +6,7 @@ import Link from 'next/link'
 import { useEffect } from 'react'
 
 import type { FormEvent, ReactNode } from 'react'
+import { toast } from 'sonner'
 
 // let id_tercero = -1
 function Page (params: any) {
@@ -74,8 +75,9 @@ function View ({ idPlanificacion, Select, Input, Checkbox, Date, name }: { idPla
     })
     const response = await res.json()
     // router.push(`/list/${1}`)
+    if (response.DBPlanificacion.includes('dependencies')) return toast.error('No se puede eliminar este tercero porque tiene dependencias')
+
     window.history.back()
-    console.log('🚀 ~ file: page.tsx:56 ~ handleDelete ~ response:', response)
   }
 
   return (

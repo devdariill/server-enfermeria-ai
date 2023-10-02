@@ -18,7 +18,7 @@ CREATE TABLE Terceros (
   genero VARCHAR(50) NOT NULL,
   procedencia VARCHAR(50) NOT NULL,
   residencia VARCHAR(50) NOT NULL,
-  fecha_ingreso TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+  created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
   celular INT NOT NULL,
   PRIMARY KEY (id)
 );
@@ -98,7 +98,7 @@ VALUES ('Program A', '12345', 'EPS A', 1, 'Headache', 'Fever', 'None', 'None', '
 CREATE TABLE Planificaciones (
   id INT NOT NULL AUTO_INCREMENT,
   id_historia INT NOT NULL,  
-  fecha TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+  created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
 
   -- Menor de 18, Mayor 35
   h_c INT,

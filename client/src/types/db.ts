@@ -8,7 +8,7 @@ export interface Tercero {
   genero: string
   procedencia: string
   residencia: string
-  fecha_ingreso: string
+  created_at: string
   celular: number
 }
 

@@ -72,7 +72,7 @@ const PathComponent = ({ path, tercero }: { path: boolean, tercero: Tercero }) =
 }
 
 const Card = ({ tercero }: { tercero: Tercero }) => {
-  const date = new Date(tercero.fecha_ingreso)
+  const date = new Date(tercero.created_at)
   const birth = new Date(tercero.fecha_nacimiento)
   return (
     <>

@@ -3,7 +3,7 @@ export export interface Planificacion {
   id: number
   id_historia: number
   id_tercero: number
-  fecha: string // Puedes usar el tipo Date si prefieres.
+  created_at: string // Puedes usar el tipo Date si prefieres.
 
   h_c: number
 

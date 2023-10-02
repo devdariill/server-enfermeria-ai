@@ -51,14 +51,14 @@ function ListHistorias ({ planificaciones, name }: { planificaciones: Planificac
   )
 }
 
-const Item = ({ id, fecha, name }: Planificacion & { name: string }) => {
+const Item = ({ id, created_at, name }: Planificacion & { name: string }) => {
   return (
     <li className='flex items-center'>
       <Link href={`/planificacion?id=${id}&name=${name}`} className='flex items-center justify-center w-12 h-12 text-black bg-white rounded-xl hover:cursor-pointer hover:scale-105'>
         ❖ {id}
       </Link>
       <span className='ml-auto'>
-        {fecha} - length
+        {created_at}
       </span>
     </li>
   )

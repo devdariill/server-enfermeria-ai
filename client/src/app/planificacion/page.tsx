@@ -8,7 +8,8 @@ import { useEffect } from 'react'
 import type { FormEvent, ReactNode } from 'react'
 import { toast } from 'sonner'
 
-// let id_tercero = -1
+export const dynamic = 'force-dynamic'
+
 function Page (params: any) {
   const idPlanificacion = params.searchParams.id
   const { planificacion, getPlanificacion } = useIndex()

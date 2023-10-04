@@ -8,6 +8,8 @@ import { useEffect } from 'react'
 import type { FormEvent, ReactNode } from 'react'
 import { toast } from 'sonner'
 
+export const dynamic = 'force-dynamic'
+
 // let id_tercero = -1
 function Page (params: any) {
   const { historia, getHistoria } = useIndex()

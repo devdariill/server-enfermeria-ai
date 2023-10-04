@@ -16,6 +16,8 @@ import { useRouter } from 'next/navigation'
 import { Fragment, useEffect } from 'react'
 import Header from './components/Header'
 
+export const dynamic = 'force-dynamic'
+
 export default function Home () {
   return (
     <main className='mx-auto px-4 max-w-[1500px] pb-24'>

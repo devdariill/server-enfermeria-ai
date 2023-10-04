@@ -4,6 +4,8 @@ import { BarChart } from './components/Barchart'
 import { BarChartColors } from './components/BarchartColors'
 import CardComponent from './components/Card'
 
+export const dynamic = 'force-dynamic'
+
 function Page () {
   return (
     <section className='p-5'>

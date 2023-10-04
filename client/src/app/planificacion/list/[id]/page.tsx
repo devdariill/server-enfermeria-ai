@@ -5,7 +5,7 @@ import Link from 'next/link'
 // import { useSearchParams } from 'next/navigation'
 import { useEffect } from 'react'
 
-// import data from '../mock/data.json'
+export const dynamic = 'force-dynamic'
 
 export default function Page ({ searchParams: { name }, params: { id } }: { searchParams: { name: string }, params: { id: string } }) {
   const { planificaciones, loadPlanificaciones } = useIndex()

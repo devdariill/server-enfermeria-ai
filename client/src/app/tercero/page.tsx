@@ -2,6 +2,8 @@ import TercerosList from '@/app/tercero/components/terceros-list'
 import { ButtonLink } from '@/components/button-link'
 import { SearchTerceros } from './components/search-terceros'
 
+export const dynamic = 'force-dynamic'
+
 function Page () {
   // const handleClick = async (id: string) => {
   //   setLoading(prevState => ({

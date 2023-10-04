@@ -12,6 +12,8 @@ const Label = ({ name, children }: { name: string, children: ReactNode }) => (
   </label>
 )
 
+export const dynamic = 'force-dynamic'
+
 // let id_tercero = -1
 function Page (params: any) {
   const { seccionB, getSeccionB } = useIndex()

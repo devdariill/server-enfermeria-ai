@@ -7,7 +7,7 @@ import Link from 'next/link'
 import { useEffect, useState } from 'react'
 import api from '../../../api'
 
-// import data from '../mock/data.json'
+export const dynamic = 'force-dynamic'
 
 export default function Page ({ searchParams: { name }, params: { id } }: { searchParams: { name: string }, params: { id: string } }) {
   const idTercero = id

@@ -5,6 +5,8 @@ import type { SeccionB } from '@/types'
 import Link from 'next/link'
 import { useEffect } from 'react'
 
+export const dynamic = 'force-dynamic'
+
 export default function Page ({ searchParams: { name }, params: { id } }: { searchParams: { name: string }, params: { id: string } }) {
   const idPlanificacion = id
   const { seccionesB, loadSeccionesB } = useIndex()

@@ -3,7 +3,7 @@ import { pool } from '../app.js'
 const DB_TABLE = 'terceros'
 
 export class TerceroModel {
-  static async getAll ({ search }) {
+  static async getAll ({ search, id_nacional }) {
     if (search) {
       const lowerCase = search.toLowerCase()
 
@@ -20,6 +20,13 @@ export class TerceroModel {
         return result
       }
       return result
+    }
+    if (id_nacional) {
+      const [result] = await pool.query(
+        'SELECT * FROM ?? WHERE id_nacional = ? ;',
+        [DB_TABLE, id_nacional]
+      )
+      return result || []
     }
 
     const [result] = await pool.query(`SELECT * FROM ${DB_TABLE} LIMIT 10;`)
@@ -43,7 +50,8 @@ export class TerceroModel {
   }
 
   static async create ({ input }) {
-    const exist = await this.getAll({ search: input.id_nacional })
+    const exist = await this.getAll({ id_nacional: input.id_nacional })
+    console.log('🚀 ~ file: terceros.model.js:47 ~ TerceroModel ~ create ~ exist:', exist)
     if (exist.length > 0) { return { error: 'Ya existe un tercero con ese id nacional' } }
 
     const keys = Object.keys(input)

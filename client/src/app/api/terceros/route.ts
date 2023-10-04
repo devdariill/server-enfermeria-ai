@@ -1,7 +1,14 @@
+import { getServerSession } from 'next-auth/next'
 import { NextResponse } from 'next/server'
+import { authOptions } from '../auth/[...nextauth]/route'
 import { create, getAll } from './controller'
 
 export async function GET (request: Request) {
+  const session = await getServerSession({ req: request, ...authOptions })
+  if (!session) {
+    return new Response('Unauthorized', { status: 401 })
+  }
+  console.log('🚀 ~ file: route.ts:9 ~ GET ~ session:', session)
   const { searchParams } = new URL(request.url)
   const search = searchParams.get('search')
 

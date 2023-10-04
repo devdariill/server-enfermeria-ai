@@ -1,4 +1,5 @@
 import { IndexProvider } from '@/context/IndexContext'
+import { StatsProvider } from '@/context/statsContext'
 import { Inter } from 'next/font/google'
 import Link from 'next/link'
 import Provider from './Provider'
@@ -30,7 +31,9 @@ export default function RootLayout ({
           <hr className='mt-5' />
           <Provider>
             <IndexProvider>
-              {children}
+              <StatsProvider>
+                {children}
+              </StatsProvider>
             </IndexProvider>
           </Provider>
         </main>

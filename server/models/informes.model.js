@@ -13,7 +13,7 @@ export class InformeModel {
     console.log('🚀 ~ file: informes.model.js:15 ~ InformeModel ~ byMonth ~ name', name)
     const [result] = await pool.query(
       `SELECT MONTH(created_at) AS mes, COUNT(*) AS cantidad 
-      FROM terceros 
+      FROM ??
       WHERE created_at BETWEEN DATE_SUB(NOW(), INTERVAL 1 YEAR) AND NOW()
       GROUP BY mes;`,
       [name]

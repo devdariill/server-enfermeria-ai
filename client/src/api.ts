@@ -70,7 +70,31 @@ const api = {
     }
   },
   stats: {
+    countByTable: async ({ table }: { table: string }) => {
+      const res = await fetch(`${URL_BACK}?name=${table}`, {
+        method: 'GET',
+        headers: {
+          'Content-Type': 'application/json'
+        }
+      })
+
+      const data = await res.json()
+      return data
+    },
+    countByMonth: async ({ table }: { table: string }) => {
+      const res = await fetch(`${URL_BACK}/bymonth?name=${table}`, {
+        method: 'GET',
+        headers: {
+          'Content-Type': 'application/json'
+        }
+      })
+
+      const data = await res.json()
+      return data
+    }
 
   }
 }
 export default api
+
+const URL_BACK = 'http://localhost:3001/informes'

@@ -17,7 +17,7 @@ export const SearchTerceros = () => {
   return (
     <form action='' className='w-full flex' onSubmit={handleSubmit}>
       <label className='flex w-full'>
-        <img src='/search.svg' alt='' />
+        <img src='/search.svg' className='h-5 w-10 my-auto' alt='' />
         <input
           type='search'
           name='search'

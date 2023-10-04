@@ -8,7 +8,7 @@ export async function GET (request: Request) {
   if (!session) {
     return new Response('Unauthorized', { status: 401 })
   }
-  console.log('🚀 ~ file: route.ts:9 ~ GET ~ session:', session)
+  // console.log('🚀 ~ file: route.ts:9 ~ GET ~ session:', session)
   const { searchParams } = new URL(request.url)
   const search = searchParams.get('search')
 

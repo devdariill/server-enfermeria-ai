@@ -1,7 +1,16 @@
 import { pool } from '../app.js'
 
 export class InformeModel {
-  static async count ({ name }) {
+  static async count ({ name, prevYear }) {
+    if (!name) throw new Error('InformeModel.count: name is required')
+    if (prevYear) {
+      const [result] = await pool.query(
+        `SELECT COUNT(*) AS count FROM ??
+        WHERE created_at BETWEEN DATE_SUB(CURDATE(), INTERVAL 2 YEAR) AND DATE_SUB(now(), INTERVAL 1 YEAR);`,
+        [name]
+      )
+      return result[0].count
+    }
     const [result] = await pool.query(
       'SELECT COUNT(*) AS count FROM ??;',
       [name]

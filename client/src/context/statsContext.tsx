@@ -33,10 +33,17 @@ export function StatsProvider ({ children }: { children: React.ReactNode }) {
     })
     setData(chartDataMap)
   }
+
+  const colorsChart = async ({ setData }: { setData: (data: any) => void }) => {
+    const data = await api.stats.all()
+    // console.log('🚀 ~ file: statsContext.tsx:39 ~ colorsChart ~ data:', data)
+    setData(data)
+  }
   return (
     <StatsContext.Provider value={{
       data,
-      areaChart
+      areaChart,
+      colorsChart
     }}
     >
       {children}
@@ -47,6 +54,7 @@ export function StatsProvider ({ children }: { children: React.ReactNode }) {
 interface StatsContextType {
   areaChart: () => void
   data: Map<number, ToChart> | undefined
+  colorsChart: ({ setData }: { setData: (data: any) => void }) => void
 }
 
 interface Data { mes: number, cantidad: number }

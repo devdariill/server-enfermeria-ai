@@ -91,6 +91,26 @@ const api = {
 
       const data = await res.json()
       return data
+    },
+    all: async () => {
+      const res = await fetch(`${URL_BACK}/all`, {
+        method: 'GET',
+        headers: {
+          'Content-Type': 'application/json'
+        }
+      })
+
+      const now = await res.json()
+
+      const res2 = await fetch(`${URL_BACK}/all?prev_year=1`, {
+        method: 'GET',
+        headers: {
+          'Content-Type': 'application/json'
+        }
+      })
+      const prev = await res2.json()
+
+      return [now, prev]
     }
 
   }

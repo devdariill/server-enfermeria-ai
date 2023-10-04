@@ -18,12 +18,17 @@ export class InformeController {
   }
 
   all = async (req, res) => {
+    const { prev_year } = req.query
+    const actualYear = new Date().getFullYear()
+    let data = prev_year ? { name: actualYear - 1 } : { name: actualYear }
+
     const result = TABLES.map(async name => {
-      const response = await this.informeModel.count({ name })
-      return { [name]: response }
+      const response = await this.informeModel.count({ name, prevYear: prev_year })
+      data = { ...data, [name]: response }
+      // return { [name]: response }
     })
-    const response = await Promise.all(result)
-    res.json(response)
+    await Promise.all(result)
+    res.json(data)
   }
 
   // getById = async (req, res) => {

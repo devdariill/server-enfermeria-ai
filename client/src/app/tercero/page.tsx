@@ -1,5 +1,6 @@
 import TercerosList from '@/app/tercero/components/terceros-list'
 import { ButtonLink } from '@/components/button-link'
+import { SearchTerceros } from './components/search-terceros'
 
 function Page () {
   // const handleClick = async (id: string) => {
@@ -31,8 +32,13 @@ function Page () {
   // console.log('🚀 ~ file: page.tsx:8 ~ Page ~ terceros:', terceros)
   return (
     <section className='grid gap-5'>
-      <header className='flex'>
-        <label className='font-bold flex items-center mr-auto'>Terceros</label>
+      <header className='flex justify-evenly'>
+        <label className='font-bold flex items-center'>Terceros</label>
+
+        <div className='my-auto'>
+          <SearchTerceros />
+        </div>
+
         <ButtonLink href={LINK_URL({ path: 'add' })} className>Crear Tercero</ButtonLink>
       </header>
 

@@ -14,7 +14,6 @@ import {
 } from '@tremor/react'
 import { useRouter } from 'next/navigation'
 import { Fragment, useEffect } from 'react'
-import Header from './components/Header'
 
 export const dynamic = 'force-dynamic'
 
@@ -35,7 +34,6 @@ const TablePeopleAi = () => {
 
   return (
     <Card className='my-5'>
-      <Header />
 
       <Info length={terceros.length} />
 

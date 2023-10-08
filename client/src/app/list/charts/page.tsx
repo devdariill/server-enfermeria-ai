@@ -1,4 +1,3 @@
-import Header from '../components/Header'
 import AreaChartCard from './components/Areachart'
 import { BarChart } from './components/Barchart'
 import { BarChartColors } from './components/BarchartColors'
@@ -9,8 +8,6 @@ export const dynamic = 'force-dynamic'
 function Page () {
   return (
     <section className='p-5'>
-      <Header />
-
       <div className='grid gap-5'>
         <CardComponent />
         <AreaChartCard />

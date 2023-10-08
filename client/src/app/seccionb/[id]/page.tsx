@@ -1,7 +1,7 @@
 'use client'
-import { Hr } from '@/components/Hr'
 import type { FormEvent, ReactNode } from 'react'
 import { toast } from 'sonner'
+import { FirstComponent } from '../components/FirstComponent'
 
 const FormToBody = (event: FormEvent<HTMLFormElement>) => {
   event.preventDefault()
@@ -51,9 +51,9 @@ function Pages (props: any) {
       </header>
 
       <form onSubmit={handleSubmit} className='py-3'>
-        <div className='grid grid-cols-2 gap-3 mx-auto'>
-          <FirstComponent />
-          <button id='buttonCss' className='w-full mt-2 col-span-4' type='submit'>
+        <div className='grid grid-cols-2 md:grid-cols-4 gap-3 mx-auto'>
+          <FirstComponent Input={Input} />
+          <button id='buttonCss' className='w-full mt-2 col-span-2 md:col-span-4' type='submit'>
             Agregar Seccion B
           </button>
         </div>
@@ -74,79 +74,3 @@ const Input = ({ name, type = 'string', autoFocus = false }: { name: string, typ
     <input type={type} className='w-full py-1 rounded pl-2 outline-gray-300' name={name} autoFocus={autoFocus} defaultValue={type === 'string' ? 'a' : 1} />
   </Label>
 )
-// const Checkbox = ({ name, autoFocus = false }: { name: string, autoFocus?: boolean }) => (
-//   <Label name={name}>
-//     <input type='checkbox' className='py-1 rounded pl-2 outline-gray-300' name={name} autoFocus={autoFocus} />
-//   </Label>
-// )
-
-const FirstComponent = () => {
-  return (
-    <>
-      <Hr title='ANAMNESIS' />
-
-      <Input name='metodo' autoFocus />
-      <Input name='ciclos' />
-      <Input name='amenorrea' />
-      <Input name='sangrado' />
-      <Input name='manchado' />
-      <Input name='fum' />
-      <Input name='lactando' />
-      <Input name='cefalea_mareo' />
-      <Input name='dolor_mamario' />
-      <Input name='dolor_pelvico' />
-      <Input name='flujo_caracter' />
-      <Input name='varices' />
-
-      <Hr title='EX. FISICO' />
-
-      <Input name='senos' />
-      <Input name='abdomen' />
-      <Input name='cervix' />
-      <Input name='utero' />
-      <Input name='anexos' />
-      <Input name='t_a_mm_hg' />
-      <Input name='peso_kg' />
-
-      <Hr title='CONDUCTA' />
-
-      <Input name='cambio_metodo' />
-      <Input name='motivo' />
-      <Input name='nuevo_metodo' />
-      <Input name='observaciones' />
-      <Input name='citologia' />
-
-    </>
-  )
-}
-// export interface SeccionB {
-//   id: number
-//   id_planificacion: number
-
-//   metodo: string
-//   ciclos: string
-//   amenorrea: string
-//   sangrado: string
-//   manchado: string
-//   fum: string
-//   lactando: string
-//   cefalea_mareo: string
-//   dolor_mamario: string
-//   dolor_pelvico: string
-//   flujo_caracter: string
-//   varices: string
-
-//   senos: string
-//   abdomen: string
-//   cervix: string
-//   utero: string
-//   anexos: string
-//   t_a_mm_hg: string
-//   peso_kg: string
-
-//   cambio_metodo: string
-//   motivo: string
-//   nuevo_metodo: string
-//   observaciones: string
-//   citologia: string
-// }

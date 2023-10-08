@@ -86,7 +86,7 @@ function View ({ idPlanificacion, Select, Input, Checkbox, Date, name }: { idPla
         <Link id='buttonCss' href={`/seccionb/list/${idPlanificacion}?name=${name}`}> Seccion B </Link>
       </header>
       <form onSubmit={() => console.log('enviado')} className='p-5'>
-        <div className='grid grid-cols-2  md:grid-cols-4 gap-3 mx-auto [&>div]:grid '>
+        <div className='grid grid-cols-4 gap-3 mx-auto [&>div]:grid '>
 
           <FirstComponent Select={Select} Input={Input} Checkbox={Checkbox} Date={Date} />
 

@@ -4,7 +4,7 @@ const DB_TABLE = 'historias_clinicas'
 
 export class HistoriaModel {
   static async getAll ({ id }) {
-    const [result] = await pool.query(`SELECT * FROM ${DB_TABLE} WHERE id_tercero = ? LIMIT 10;`, [id])
+    const [result] = await pool.query(`SELECT * FROM ${DB_TABLE} WHERE id_tercero = ? ORDER BY id DESC;`, [id])
     if (result.length === 0) return []
     return result
   }

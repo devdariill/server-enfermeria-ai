@@ -52,6 +52,7 @@ function View ({ idHistoria, TextArea, Input, name }: { idHistoria: string, Text
       body
     })
     const response = await res.json()
+    toast.success('Historia actualizada')
     console.log('🚀 ~ file: page.tsx:26 ~ handleSubmit ~ response:', response)
   }
 
@@ -85,8 +86,10 @@ function View ({ idHistoria, TextArea, Input, name }: { idHistoria: string, Text
           <ThirdComponent TextArea={TextArea} Input={Input} />
 
           <TextArea name='impresion_diagnostica' />
-
           <TextArea name='tratamiento' />
+          <TextArea name='observaciones' />
+
+          <hr className='col-span-2 p-5' />
 
           {/* <div>
           <label className='font-bold'>ID Tercero</label>
@@ -96,14 +99,15 @@ function View ({ idHistoria, TextArea, Input, name }: { idHistoria: string, Text
           <label className='font-bold'>Firma</label>
           <Input name='firma' />
         </div> */}
+          <footer className='grid col-span-2 gap-3'>
+            <button className='bg-red-500 py-2 rounded hover:scale-105 hover:brightness-105 transition-all' onClick={async () => await handleDelete()} type='button'>
+              Eliminar
+            </button>
 
-          <button className='bg-red-500 py-1 rounded hover:scale-105 hover:brightness-105 transition-all' onClick={async () => await handleDelete()} type='button'>
-            Eliminar
-          </button>
-
-          <button id='buttonCss' type='submit'>
-            Guardar Cambios
-          </button>
+            <button id='buttonCss' type='submit'>
+              Guardar Cambios
+            </button>
+          </footer>
         </div>
       </form>
     </>

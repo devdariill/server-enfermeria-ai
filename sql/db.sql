@@ -72,6 +72,8 @@ CREATE TABLE Historias_Clinicas (
   tratamiento TEXT,
   firma INT NOT NULL,
 
+  observaciones TEXT,
+
   acudiente VARCHAR(255),
   PRIMARY KEY (id),
   FOREIGN KEY (id_tercero) REFERENCES Terceros (id),

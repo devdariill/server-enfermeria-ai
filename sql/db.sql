@@ -103,44 +103,45 @@ CREATE TABLE Planificaciones (
   -- Menor de 18, Mayor 35
   h_c INT,
 
-  alfabeta INT, -- 1 si, 0 no
+  alfabeta INT DEFAULT 0, -- 1 si, 0 no
   estudios VARCHAR(50), -- ning, prim, sec, univ
   años_estudio INT,
   estado_civil VARCHAR(50), -- sol,cas, ul, otra
   estado_ocu VARCHAR(50), -- estud, trab
 
-  af_diabetes INT, -- 1 si, 0 no
-  af_hipertension INT, -- 1 si, 0 no
-  af_ca_seno INT, -- 1 si, 0 no
-  af_ca_cervix INT, -- 1 si, 0 no
-  af_enf_cong INT, -- 1 si, 0 no
+  af_diabetes INT DEFAULT 0, -- 1 si, 0 no
+  af_hipertension INT DEFAULT 0, -- 1 si, 0 no
+  af_ca_seno INT DEFAULT 0, -- 1 si, 0 no
+  af_ca_cervix INT DEFAULT 0, -- 1 si, 0 no
+  af_enf_cong INT DEFAULT 0, -- 1 si, 0 no
   af_otros VARCHAR(255), -- 1 si, 0 no
 
-  ap_diabetes INT, -- 1 si, 0 no
-  ap_hipertension INT, -- 1 si, 0 no
-  ap_cancer INT, -- 1 si, 0 no
-  ap_ictericia INT, -- 1 si, 0 no
-  ap_infertil INT, -- 1 si, 0 no
-  ap_enf_cong INT, -- 1 si, 0 no
+  ap_diabetes INT DEFAULT 0, -- 1 si, 0 no
+  ap_hipertension INT DEFAULT 0, -- 1 si, 0 no
+  ap_cancer INT DEFAULT 0, -- 1 si, 0 no
+  ap_ictericia INT DEFAULT 0, -- 1 si, 0 no
+  ap_infertil INT DEFAULT 0, -- 1 si, 0 no
+  ap_enf_cong INT DEFAULT 0, -- 1 si, 0 no
   ap_otros VARCHAR(255), -- 1 si, 0 no
 
   -- inicio R.S
   n_comp INT,
-  enf_t_sex INT, -- 1 si, 0 no
+  enf_t_sex INT DEFAULT 0, -- 1 si, 0 no
   cual VARCHAR(255),
 
   -- ult_citoligia
   mes INT,
   año INT,
-  neg INT, -- 1 si, 0 no
-  nic INT, -- 1 si, 0 no
-  nunca INT, -- 1 si, 0 no
+  neg INT DEFAULT 0, -- 1 si, 0 no
+  nic INT DEFAULT 0, -- 1 si, 0 no
+  nunca INT DEFAULT 0, -- 1 si, 0 no
 
   -- obstetricos 
   gastac INT, 
-  ninguno INT, 
+  ninguno INT DEFAULT 0, 
   gemelar INT,
   mola INT,
+
   abortos INT,
   p_vag INT,
   cesarea INT,
@@ -155,8 +156,7 @@ CREATE TABLE Planificaciones (
 
   -- sensible
   grupo VARCHAR(50),
-  rh1 VARCHAR(2),
-  rh2 VARCHAR(2),
+  rh VARCHAR(1), -- +, -
   sensible INT, -- 1 si, 0 no
 
   fuma INT, -- 1 si, 0 no
@@ -168,7 +168,6 @@ CREATE TABLE Planificaciones (
   positivo INT, -- 1 si, 0 no
 
   -- ultimo metodo
-
   aco INT, -- 1 si, 0 no
   diu INT, -- 1 si, 0 no
   inyectable INT, -- 1 si, 0 no
@@ -225,7 +224,7 @@ CREATE TABLE Seccion_B (
   FOREIGN KEY (id_planificacion) REFERENCES Planificaciones (id)
 );
 
-INSERT INTO Planificaciones (id_historia,h_c,alfabeta,estudios,años_estudio,estado_civil,estado_ocu,af_diabetes,af_hipertension,af_ca_seno,af_ca_cervix,af_enf_cong,af_otros,ap_diabetes,ap_hipertension,ap_cancer,ap_ictericia,ap_infertil,ap_enf_cong,ap_otros,n_comp,enf_t_sex,cual,mes,año,neg,nic,nunca,gastac,ninguno,gemelar,mola,abortos,p_vag,cesarea,ectopica,esp,provoc,nac_vivos,nac_mtos,vive,mtos_primer_sem,fec_ant_embarazo,grupo,rh1,rh2,sensible,fuma,cig_d,vdrl_mes,vdrl_año,negativo,positivo,aco,diu,inyectable,implante,um_ninguno,condon,ritmo,otras,vosec,tiempo,observaciones)VALUES(1,1,1,'univ',4,'sol','estud',1,1,0,1,0,'ning',0,1,0,0,1,0,'ning',2,1,'ning',6,2023,0,1,0,0,1,0,0,0,1,0,0,0,0,2,0,1,3,'2023-09-27','grupo','1','2',1,1,10,3,2023,0,1,1,0,1,0,0,1,0,0,0,6,'Observacionesdeejemplo');
+INSERT INTO Planificaciones (id_historia,h_c,alfabeta,estudios,años_estudio,estado_civil,estado_ocu,af_diabetes,af_hipertension,af_ca_seno,af_ca_cervix,af_enf_cong,af_otros,ap_diabetes,ap_hipertension,ap_cancer,ap_ictericia,ap_infertil,ap_enf_cong,ap_otros,n_comp,enf_t_sex,cual,mes,año,neg,nic,nunca,gastac,ninguno,gemelar,mola,abortos,p_vag,cesarea,ectopica,esp,provoc,nac_vivos,nac_mtos,vive,mtos_primer_sem,fec_ant_embarazo,grupo,rh,sensible,fuma,cig_d,vdrl_mes,vdrl_año,negativo,positivo,aco,diu,inyectable,implante,um_ninguno,condon,ritmo,otras,vosec,tiempo,observaciones)VALUES(1,1,1,'univ',4,'sol','estud',1,1,0,1,0,'ning',0,1,0,0,1,0,'ning',2,1,'ning',6,2023,0,1,0,0,1,0,0,0,1,0,0,0,0,2,0,1,3,'2023-09-27','grupo','+',1,1,10,3,2023,0,1,1,0,1,0,0,1,0,0,0,6,'Observacionesdeejemplo');
 
 INSERT INTO Seccion_B (id_planificacion,metodo,ciclos,amenorrea,sangrado,manchado,fum,lactando,cefalea_mareo,dolor_mamario,dolor_pelvico,flujo_caracter,varices,senos,abdomen,cervix,utero,anexos,t_a_mm_hg,peso_kg,cambio_metodo,motivo,nuevo_metodo,observaciones,citologia) VALUES (1,'Método anticonceptivo utilizado','Descripción de ciclos menstruales','Descripción de amenorrea','Descripción de sangrado','Descripción de manchado','Descripción de fecha de última menstruación','Descripción de lactancia','Descripción de cefalea/mareo','Descripción de dolor mamario','Descripción de dolor pélvico','Descripción de flujo característico','Descripción de varices','Descripción de senos','Descripción de abdomen','Descripción de cervix','Descripción de útero','Descripción de anexos','Descripción de tensión arterial (mm Hg)','Descripción de peso (kg)','Descripción de cambio de método','Descripción del motivo','Descripción del nuevo método','Descripción de observaciones','Descripción de citología' );
 

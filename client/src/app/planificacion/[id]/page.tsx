@@ -2,6 +2,7 @@
 import { useIndex } from '@/context/IndexContext'
 import { useEffect, type FormEvent, type ReactNode } from 'react'
 import { toast } from 'sonner'
+import { FirstComponent } from '../components/FirstComponent'
 
 const FormToBody = (event: FormEvent<HTMLFormElement>) => {
   event.preventDefault()
@@ -60,7 +61,7 @@ function Pages ({ params: { id }, searchParams: { name } }: { params: { id: stri
       <form onSubmit={handleSubmit}>
         <div className='grid grid-cols-4 gap-3 mx-auto p-5'>
 
-          <FirstComponent />
+          <FirstComponent Checkbox={Checkbox} Select={Select} Input={Input} Label={Label} />
 
           <button id='buttonCss' className='w-full mt-2 col-span-4' type='submit'>
             Agregar Planificacion
@@ -95,81 +96,9 @@ const Select = ({ name, options, autoFocus = false }: { name: string, options: s
     </select>
   </Label>
 )
-const Hr = () => (
-  <hr className='col-span-4 p-1 bg-black/20 rounded-full' />
-)
-
-const FirstComponent = () => {
-  return (
-    <>
-      {/* <Input name='h_c' type='number' autoFocus /> */}
-      <Checkbox name='alfabeta' autoFocus />
-      <Select name='estudios' options={['ning', 'prim', 'sec', 'univ']} />
-      <Input name='años_estudio' type='number' />
-      <Select name='estado_civil' options={['sol', 'cas', 'ul', 'otra']} />
-      <Select name='estado_ocu' options={['estud', 'trab']} />
-
-      <Hr />
-
-      <Checkbox name='af_diabetes' />
-      <Checkbox name='af_hipertension' />
-      <Checkbox name='af_ca_seno' />
-      <Checkbox name='af_ca_cervix' />
-      <Checkbox name='af_enf_cong' />
-      <Input name='af_otros' />
-
-      <Hr />
-
-      <Checkbox name='ap_diabetes' />
-      <Checkbox name='ap_hipertension' />
-      <Checkbox name='ap_cancer' />
-      <Checkbox name='ap_ictericia' />
-      <Checkbox name='ap_infertil' />
-      <Checkbox name='ap_enf_cong' />
-      <Input name='ap_otros' />
-
-      <Hr />
-
-      <Input name='n_comp' type='number' />
-      <Checkbox name='enf_t_sex' />
-      <Input name='cual' />
-
-      <Hr />
-
-      <Input name='mes' type='number' />
-      <Input name='año' type='number' />
-      <Checkbox name='neg' />
-      <Checkbox name='nic' />
-      <Checkbox name='nunca' />
-
-      <Hr />
-
-      <Input name='gastac' type='number' />
-      <Checkbox name='ninguno' />
-      <Input name='gemelar' type='number' />
-      <Input name='mola' type='number' />
-
-      <Hr />
-
-      <Input name='abortos' type='number' />
-      <Input name='p_vag' type='number' />
-      <Input name='cesarea' type='number' />
-      <Input name='ectopica' type='number' />
-      <Input name='esp' type='number' />
-      <Input name='provoc' type='number' />
-      <Input name='nac_vivos' type='number' />
-      <Input name='nac_mtos' type='number' />
-      <Input name='vive' type='number' />
-      <Input name='mtos_primer_sem' type='number' />
-      {/* <Input name='fec_ant_embarazo' /> */}
-      <Label name='fec_ant_embarazo'>
-        <input type='date' className='w-full py-1 rounded pl-2 outline-gray-300' name='fec_ant_embarazo' />
-      </Label>
-
-      <Hr />
-    </>
-  )
-}
+// const Hr = () => (
+//   <hr className='col-span-4 p-1 bg-black/20 rounded-full' />
+// )
 
 // export interface Planificacion {
 //   id: number
@@ -226,8 +155,7 @@ const FirstComponent = () => {
 //   fec_ant_embarazo: string // Puedes usar el tipo Date si prefieres.
 
 //   grupo: string
-//   rh1: string
-//   rh2: string
+//   rh: string
 //   sensible: number
 
 //   fuma: number

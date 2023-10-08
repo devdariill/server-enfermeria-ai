@@ -55,8 +55,7 @@ export export interface Planificacion {
   fec_ant_embarazo: string // Puedes usar el tipo Date si prefieres.
 
   grupo: string
-  rh1: string
-  rh2: string
+  rh: string
   sensible: number
 
   fuma: number

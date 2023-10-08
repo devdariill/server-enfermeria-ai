@@ -59,7 +59,7 @@ const Item = ({ id, created_at, name }: Planificacion & { name: string }) => {
         ❖ {id}
       </Link>
       <span className='ml-auto'>
-        {localDate.toLocaleDateString('es-CO')}
+        {localDate.toLocaleString()}
       </span>
     </li>
   )

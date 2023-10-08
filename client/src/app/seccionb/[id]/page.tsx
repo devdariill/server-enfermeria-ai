@@ -1,4 +1,5 @@
 'use client'
+import { Hr } from '@/components/Hr'
 import type { FormEvent, ReactNode } from 'react'
 import { toast } from 'sonner'
 
@@ -48,10 +49,11 @@ function Pages (props: any) {
           Seccion B
         </h2>
       </header>
-      <form onSubmit={handleSubmit} className='py-10'>
+
+      <form onSubmit={handleSubmit} className='py-3'>
         <div className='grid grid-cols-2 gap-3 mx-auto'>
           <FirstComponent />
-          <button id='buttonCss' className='w-full mt-2 col-span-2' type='submit'>
+          <button id='buttonCss' className='w-full mt-2 col-span-4' type='submit'>
             Agregar Seccion B
           </button>
         </div>
@@ -77,14 +79,12 @@ const Input = ({ name, type = 'string', autoFocus = false }: { name: string, typ
 //     <input type='checkbox' className='py-1 rounded pl-2 outline-gray-300' name={name} autoFocus={autoFocus} />
 //   </Label>
 // )
-const Hr = () => (
-  <hr className='col-span-2 p-1 bg-black/20 rounded-full' />
-)
 
 const FirstComponent = () => {
   return (
     <>
-      {/* <Input name='h_c' type='number' autoFocus /> */}
+      <Hr title='ANAMNESIS' />
+
       <Input name='metodo' autoFocus />
       <Input name='ciclos' />
       <Input name='amenorrea' />
@@ -98,7 +98,7 @@ const FirstComponent = () => {
       <Input name='flujo_caracter' />
       <Input name='varices' />
 
-      <Hr />
+      <Hr title='EX. FISICO' />
 
       <Input name='senos' />
       <Input name='abdomen' />
@@ -108,7 +108,7 @@ const FirstComponent = () => {
       <Input name='t_a_mm_hg' />
       <Input name='peso_kg' />
 
-      <Hr />
+      <Hr title='CONDUCTA' />
 
       <Input name='cambio_metodo' />
       <Input name='motivo' />

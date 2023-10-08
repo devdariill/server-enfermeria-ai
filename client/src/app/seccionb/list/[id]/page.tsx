@@ -53,13 +53,14 @@ function ListSeccionB ({ seccionesB, name }: { seccionesB: SeccionB[], name: str
 }
 
 const Item = ({ id, name, created_at }: SeccionB & { name: string }) => {
+  const date = new Date(created_at)
   return (
     <li className='flex items-center'>
       <Link href={`/seccionb?id=${id}&name=${name}`} className='flex items-center justify-center w-12 h-12 text-black bg-white rounded-xl hover:cursor-pointer hover:scale-105'>
         ❖ {id}
       </Link>
       <span className='ml-auto'>
-        {created_at}
+        {date.toLocaleString()}
       </span>
     </li>
   )

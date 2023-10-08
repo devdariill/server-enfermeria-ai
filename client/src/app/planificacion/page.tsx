@@ -73,7 +73,7 @@ function View ({ idPlanificacion, Select, Input, Checkbox, Date, name }: { idPla
     })
     const response = await res.json()
     // router.push(`/list/${1}`)
-    if (response.DBPlanificacion.includes('dependencies')) return toast.error('No se puede eliminar este tercero porque tiene dependencias')
+    if (response.DBPlanificacion.includes('dependencies')) return toast.error('No se puede eliminar esta planificacion porque tiene dependencias')
 
     window.history.back()
   }

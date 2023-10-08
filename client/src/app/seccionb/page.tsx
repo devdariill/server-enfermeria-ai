@@ -5,6 +5,7 @@ import type { SeccionB } from '@/types'
 import { useEffect } from 'react'
 
 import type { FormEvent, ReactNode } from 'react'
+import { toast } from 'sonner'
 import { FirstComponent } from './components/FirstComponent'
 
 const Label = ({ name, children }: { name: string, children: ReactNode }) => (
@@ -72,15 +73,17 @@ function View ({ id, Input, name }: { id: string, Input: any, name: string }) {
     const body = JSON.stringify({ ...FormToBody(event) })
     console.log('🚀 ~ file: page.tsx:70 ~ handleSubmit ~ body:', body)
 
-    // const res = await fetch(`/api/historias/${id}`, {
-    //   method: 'PATCH',
-    //   headers: {
-    //     'Content-Type': 'application/json'
-    //   },
-    //   body
-    // })
-    // const response = await res.json()
-    // console.log('🚀 ~ file: page.tsx:26 ~ handleSubmit ~ response:', response)
+    const res = await fetch(`/api/seccionb/${id}`, {
+      method: 'PATCH',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body
+    })
+    const response = await res.json()
+    window.history.back()
+    toast.success('Seccion B actualizada')
+    console.log('🚀 ~ file: page.tsx:26 ~ handleSubmit ~ response:', response)
   }
   const handleDelete = async () => {
     const confirm = window.confirm('¿Está seguro de eliminar este tercero?')
@@ -104,13 +107,13 @@ function View ({ id, Input, name }: { id: string, Input: any, name: string }) {
         <h1 className='text-2xl font-semibold text-center'>Seccion B</h1>
       </header>
       <form onSubmit={handleSubmit} className='p-5'>
-        <div className='grid grid-cols-1  md:grid-cols-2 gap-3 mx-auto [&>div]:grid '>
+        <div className='grid grid-cols-2 md:grid-cols-4 gap-3 mx-auto [&>div]:grid '>
 
           <FirstComponent Input={Input} />
 
-          <footer className='flex gap-3 col-span-2 md:col-span-4 grid-cols-1 md:grid-cols-2'>
+          <footer className='grid gap-3 col-span-2 md:col-span-4 grid-cols-1 md:grid-cols-2'>
             <button
-              className='bg-red-500 py-2 rounded hover:scale-105 hover:brightness-105 transition-all' onClick={async () => await handleDelete()} type='button'
+              className='bg-red-500 py-2 rounded hover:scale-105 hover:brightness-105 transition-all w-full' onClick={async () => await handleDelete()} type='button'
             >
               Eliminar
             </button>

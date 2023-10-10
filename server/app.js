@@ -16,6 +16,20 @@ export const createApp = ({ terceroModel, historiaModel, planificacionModel, sec
   app.use(corsMiddleware())
   app.disable('x-powered-by')
 
+  app.get('*', function (req, res, next) {
+    const protocol = req.protocol
+    const host = req.hostname
+    const url = req.originalUrl
+    const port = process.env.PORT || PORT
+
+    const fullUrl = `${protocol}://${host}:${port}${url}`
+
+    const responseString = `Full URL is: ${fullUrl}`
+
+    console.log('🚀 ~ file: app.js:29 ~ responseString :', responseString)
+    next()
+  })
+
   app.get('/', (_req, res) => { res.send('Hello World!') })
 
   // app.use('/movies',selfBlockMiddleware, createMovieRouter({ movieModel }))

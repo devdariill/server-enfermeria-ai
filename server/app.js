@@ -16,14 +16,14 @@ export const createApp = ({ terceroModel, historiaModel, planificacionModel, sec
   app.use(corsMiddleware())
   app.disable('x-powered-by')
 
-  app.get('/', selfBlockMiddleware, (_req, res) => { res.send('Hello World!') })
+  app.get('/', (_req, res) => { res.send('Hello World!') })
 
-  // app.use('/movies', createMovieRouter({ movieModel }))
-  app.use('/historias', createHistoriaRouter({ historiaModel }))
-  app.use('/terceros', createTerceroRouter({ terceroModel }))
-  app.use('/planificaciones', createPlanificacionRouter({ planificacionModel }))
-  app.use('/seccionb', createSeccionBRouter({ seccionBModel }))
-  app.use('/informes', createInformeRouter({ informeModel }))
+  // app.use('/movies',selfBlockMiddleware, createMovieRouter({ movieModel }))
+  app.use('/historias', selfBlockMiddleware, createHistoriaRouter({ historiaModel }))
+  app.use('/terceros', selfBlockMiddleware, createTerceroRouter({ terceroModel }))
+  app.use('/planificaciones', selfBlockMiddleware, createPlanificacionRouter({ planificacionModel }))
+  app.use('/seccionb', selfBlockMiddleware, createSeccionBRouter({ seccionBModel }))
+  app.use('/informes', selfBlockMiddleware, createInformeRouter({ informeModel }))
 
   // hello word route /
 

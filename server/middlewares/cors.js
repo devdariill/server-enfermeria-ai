@@ -1,10 +1,14 @@
 import cors from 'cors'
 import 'dotenv/config'
 
+// const ACCEPTED_ORIGINS = [
+//   process.env.NODE_ENV === 'production'
+//     ? 'https://enfermeria-ai.vercel.app/'
+//     : 'http://localhost:3000'
+// ]
 const ACCEPTED_ORIGINS = [
-  process.env.NODE_ENV === 'production'
-    ? 'https://enfermeria-ai.vercel.app/'
-    : 'http://localhost:3000'
+  'https://enfermeria-ai.vercel.app/',
+  'http://localhost:3000'
 ]
 
 export const corsMiddleware = ({ acceptedOrigins = ACCEPTED_ORIGINS } = {}) => cors({

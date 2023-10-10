@@ -22,6 +22,9 @@ export const createApp = ({ terceroModel, historiaModel, planificacionModel, sec
   app.use('/seccionb', createSeccionBRouter({ seccionBModel }))
   app.use('/informes', createInformeRouter({ informeModel }))
 
+  // hello word route /
+  app.get('/', (_req, res) => { res.send('Hello World!') })
+
   const PORT = process.env.PORT ?? 3001
 
   app.listen(PORT, () => {

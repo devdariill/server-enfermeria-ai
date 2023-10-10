@@ -36,6 +36,16 @@ const DEFAULT_CONFIG = {
   password: 'ronald1230',
   database: 'enfermeriadb'
 }
-const connectionString = process.env.DATABASE_URL ?? DEFAULT_CONFIG
+
+const PROD_CONFIG = {
+  database: process.env.MYSQLDATABASE,
+  host: process.env.MYSQLHOST,
+  user: process.env.MYSQLUSER,
+  port: process.env.MYSQLPORT,
+  password: process.env.MYSQLPASSWORD
+}
+
+console.log("🚀 ~ file: app.js:55 ~ process.env.NODE_ENV === 'production':", process.env.NODE_ENV === 'production')
+const connectionString = process.env.NODE_ENV === 'production' ? PROD_CONFIG : DEFAULT_CONFIG
 
 export const pool = createPool(connectionString)

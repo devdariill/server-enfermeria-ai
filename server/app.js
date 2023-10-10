@@ -3,6 +3,7 @@ import express, { json } from 'express'
 import { createPool } from 'mysql2/promise'
 import { corsMiddleware } from './middlewares/cors.js'
 
+import { selfBlockMiddleware } from './middlewares/self-block.js'
 import { createHistoriaRouter } from './routes/historias.routes.js'
 import { createInformeRouter } from './routes/informes.routes.js'
 import { createPlanificacionRouter, createSeccionBRouter } from './routes/planificaciones.routes.js'
@@ -15,6 +16,8 @@ export const createApp = ({ terceroModel, historiaModel, planificacionModel, sec
   app.use(corsMiddleware())
   app.disable('x-powered-by')
 
+  app.get('/', selfBlockMiddleware, (_req, res) => { res.send('Hello World!') })
+
   // app.use('/movies', createMovieRouter({ movieModel }))
   app.use('/historias', createHistoriaRouter({ historiaModel }))
   app.use('/terceros', createTerceroRouter({ terceroModel }))
@@ -23,7 +26,6 @@ export const createApp = ({ terceroModel, historiaModel, planificacionModel, sec
   app.use('/informes', createInformeRouter({ informeModel }))
 
   // hello word route /
-  app.get('/', (_req, res) => { res.send('Hello World!') })
 
   const PORT = process.env.PORT ?? 3001
 

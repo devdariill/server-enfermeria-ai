@@ -1,11 +1,10 @@
 import cors from 'cors'
+import 'dotenv/config'
 
 const ACCEPTED_ORIGINS = [
-  'http://localhost:3000',
-  'http://localhost:8080',
-  'http://localhost:1234',
-  'https://movies.com',
-  'https://midu.dev'
+  process.env.NODE_ENV === 'production'
+    ? 'https://enfermeria-ai.vercel.app/'
+    : 'http://localhost:3000'
 ]
 
 export const corsMiddleware = ({ acceptedOrigins = ACCEPTED_ORIGINS } = {}) => cors({

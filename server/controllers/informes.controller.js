@@ -62,4 +62,4 @@ export class InformeController {
   // }
 }
 
-const TABLES = ['historias_clinicas', 'planificaciones', 'seccion_b', 'terceros', 'usuarios']
+const TABLES = ['historias_clinicas', 'planificaciones', 'seccion_b', 'terceros']

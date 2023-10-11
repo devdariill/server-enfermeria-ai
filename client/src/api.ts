@@ -31,7 +31,7 @@ const api = {
       // if (!MODE) throw new Error('🚀 ~ file: api.ts:33 ~ parsedHistoria: ~ Error: Not implemented fetch')
       if (!MODE) console.error('🚀 ~ file: api.ts:33 ~ parsedHistoria: ~ Error: Not implemented fetch')
 
-      const res = await fetch(`http://localhost:3000/api/historias?id=${id}`)
+      const res = await fetch(`/api/historias?id=${id}`)
       const historias = await res.json() as HistoriaClinica[]
 
       const parsedHistoria = historias.map(historia => {
@@ -118,4 +118,4 @@ const api = {
 }
 export default api
 
-const URL_BACK = 'http://localhost:3001/informes'
+const URL_BACK = process.env.NODE_ENV === 'production' ? process.env.URL_BACK! + '/informes' : 'http://localhost:3001/informes'

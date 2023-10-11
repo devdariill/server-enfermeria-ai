@@ -2,7 +2,10 @@ import type { Tercero } from '@/types'
 import { axios } from '../axios'
 
 const PAGE = '/terceros/'
-const BASE_URL = 'http://localhost:3001' + PAGE
+const BASE_URL = process.env.NODE_ENV === 'production' ? process.env.URL_BACK! + PAGE : 'http://localhost:3001' + PAGE
+console.log('🚀 ~ file: controller.ts:6 ~ BASE_URL:', BASE_URL)
+// const BASE_URL = 'http://localhost:3001' + PAGE
+// const URL_BACK = process.env.NODE_ENV === 'production' ? process.env.URL_BACK! + '/informes' : 'http://localhost:3001/informes'
 
 export async function getAll ({ search }: { search?: string }): Promise<Tercero[]> {
   if (search) {

@@ -109,7 +109,7 @@ const Select = ({ name, options, autoFocus = false }: { name: string, options: s
 
 //   alfabeta: number
 //   estudios: string
-//   años_estudio: number
+//   anos_estudio: number
 //   estado_civil: string
 //   estado_ocu: string
 
@@ -133,7 +133,7 @@ const Select = ({ name, options, autoFocus = false }: { name: string, options: s
 //   cual: string
 
 //   mes: number
-//   año: number
+//   ano: number
 //   neg: number
 //   nic: number
 //   nunca: number
@@ -162,7 +162,7 @@ const Select = ({ name, options, autoFocus = false }: { name: string, options: s
 //   cig_d: number
 
 //   vdrl_mes: number
-//   vdrl_año: number
+//   vdrl_ano: number
 //   negativo: number
 //   positivo: number
 

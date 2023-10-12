@@ -16,7 +16,7 @@ export const FirstComponent = ({
       {/* <Input name='h_c' type='number' autoFocus /> */}
       <Checkbox name='alfabeta' autoFocus />
       <Select name='estudios' options={['ning', 'prim', 'sec', 'univ']} />
-      <Input name='años_estudio' type='number' />
+      <Input name='anos_estudio' type='number' />
       <Select name='estado_civil' options={['sol', 'cas', 'ul', 'otra']} />
       <Select name='estado_ocu' options={['estud', 'trab']} />
 
@@ -46,7 +46,7 @@ export const FirstComponent = ({
       <Hr title='Ult. Citologia' />
 
       <Input name='mes' type='number' />
-      <Input name='año' type='number' />
+      <Input name='ano' type='number' />
       <Checkbox name='neg' />
       <Checkbox name='nic' />
       <Checkbox name='nunca' />
@@ -95,7 +95,7 @@ export const FirstComponent = ({
       <Hr />
 
       <Input name='vdrl_mes' type='number' />
-      <Input name='vdrl_año' type='number' />
+      <Input name='vdrl_ano' type='number' />
       <Checkbox name='negativo' />
       <Checkbox name='positivo' />
 

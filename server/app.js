@@ -45,7 +45,10 @@ const PROD_CONFIG = {
   host: process.env.MYSQLHOST,
   user: process.env.MYSQLUSER,
   port: process.env.MYSQLPORT,
-  password: process.env.MYSQLPASSWORD
+  password: process.env.MYSQLPASSWORD,
+  ssl: {
+    rejectUnauthorized: false
+  }
 }
 
 console.log("🚀 ~ file: app.js:55 ~ process.env.NODE_ENV === 'production':", process.env.NODE_ENV === 'production')

@@ -8,13 +8,13 @@ import type { FormEvent, ReactNode } from 'react'
 import { toast } from 'sonner'
 import { FirstComponent } from './components/FirstComponent'
 
+export const dynamic = 'force-dynamic'
+
 const Label = ({ name, children }: { name: string, children: ReactNode }) => (
   <label className='font-semibold capitalize text-center items-center flex flex-col justify-center'>{name.split('_').join(' ')}
     {children}
   </label>
 )
-
-export const dynamic = 'force-dynamic'
 
 // let id_tercero = -1
 function Page (params: any) {

@@ -9,7 +9,7 @@ export export interface Planificacion {
 
   alfabeta: number
   estudios: string
-  años_estudio: number
+  anos_estudio: number
   estado_civil: string
   estado_ocu: string
 
@@ -33,7 +33,7 @@ export export interface Planificacion {
   cual: string
 
   mes: number
-  año: number
+  ano: number
   neg: number
   nic: number
   nunca: number
@@ -62,7 +62,7 @@ export export interface Planificacion {
   cig_d: number
 
   vdrl_mes: number
-  vdrl_año: number
+  vdrl_ano: number
   negativo: number
   positivo: number
 
